@@ -1,0 +1,244 @@
+/* ══════════════════════════════════════════════════════
+   account.css — FashionTV Magazine Kullanıcı Paneli
+   style.css token'larını miras alır
+══════════════════════════════════════════════════════ */
+
+body.account-page {
+  background: var(--off-white);
+  min-height: 100vh;
+}
+
+/* ── SAYFA ÜSTÜ ──────────────────────────────────── */
+.account-topbar {
+  background: var(--ink);
+  padding: calc(62px + 40px) 0 40px;
+  margin-bottom: 0;
+}
+.account-topbar__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.account-topbar__greeting {
+  font-family: var(--font-display);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: .3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px; display: block;
+}
+.account-topbar__name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem,4vw,3.5rem);
+  font-weight: 600; color: var(--white);
+  line-height: 1.1;
+}
+.account-topbar__name em { font-style: italic; font-weight: 300; color: var(--gold-lt); }
+.account-topbar__meta {
+  font-size: 13px; font-weight: 300; color: rgba(255,255,255,.4);
+  margin-top: 8px;
+}
+.btn-logout {
+  font-family: var(--font-display); font-size: 9.5px; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(255,255,255,.45); background: none; border: 1px solid rgba(255,255,255,.15);
+  padding: 10px 20px; cursor: pointer;
+  transition: border-color .2s, color .2s;
+}
+.btn-logout:hover { border-color: rgba(255,255,255,.45); color: var(--white); }
+
+/* ── ANA DÜZEN ───────────────────────────────────── */
+.account-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 32px 0 var(--section-v);
+}
+
+/* ── SOL MENÜ ────────────────────────────────────── */
+.account-nav {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 8px 0;
+  position: sticky;
+  top: calc(62px + 16px);
+}
+.account-nav__item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 13px 20px; width: 100%;
+  background: none; border: none; cursor: pointer; text-align: left;
+  font-family: var(--font-display); font-size: 10px; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-50); border-left: 2px solid transparent;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.account-nav__item svg { flex-shrink: 0; }
+.account-nav__item:hover { color: var(--ink); background: var(--off-white); }
+.account-nav__item.active {
+  color: var(--ink); border-color: var(--gold);
+  background: var(--off-white);
+}
+.account-nav__sep {
+  height: 1px; background: var(--border); margin: 8px 0;
+}
+
+/* ── TAB PANELLERİ ───────────────────────────────── */
+.account-panels { min-width: 0; display: flex; flex-direction: column; gap: 0; }
+.account-panel { display: none; flex-direction: column; gap: 20px; }
+.account-panel.active { display: flex; }
+
+/* ── WIDGET KARTI ────────────────────────────────── */
+.acc-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 28px;
+}
+.acc-card__label {
+  font-family: var(--font-display); font-size: 9px; font-weight: 700;
+  letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 18px; display: block;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border);
+}
+.acc-card__title {
+  font-family: var(--font-serif); font-size: 20px; font-weight: 600;
+  color: var(--ink); margin-bottom: 4px;
+}
+
+/* ── AKTİF ABONELİK ─────────────────────────────── */
+.sub-status-card {
+  border-left: 3px solid var(--gold);
+  background: linear-gradient(135deg, var(--white) 0%, var(--gold-pale) 100%);
+}
+.sub-status-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-display); font-size: 8.5px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  padding: 5px 12px; margin-bottom: 14px;
+}
+.sub-status-badge.active   { background: #e8f5e9; color: #1a7a3e; }
+.sub-status-badge.expired  { background: #fdf0f0; color: #c0392b; }
+.sub-status-badge.pending  { background: var(--gold-pale); color: var(--gold); }
+.sub-status-badge.none     { background: var(--off-white); color: var(--ink-50); }
+.sub-status-badge .dot {
+  width: 6px; height: 6px; border-radius: 50%; background: currentColor;
+}
+
+.sub-plan-name {
+  font-family: var(--font-serif); font-size: 24px; font-weight: 600; color: var(--ink);
+}
+.sub-meta-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 16px; margin-top: 20px;
+}
+.sub-meta-item {}
+.sub-meta-item__label {
+  font-family: var(--font-display); font-size: 8.5px; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--ink-50);
+  margin-bottom: 5px; display: block;
+}
+.sub-meta-item__value {
+  font-family: var(--font-serif); font-size: 15px; font-weight: 600; color: var(--ink);
+}
+.sub-meta-item__value.highlight { color: var(--gold); font-size: 20px; }
+
+/* Kalan gün çubuğu */
+.sub-progress-wrap { margin-top: 18px; }
+.sub-progress-label {
+  display: flex; justify-content: space-between;
+  font-family: var(--font-display); font-size: 9px; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--ink-50);
+  margin-bottom: 6px;
+}
+.sub-progress-bar {
+  height: 3px; background: var(--border); overflow: hidden;
+}
+.sub-progress-fill { height: 100%; background: var(--gold); transition: width .6s var(--ease-out); }
+
+.btn-sub-action {
+  display: inline-block; margin-top: 20px;
+  padding: 12px 28px; background: var(--ink); color: var(--white);
+  border: 1px solid var(--ink); font-family: var(--font-display);
+  font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  cursor: pointer; text-decoration: none; transition: background .2s;
+}
+.btn-sub-action:hover { background: #222; }
+
+/* ── PROFİL FORMU ────────────────────────────────── */
+.profile-form { display: flex; flex-direction: column; gap: 0; }
+.profile-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.profile-form .form-group { margin-bottom: 18px; }
+.profile-form .form-label {
+  display: block; font-family: var(--font-display); font-size: 9.5px; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--ink-50); margin-bottom: 7px;
+}
+.profile-form .form-input {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--border);
+  background: var(--white); font-family: var(--font-body); font-size: 14px;
+  font-weight: 300; color: var(--ink); outline: none; border-radius: 0;
+  transition: border-color .2s;
+}
+.profile-form .form-input:focus { border-color: var(--ink); }
+.profile-form .form-input:disabled { background: var(--off-white); color: var(--ink-50); }
+.btn-profile-save {
+  display: inline-block; padding: 13px 32px;
+  background: var(--ink); color: var(--white); border: 1px solid var(--ink);
+  font-family: var(--font-display); font-size: 10px; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase; cursor: pointer;
+  transition: background .2s; align-self: flex-start;
+}
+.btn-profile-save:hover { background: #222; }
+.btn-profile-save:disabled { opacity: .55; cursor: not-allowed; }
+
+/* ── ÖDEME GEÇMİŞİ ───────────────────────────────── */
+.payment-table { width: 100%; border-collapse: collapse; }
+.payment-table th {
+  font-family: var(--font-display); font-size: 9px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--ink-50);
+  padding: 12px 14px; border-bottom: 1px solid var(--border); text-align: left;
+}
+.payment-table td {
+  padding: 13px 14px; border-bottom: 1px solid var(--border);
+  font-size: 13px; font-weight: 300; color: var(--ink-50);
+  vertical-align: middle;
+}
+.payment-table tbody tr:last-child td { border-bottom: none; }
+.payment-table tbody tr:hover td { background: var(--off-white); }
+.status-badge {
+  display: inline-block; font-family: var(--font-display); font-size: 8px;
+  font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  padding: 3px 10px;
+}
+.status-badge.success  { background: #e8f5e9; color: #1a7a3e; }
+.status-badge.failed   { background: #fdf0f0; color: #c0392b; }
+.status-badge.pending  { background: var(--gold-pale); color: var(--gold); }
+.status-badge.refunded { background: var(--off-white); color: var(--ink-50); }
+.payment-empty {
+  text-align: center; padding: 36px 0;
+  font-family: var(--font-display); font-size: 10px; font-weight: 500;
+  letter-spacing: .15em; text-transform: uppercase; color: var(--ink-50);
+}
+
+/* ── ALERT ───────────────────────────────────────── */
+.form-alert {
+  display: none; padding: 13px 16px; font-family: var(--font-body);
+  font-size: 13px; font-weight: 400; line-height: 1.5;
+  margin-bottom: 16px; border-left: 3px solid;
+}
+.form-alert--error   { background: #fdf0f0; color: #c0392b; border-color: #c0392b; }
+.form-alert--success { background: #f0fdf4; color: #1a7a3e; border-color: #1a7a3e; }
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media(max-width:900px) {
+  .account-layout { grid-template-columns: 1fr; }
+  .account-nav { position: static; display: flex; overflow-x: auto; padding: 0; }
+  .account-nav__item { white-space: nowrap; border-left: none; border-bottom: 2px solid transparent; padding: 14px 18px; }
+  .account-nav__item.active { border-bottom-color: var(--gold); border-left: none; }
+  .account-nav__sep { display: none; }
+  .sub-meta-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width:560px) {
+  .profile-form .form-row { grid-template-columns: 1fr; }
+  .sub-meta-grid { grid-template-columns: 1fr; }
+  .account-topbar__inner { flex-direction: column; align-items: flex-start; }
+}

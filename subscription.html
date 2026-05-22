@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abonelik Planları — FashionTV Magazine</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="subscription.css" />
+  <style>
+    #site-header { background: #0a0a0a !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
+    #site-header .logo-img { filter: brightness(0) invert(1) !important; }
+    #site-header .main-nav > a, #site-header .nav-dropdown-trigger { color: rgba(255,255,255,0.75) !important; }
+    #site-header .main-nav > a:hover, #site-header .nav-dropdown-trigger:hover { color: #fff !important; }
+    #site-header .hdr-cta { color: #fff !important; border-color: rgba(255,255,255,0.3) !important; }
+    #site-header .burger span { background: #fff !important; }
+  </style>
+</head>
+<body class="sub-page">
+
+<!-- ═══════════════════════════════════
+     HEADER — index.html ile birebir
+═══════════════════════════════════ -->
+<header class="site-header" id="site-header">
+  <div class="header-wrap">
+    <a class="logo" href="home.html" aria-label="FashionTV Magazine">
+      <img src="images/logo.png" class="logo-img">
+    </a>
+    <nav class="main-nav" aria-label="Ana menü">
+      <a href="home.html">Ana Sayfa</a>
+     <a href="news.html">Haberler</a>
+      <div class="nav-dropdown">
+        <a href="about.html" class="nav-dropdown-trigger">Hakkımızda</a>
+        <div class="nav-dropdown-panel">
+          
+        </div>
+      </div>
+      <a href="subscription.html">Abonelik</a>
+
+      <a href="contact.html">İletişim</a>
+      <a href="casting/index.html" class="nav-casting">Casting <span class="nav-casting-badge">NEW</span></a>
+    </nav>
+
+    <!-- Right side -->
+    <div class="header-right">
+      <button class="burger" id="burger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- Mobil menü -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-head">
+    <a href="index.html" class="mobile-menu-logo">
+      <img src="images/logo.png" alt="FashionTV Magazine">
+    </a>
+    <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Menüyü kapat">✕</button>
+  </div>
+  <nav>
+    <a href="home.html">Ana Sayfa</a>
+    <a href="news.html">Haberler</a>
+    <a href="about.html">Hakkımızda</a>
+    <a href="subscription.html">Abonelik</a>
+    <a href="contact.html">İletişim</a>
+    <a href="casting/index.html" class="nav-casting">Casting</a>
+  </nav>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     1 · HERO
+═══════════════════════════════════ -->
+<section class="sub-hero">
+  <div class="container sub-hero__inner">
+    <span class="sub-hero__label">Özel Üyelik Planları</span>
+    <h1 class="sub-hero__title">
+      Premium<br /><span>Abonelik</span>
+    </h1>
+    <p class="sub-hero__desc">
+      FashionTV Magazine'in tüm içeriklerine, özel editoriallerine
+      ve ayrıcalıklı deneyimlerine sınırsız erişim sağlayın.
+    </p>
+    <div class="sub-hero__badges">
+      <span class="sub-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+        </svg>
+        Güvenli Ödeme
+      </span>
+      <span class="sub-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        İstediğiniz Zaman İptal
+      </span>
+      <span class="sub-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        Anında Erişim
+      </span>
+      <span class="sub-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Premium İçerik
+      </span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     AVANTAJLAR ŞERİDİ
+═══════════════════════════════════ -->
+<div class="benefits-bar">
+  <div class="container benefits-bar__inner">
+    <div class="benefit">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Dijital + Basılı Dergi
+    </div>
+    <div class="benefit">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Tam Arşiv Erişimi
+    </div>
+    <div class="benefit">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Özel Etkinlik Davetleri
+    </div>
+    <div class="benefit">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Dergi Tasarım Aracı
+    </div>
+    <div class="benefit">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Öncelikli Destek
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════
+     2 · PLAN KARTLARI
+═══════════════════════════════════ -->
+<section class="plans-section" id="planlar">
+  <div class="container">
+
+    <div class="plans-section__head">
+      <span class="plans-section__label">Üyelik Seçenekleri</span>
+      <h2 class="plans-section__title">
+        Size Uygun <span>Planı Seçin</span>
+      </h2>
+      <p class="plans-section__sub">
+        Uzun vadeli planlar daha fazla tasarruf sağlar. İstediğiniz zaman iptal edebilirsiniz.
+      </p>
+    </div>
+
+    <div class="plans-grid">
+
+      <!-- ── PLAN 1: 3 AYLIK ── -->
+      <div class="plan-card fade-up" style="--delay:0s">
+        <div class="plan-header">
+          <span class="plan-period">3 Aylık</span>
+          <div class="plan-name">Starter</div>
+        </div>
+        <div class="plan-price-row">
+          <span class="plan-amount">₺299</span>
+          <span class="plan-cycle">/ 3 ay</span>
+        </div>
+        <ul class="plan-features-list">
+          <li>Dijital Erişim</li>
+          <li>3 Aylık Arşiv</li>
+          <li>Haftalık Bülten</li>
+        </ul>
+        <a href="checkout.html?plan=starter&period=3-aylik&price=299"
+           class="btn-plan-select"
+           onclick="savePlan(this, '3-aylik','Starter','299')">
+          Planı Seç
+        </a>
+      </div>
+
+      <!-- ── PLAN 2: 6 AYLIK ── -->
+      <div class="plan-card fade-up" style="--delay:0.06s">
+        <div class="plan-header">
+          <span class="plan-period">6 Aylık</span>
+          <div class="plan-name">Essential</div>
+        </div>
+        <div class="plan-price-row">
+          <span class="plan-amount">₺499</span>
+          <span class="plan-cycle">/ 6 ay</span>
+          <span class="plan-saving">%16 İndirim</span>
+        </div>
+        <ul class="plan-features-list">
+          <li>Dijital + Basılı Dergi</li>
+          <li>6 Aylık Arşiv</li>
+          <li>Özel Etkinlik Davetleri</li>
+          <li>Haftalık Bülten</li>
+        </ul>
+        <a href="checkout.html?plan=essential&period=6-aylik&price=499"
+           class="btn-plan-select"
+           onclick="savePlan(this, '6-aylik','Essential','499')">
+          Planı Seç
+        </a>
+      </div>
+
+      <!-- ── PLAN 3: 9 AYLIK ── -->
+      <div class="plan-card fade-up" style="--delay:0.12s">
+        <div class="plan-header">
+          <span class="plan-period">9 Aylık</span>
+          <div class="plan-name">Classic</div>
+        </div>
+        <div class="plan-price-row">
+          <span class="plan-amount">₺699</span>
+          <span class="plan-cycle">/ 9 ay</span>
+          <span class="plan-saving">%22 İndirim</span>
+        </div>
+        <ul class="plan-features-list">
+          <li>Dijital + Basılı Dergi</li>
+          <li>9 Aylık Arşiv</li>
+          <li>Özel Etkinlik Davetleri</li>
+          <li>Dergi Tasarım Aracı</li>
+          <li>Haftalık Bülten</li>
+        </ul>
+        <a href="checkout.html?plan=classic&period=9-aylik&price=699"
+           class="btn-plan-select"
+           onclick="savePlan(this, '9-aylik','Classic','699')">
+          Planı Seç
+        </a>
+      </div>
+
+      <!-- ── PLAN 4: 1 YILLIK (ÖNE ÇIKAN) ── -->
+      <div class="plan-card plan-card--featured fade-up" style="--delay:0s">
+        <div class="plan-badge">En Popüler</div>
+        <div class="plan-header">
+          <span class="plan-period">1 Yıllık</span>
+          <div class="plan-name">Premium</div>
+        </div>
+        <div class="plan-price-row">
+          <span class="plan-amount">₺849</span>
+          <span class="plan-cycle">/ yıl</span>
+          <span class="plan-saving">%29 İndirim</span>
+        </div>
+        <ul class="plan-features-list">
+          <li>Dijital + Basılı Dergi</li>
+          <li>Tam Arşiv Erişimi</li>
+          <li>Özel Etkinlik Davetleri</li>
+          <li>Dergi Tasarım Aracı</li>
+          <li>Öncelikli Müşteri Desteği</li>
+        </ul>
+        <a href="checkout.html?plan=premium&period=1-yillik&price=849"
+           class="btn-plan-select"
+           onclick="savePlan(this, '1-yillik','Premium','849')">
+          Hemen Al
+        </a>
+      </div>
+
+      <!-- ── PLAN 5: 3 YILLIK ── -->
+      <div class="plan-card fade-up" style="--delay:0.06s">
+        <div class="plan-header">
+          <span class="plan-period">3 Yıllık</span>
+          <div class="plan-name">Elite</div>
+        </div>
+        <div class="plan-price-row">
+          <span class="plan-amount">₺1.990</span>
+          <span class="plan-cycle">/ 3 yıl</span>
+          <span class="plan-saving">%34 İndirim</span>
+        </div>
+        <ul class="plan-features-list">
+          <li>Tüm Premium Avantajlar</li>
+          <li>Özel Kapak Hediyesi</li>
+          <li>VIP Etkinlik Erişimi</li>
+          <li>Kişisel Stil Danışmanı</li>
+        </ul>
+        <a href="checkout.html?plan=elite&period=3-yillik&price=1990"
+           class="btn-plan-select"
+           onclick="savePlan(this, '3-yillik','Elite','1990')">
+          Planı Seç
+        </a>
+      </div>
+
+      <!-- ── PLAN 6: 5 YILLIK (LÜKS) ── -->
+      <div class="plan-card plan-card--luxury fade-up" style="--delay:0.12s">
+        <div class="plan-header">
+          <span class="plan-period">5 Yıllık</span>
+          <div class="plan-name">Maison</div>
+        </div>
+        <div class="plan-price-row">
+          <span class="plan-amount">₺2.990</span>
+          <span class="plan-cycle">/ 5 yıl</span>
+          <span class="plan-saving">%40 İndirim</span>
+        </div>
+        <ul class="plan-features-list">
+          <li>Tüm Elite Avantajlar</li>
+          <li>Özel Baskı Koleksiyonu</li>
+          <li>Atölye &amp; Masterclass</li>
+          <li>Brand Partnership</li>
+          <li>Lüks Hoşgeldin Kiti</li>
+        </ul>
+        <a href="checkout.html?plan=maison&period=5-yillik&price=2990"
+           class="btn-plan-select"
+           onclick="savePlan(this, '5-yillik','Maison','2990')">
+          Planı Seç
+        </a>
+      </div>
+
+    </div><!-- /plans-grid -->
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     3 · SSS
+═══════════════════════════════════ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="faq-section__head">
+      <span class="faq-section__label">Soru &amp; Cevap</span>
+      <h2 class="faq-section__title">Sıkça Sorulan Sorular</h2>
+    </div>
+    <ul class="faq-list">
+
+      <li class="faq-item">
+        <button class="faq-q">
+          Aboneliğimi istediğim zaman iptal edebilir miyim?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Evet. Aboneliğinizi hesabınız üzerinden herhangi bir zamanda iptal edebilirsiniz. İptal, mevcut dönem sona erdiğinde yürürlüğe girer; bu süre zarfında tüm avantajlarınıza erişmeye devam edersiniz.</p>
+        </div>
+      </li>
+
+      <li class="faq-item">
+        <button class="faq-q">
+          Hangi ödeme yöntemlerini kabul ediyorsunuz?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Visa, Mastercard ve American Express kredi/banka kartları ile ödeme yapabilirsiniz. Tüm işlemler 256-bit SSL şifreli güvenli altyapı üzerinden gerçekleştirilir.</p>
+        </div>
+      </li>
+
+      <li class="faq-item">
+        <button class="faq-q">
+          Dijital içeriklere ne zaman erişebilirim?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Ödemeniz onaylandıktan sonra dijital içeriklere anında erişim sağlanır. Basılı dergi ise kayıtlı adresinize birkaç iş günü içinde ulaşır.</p>
+        </div>
+      </li>
+
+      <li class="faq-item">
+        <button class="faq-q">
+          Planımı daha sonra yükseltebilir miyim?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Mevcut abonelik döneminiz tamamlandığında dilediğiniz plana geçiş yapabilirsiniz. Erken geçiş için müşteri hizmetlerimizle iletişime geçebilirsiniz.</p>
+        </div>
+      </li>
+
+      <li class="faq-item">
+        <button class="faq-q">
+          Dergi Tasarım Aracı hangi planlarda yer alıyor?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Dergi Tasarım Aracı, Classic planından itibaren tüm üst planlarda (Classic, Premium, Elite, Maison) aktif olarak kullanılabilmektedir.</p>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     4 · ALT CTA
+═══════════════════════════════════ -->
+<section class="sub-cta">
+  <div class="container sub-cta__inner">
+    <h2 class="sub-cta__title">
+      Bugün Başlayın,<br /><span>Farkı Hissedin</span>
+    </h2>
+    <p class="sub-cta__desc">
+      Premium editoryal içerikler, özel etkinlikler ve
+      ayrıcalıklı deneyimler sizi bekliyor.
+    </p>
+    <div class="sub-cta__btns">
+      <a href="#planlar" class="btn-cta-primary">Plan Seç</a>
+      <a href="news.html"  class="btn-cta-ghost">Önce İçerikleri İncele</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════
+     FOOTER — index.html ile birebir
+═══════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="footer-logo" href="index.html">
+        <img src="images/logo.png" alt="FashionTV Magazine" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1);">
+      </a>
+      <p class="footer-tagline">
+        Modanın, güzelliğin ve yaşam sanatının<br />buluştuğu premium editorial platform.
+      </p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram" class="social-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.8"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" aria-label="X / Twitter" class="social-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" aria-label="Pinterest" class="social-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.99.04-2.85.18-.78 1.17-4.97 1.17-4.97s-.3-.6-.3-1.48c0-1.39.81-2.43 1.81-2.43.85 0 1.26.64 1.26 1.41 0 .86-.55 2.14-.83 3.33-.24.99.5 1.8 1.48 1.8 1.77 0 3.13-1.87 3.13-4.56 0-2.38-1.71-4.05-4.16-4.05-2.84 0-4.5 2.13-4.5 4.33 0 .86.33 1.78.74 2.28.08.1.09.19.07.29-.08.31-.25 1-.28 1.13-.04.18-.15.22-.34.13-1.25-.58-2.03-2.41-2.03-3.88 0-3.15 2.29-6.05 6.61-6.05 3.47 0 6.16 2.47 6.16 5.78 0 3.45-2.17 6.22-5.19 6.22-1.01 0-1.97-.53-2.29-1.15l-.62 2.38c-.23.87-.84 1.96-1.24 2.62.94.29 1.93.45 2.96.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube" class="social-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="6" width="20" height="14" rx="3"/><polygon points="10,9.5 16,13 10,16.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-col-heading">Keşfet</h4>
+      <ul>
+        <li><a href="#">Bu Ayın Sayısı</a></li>
+        <li><a href="#">Moda</a></li>
+        <li><a href="#">Güzellik</a></li>
+        <li><a href="#">Yaşam</a></li>
+        <li><a href="#">Trendler</a></li>
+        <li><a href="#">Özel Röportajlar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-col-heading">Kurumsal</h4>
+      <ul>
+        <li><a href="#">Hakkımızda</a></li>
+        <li><a href="#">Reklam &amp; Medya</a></li>
+        <li><a href="#">Kariyer</a></li>
+        <li><a href="#">İletişim</a></li>
+        <li><a href="#">Basın</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-col-heading">Üyelik</h4>
+      <ul>
+        <li><a href="subscription.html">Planlar</a></li>
+        <li><a href="#">Hediye Aboneliği</a></li>
+        <li><a href="#">Dijital Arşiv</a></li>
+        <li><a href="#">Dergi Tasarla</a></li>
+        <li><a href="#">Destek</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2026 FashionTV Magazine. Tüm hakları saklıdır.</p>
+      <div class="footer-legal">
+        <a href="#">Gizlilik Politikası</a>
+        <a href="#">Kullanım Koşulları</a>
+        <a href="#">Çerez</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- api.js yoksa inline fallback -->
+<script src="api.js" onerror="window._noApi=true"></script>
+<script>
+/* Inline fallback */
+if (typeof Auth === 'undefined') {
+  window.Auth = {
+    isLoggedIn: () => !!localStorage.getItem('ftv_token')
+  };
+}
+
+(function () {
+
+  /* Header scroll */
+  const hdr = document.getElementById('site-header');
+  window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', scrollY > 40), { passive: true });
+
+  /* Header: giriş durumuna göre buton göster */
+  const hdrLogin   = document.getElementById('hdr-login');
+  const hdrAccount = document.getElementById('hdr-account');
+  if (Auth.isLoggedIn()) {
+    if (hdrAccount) hdrAccount.style.display = '';
+    if (hdrLogin)   hdrLogin.style.display   = 'none';
+  } else {
+    if (hdrLogin)   hdrLogin.style.display   = '';
+    if (hdrAccount) hdrAccount.style.display = 'none';
+  }
+
+  /* Mobil menü */
+  const burger   = document.getElementById('burger');
+  const mob      = document.getElementById('mobile-menu');
+  const mobClose = document.getElementById('mobile-menu-close');
+  burger.addEventListener('click', () => { mob.classList.add('is-open');    document.body.style.overflow = 'hidden'; });
+  const closeMob = () => { mob.classList.remove('is-open'); document.body.style.overflow = ''; };
+  mobClose.addEventListener('click', closeMob);
+  mob.addEventListener('click', e => { if (e.target === mob) closeMob(); });
+
+  /* SSS accordion */
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item    = btn.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  /* Scroll reveal */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+})();
+
+/* Plan seçimi — localStorage'a kaydeder + checkout'a yönlendirir */
+function savePlan(el, period, name, price) {
+  /* Butona tıklandığında olayı durdurmak yerine href devreye giriyor;
+     localStorage'a da paralel yazarız */
+  try {
+    localStorage.setItem('ftv_selected_plan', JSON.stringify({
+      period, name, price,
+      slug: period
+    }));
+  } catch (e) {/* ignore */}
+  /* Giriş yapılmamışsa login sayfasına yönlendir */
+  if (!Auth.isLoggedIn()) {
+    event.preventDefault();
+    window.location.href = 'login.html';
+  }
+  /* Giriş varsa href doğal olarak checkout'a gider */
+}
+</script>
+
+</body>
+</html>

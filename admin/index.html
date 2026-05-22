@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — FashionTV Casting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080808; --surface: #101010; --surface2: #181818; --surface3: #202020;
+      --border: rgba(255,255,255,.07); --border2: rgba(255,255,255,.12);
+      --muted: rgba(255,255,255,.38);
+      --gold: #C9A84C; --gold-lt: #e0c070; --gold-dim: rgba(201,168,76,.1);
+      --white: #fff;
+      --green: #4ade80; --red: #f87171; --yellow: #fbbf24; --blue: #60a5fa;
+      --sidebar-w: 240px;
+    }
+    body { background: var(--bg); color: var(--white); font-family: 'Outfit', sans-serif; min-height: 100vh; }
+
+    /* ══════════════════════════════
+       LOGIN — split screen
+    ══════════════════════════════ */
+    #login-screen {
+      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .login-left {
+      background: #0a0a0a;
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 3rem; position: relative; overflow: hidden;
+    }
+    .login-left::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 30%, rgba(201,168,76,.08) 0%, transparent 65%);
+    }
+    .login-left-logo {
+      position: relative; z-index: 1; text-align: center;
+    }
+    .login-left-logo img { width: 180px; height: auto; filter: brightness(0) invert(1); margin-bottom: 2rem; }
+    .login-left-divider {
+      width: 40px; height: 1px; background: var(--gold); margin: 0 auto 1.5rem;
+    }
+    .login-left-title {
+      font-size: .68rem; font-weight: 600; letter-spacing: .28em;
+      text-transform: uppercase; color: var(--gold); text-align: center;
+    }
+    .login-left-sub {
+      font-size: .75rem; color: var(--muted); margin-top: .5rem;
+      letter-spacing: .08em; text-align: center;
+    }
+    .login-right {
+      display: flex; align-items: center; justify-content: center; padding: 3rem;
+      background: var(--surface);
+    }
+    .login-box { width: 100%; max-width: 360px; }
+    .login-box-label {
+      font-size: .6rem; font-weight: 700; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+    }
+    .login-box h1 { font-size: 1.6rem; font-weight: 600; margin-bottom: .35rem; }
+    .login-box > p { font-size: .83rem; color: var(--muted); margin-bottom: 2rem; line-height: 1.6; }
+    .l-field { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+    .l-field label { font-size: .72rem; color: var(--muted); letter-spacing: .04em; }
+    .l-field input {
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: 8px; color: var(--white); font-family: inherit;
+      font-size: .9rem; padding: .75rem 1rem; outline: none; width: 100%;
+      transition: border-color .2s;
+    }
+    .l-field input:focus { border-color: var(--gold); }
+    .l-btn {
+      width: 100%; padding: .9rem; background: var(--gold); border: none;
+      border-radius: 8px; color: #000; font-family: inherit; font-size: .88rem;
+      font-weight: 700; letter-spacing: .04em; cursor: pointer; margin-top: .6rem;
+      transition: background .2s, opacity .2s;
+    }
+    .l-btn:hover { background: var(--gold-lt); }
+    .l-err { font-size: .8rem; color: var(--red); margin-top: .7rem; display: none; }
+    @media (max-width: 760px) {
+      #login-screen { grid-template-columns: 1fr; }
+      .login-left { display: none; }
+    }
+
+    /* ══════════════════════════════
+       PANEL LAYOUT
+    ══════════════════════════════ */
+    #panel-screen { display: none; }
+
+    /* Sidebar */
+    .p-sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0; width: var(--sidebar-w);
+      background: var(--surface); border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; z-index: 100;
+    }
+    .p-logo {
+      padding: 1.4rem 1.4rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: .5rem;
+    }
+    .p-logo img { width: 130px; height: auto; filter: brightness(0) invert(1); }
+    .p-logo-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .58rem; font-weight: 700; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .p-logo-badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+    .p-nav { flex: 1; padding: .8rem 0; overflow-y: auto; }
+    .p-nav-section {
+      font-size: .57rem; letter-spacing: .18em; text-transform: uppercase;
+      color: rgba(255,255,255,.2); padding: 1rem 1.4rem .3rem;
+    }
+    .p-nav-item {
+      display: flex; align-items: center; gap: .75rem; padding: .6rem 1.4rem;
+      font-size: .83rem; color: var(--muted); cursor: pointer;
+      border-left: 2px solid transparent; transition: all .15s; user-select: none;
+    }
+    .p-nav-item:hover { color: var(--white); background: rgba(255,255,255,.035); }
+    .p-nav-item.active {
+      color: var(--gold); border-left-color: var(--gold);
+      background: var(--gold-dim); font-weight: 500;
+    }
+    .p-nav-item svg { flex-shrink: 0; opacity: .7; }
+    .p-nav-item.active svg { opacity: 1; }
+    .p-nav-item .badge {
+      margin-left: auto; background: var(--red); color: #fff;
+      font-size: .6rem; font-weight: 700; padding: 2px 7px; border-radius: 10px;
+    }
+    .p-sidebar-footer {
+      padding: 1rem 1.4rem; border-top: 1px solid var(--border);
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .p-user-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--gold-dim); border: 1px solid rgba(201,168,76,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 600; color: var(--gold); flex-shrink: 0;
+    }
+    .p-user-details { flex: 1; min-width: 0; }
+    .p-user-info { font-size: .78rem; color: var(--white); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .p-user-role { font-size: .63rem; color: var(--muted); }
+    .p-logout { color: var(--muted); cursor: pointer; flex-shrink: 0; transition: color .15s; }
+    .p-logout:hover { color: var(--red); }
+
+    /* Main */
+    .p-main { margin-left: var(--sidebar-w); min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* Topbar */
+    .p-topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 2rem; border-bottom: 1px solid var(--border);
+      background: var(--surface); position: sticky; top: 0; z-index: 50;
+    }
+    .p-topbar h1 { font-size: 1.1rem; font-weight: 600; }
+    .p-topbar-right { display: flex; align-items: center; gap: 1rem; }
+    .p-topbar-meta { font-size: .75rem; color: var(--muted); }
+    .p-topbar-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+      box-shadow: 0 0 6px rgba(74,222,128,.5);
+    }
+
+    .p-content { padding: 2rem; flex: 1; }
+
+    /* Views */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* ── STAT CARDS ── */
+    .stat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.3rem 1.4rem;
+      display: flex; flex-direction: column; gap: .8rem;
+      transition: border-color .2s;
+    }
+    .stat-card:hover { border-color: var(--border2); }
+    .stat-card__top { display: flex; align-items: center; justify-content: space-between; }
+    .stat-card__icon {
+      width: 36px; height: 36px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .stat-card__icon.yellow { background: rgba(251,191,36,.1); color: var(--yellow); }
+    .stat-card__icon.green  { background: rgba(74,222,128,.1);  color: var(--green); }
+    .stat-card__icon.red    { background: rgba(248,113,113,.1); color: var(--red); }
+    .stat-card__icon.blue   { background: rgba(96,165,250,.1);  color: var(--blue); }
+    .stat-card__icon.gold   { background: rgba(201,168,76,.1);  color: var(--gold); }
+    .stat-card__num { font-size: 2rem; font-weight: 300; line-height: 1; }
+    .stat-card__num.yellow { color: var(--yellow); }
+    .stat-card__num.green  { color: var(--green); }
+    .stat-card__num.red    { color: var(--red); }
+    .stat-card__num.blue   { color: var(--blue); }
+    .stat-card__num.gold   { color: var(--gold); }
+    .stat-card__label {
+      font-size: .68rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .1em;
+    }
+
+    /* ── DASHBOARD GRID ── */
+    .dash-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1rem; }
+    .dash-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.4rem;
+    }
+    .dash-card__head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.2rem;
+    }
+    .dash-card__head h3 {
+      font-size: .7rem; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── ACTIVITY FEED ── */
+    .activity-list { display: flex; flex-direction: column; }
+    .activity-item {
+      display: flex; align-items: flex-start; gap: .8rem;
+      padding: .65rem 0; border-bottom: 1px solid var(--border);
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--gold);
+      flex-shrink: 0; margin-top: .28rem;
+    }
+    .activity-dot.red   { background: var(--red); }
+    .activity-dot.green { background: var(--green); }
+    .activity-dot.blue  { background: var(--blue); }
+    .activity-dot.muted { background: rgba(255,255,255,.2); }
+    .activity-text { font-size: .82rem; color: var(--white); line-height: 1.4; }
+    .activity-time { font-size: .7rem; color: var(--muted); margin-top: .1rem; }
+
+    /* Quick links */
+    .quick-links { display: flex; flex-direction: column; gap: .5rem; }
+    .quick-link-btn {
+      display: flex; align-items: center; gap: .7rem; padding: .75rem 1rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 9px; color: var(--muted); font-size: .82rem;
+      font-family: inherit; cursor: pointer; text-align: left;
+      transition: all .15s; width: 100%;
+    }
+    .quick-link-btn:hover { border-color: var(--gold); color: var(--white); background: var(--gold-dim); }
+    .quick-link-btn svg { flex-shrink: 0; color: var(--gold); }
+
+    /* ── FILTERS ── */
+    .filter-bar { display: flex; gap: .4rem; margin-bottom: .8rem; flex-wrap: wrap; }
+    .filter-pill {
+      font-size: .72rem; padding: .35rem .9rem; border-radius: 20px;
+      border: 1px solid var(--border); color: var(--muted);
+      background: transparent; cursor: pointer; transition: all .15s; font-family: inherit;
+    }
+    .filter-pill:hover { border-color: var(--border2); color: var(--white); }
+    .filter-pill.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+
+    /* ── SEARCH ── */
+    .search-bar { display: flex; gap: .5rem; margin-bottom: 1rem; }
+    .search-input {
+      flex: 1; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--white); font-family: inherit;
+      font-size: .85rem; padding: .6rem 1rem; outline: none; transition: border-color .2s;
+    }
+    .search-input:focus { border-color: var(--gold); }
+    .search-input::placeholder { color: var(--muted); }
+
+    /* ── TABLE ── */
+    .p-table-wrap {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      font-size: .65rem; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted); padding: .85rem 1.1rem;
+      text-align: left; border-bottom: 1px solid var(--border);
+      background: var(--surface2); white-space: nowrap;
+    }
+    td {
+      font-size: .83rem; padding: .78rem 1.1rem;
+      border-bottom: 1px solid var(--border); vertical-align: middle;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr.clickable:hover td { background: rgba(255,255,255,.025); cursor: pointer; }
+
+    .status-badge {
+      font-size: .62rem; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; padding: 3px 9px; border-radius: 5px; white-space: nowrap;
+    }
+    .status-PENDING            { background: rgba(251,191,36,.12); color: var(--yellow); }
+    .status-APPROVED           { background: rgba(74,222,128,.1);  color: var(--green); }
+    .status-REJECTED           { background: rgba(248,113,113,.1); color: var(--red); }
+    .status-REVISION_REQUESTED { background: rgba(96,165,250,.1);  color: var(--blue); }
+    .status-ARCHIVED           { background: rgba(255,255,255,.05); color: var(--muted); }
+
+    .action-btn {
+      font-size: .72rem; padding: .28rem .65rem; border-radius: 5px;
+      border: 1px solid var(--border); background: transparent; color: var(--muted);
+      cursor: pointer; transition: all .15s; margin-right: 3px; white-space: nowrap;
+      font-family: inherit;
+    }
+    .action-btn:hover   { border-color: var(--gold); color: var(--gold); }
+    .action-btn.approve { border-color: rgba(74,222,128,.35); color: var(--green); }
+    .action-btn.approve:hover { background: rgba(74,222,128,.1); }
+    .action-btn.reject  { border-color: rgba(248,113,113,.35); color: var(--red); }
+    .action-btn.reject:hover  { background: rgba(248,113,113,.1); }
+    .action-btn.feature { border-color: rgba(201,168,76,.35); color: var(--gold); }
+    .action-btn.feature:hover { background: var(--gold-dim); }
+    .action-btn.delete  { border-color: rgba(248,113,113,.2); color: rgba(248,113,113,.55); }
+    .action-btn.delete:hover  { background: rgba(248,113,113,.1); color: var(--red); border-color: var(--red); }
+
+    .featured-star { color: var(--gold); }
+    .no-data { text-align: center; padding: 3rem; color: var(--muted); font-size: .86rem; }
+
+    /* ── PAGINATION ── */
+    .pagination {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 1.1rem; border-top: 1px solid var(--border);
+    }
+    .pagination-info { font-size: .74rem; color: var(--muted); }
+    .pagination-btns { display: flex; gap: .35rem; }
+    .pg-btn {
+      font-size: .74rem; padding: .3rem .8rem; border-radius: 6px;
+      border: 1px solid var(--border); background: transparent; color: var(--muted);
+      cursor: pointer; transition: all .15s; font-family: inherit;
+    }
+    .pg-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+    .pg-btn:disabled { opacity: .3; cursor: default; }
+    .pg-btn.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+
+    /* ── DETAIL PANEL ── */
+    .detail-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 200; opacity: 0; pointer-events: none; transition: opacity .2s; }
+    .detail-overlay.open { opacity: 1; pointer-events: all; }
+    .detail-panel {
+      position: fixed; top: 0; right: 0; bottom: 0; width: 580px; max-width: 96vw;
+      background: var(--surface); border-left: 1px solid var(--border);
+      z-index: 201; overflow-y: auto; transform: translateX(100%);
+      transition: transform .28s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column;
+    }
+    .detail-panel.open { transform: translateX(0); }
+    .detail-header {
+      padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; background: var(--surface); z-index: 1;
+    }
+    .detail-header h2 { font-size: 1rem; font-weight: 600; }
+    .detail-close {
+      background: transparent; border: 1px solid var(--border); color: var(--muted);
+      cursor: pointer; border-radius: 6px; padding: .3rem .75rem;
+      font-size: .78rem; transition: all .15s; font-family: inherit;
+    }
+    .detail-close:hover { border-color: var(--red); color: var(--red); }
+    .detail-body { padding: 1.5rem; flex: 1; }
+
+    .detail-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--border); }
+    .det-btn {
+      font-size: .8rem; padding: .45rem 1rem; border-radius: 7px;
+      border: 1px solid var(--border); background: transparent; color: var(--muted);
+      cursor: pointer; transition: all .15s; font-family: inherit;
+    }
+    .det-btn.approve { border-color: rgba(74,222,128,.45); color: var(--green); }
+    .det-btn.approve:hover { background: rgba(74,222,128,.1); }
+    .det-btn.reject  { border-color: rgba(248,113,113,.45); color: var(--red); }
+    .det-btn.reject:hover  { background: rgba(248,113,113,.1); }
+    .det-btn.feature { border-color: rgba(201,168,76,.45); color: var(--gold); }
+    .det-btn.feature:hover { background: var(--gold-dim); }
+    .det-btn.archive { border-color: rgba(255,255,255,.18); }
+    .det-btn.archive:hover { background: rgba(255,255,255,.05); color: var(--white); }
+    .det-btn.danger  { border-color: rgba(248,113,113,.25); color: rgba(248,113,113,.65); margin-left: auto; }
+    .det-btn.danger:hover  { background: rgba(248,113,113,.1); color: var(--red); border-color: var(--red); }
+
+    .detail-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-bottom: 1.4rem; }
+    .detail-photo { aspect-ratio: 3/4; background: var(--surface2); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+    .detail-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .detail-photo.no-photo { display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: .75rem; }
+
+    .detail-section { margin-bottom: 1.4rem; }
+    .detail-section h4 {
+      font-size: .63rem; font-weight: 600; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: .9rem;
+      padding-bottom: .5rem; border-bottom: 1px solid var(--border);
+    }
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+    .detail-field { display: flex; flex-direction: column; gap: .25rem; }
+    .detail-field label { font-size: .63rem; color: rgba(255,255,255,.28); text-transform: uppercase; letter-spacing: .08em; }
+    .detail-field span { font-size: .85rem; color: var(--white); }
+    .detail-field.full { grid-column: 1 / -1; }
+    .detail-field span.private { color: var(--gold); }
+    .detail-tag {
+      display: inline-block; font-size: .71rem; padding: .2rem .6rem;
+      border-radius: 4px; background: var(--surface2); border: 1px solid var(--border);
+      margin: .15rem; color: var(--muted);
+    }
+    .detail-note {
+      background: rgba(248,113,113,.06); border: 1px solid rgba(248,113,113,.2);
+      border-radius: 8px; padding: .8rem 1rem; font-size: .82rem;
+      color: var(--red); margin-bottom: 1rem;
+    }
+    .detail-note.approved { background: rgba(74,222,128,.06); border-color: rgba(74,222,128,.2); color: var(--green); }
+
+    /* ── AUDIT LOG ── */
+    .audit-item { display: flex; gap: .8rem; padding: .65rem 0; border-bottom: 1px solid var(--border); }
+    .audit-item:last-child { border-bottom: none; }
+    .audit-action {
+      font-size: .67rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; padding: .22rem .6rem; border-radius: 4px;
+      white-space: nowrap; align-self: flex-start; flex-shrink: 0;
+    }
+    .audit-action.APPROVE           { background: rgba(74,222,128,.1); color: var(--green); }
+    .audit-action.REJECT            { background: rgba(248,113,113,.1); color: var(--red); }
+    .audit-action.REQUEST_REVISION  { background: rgba(96,165,250,.1); color: var(--blue); }
+    .audit-action.FEATURE           { background: var(--gold-dim); color: var(--gold); }
+    .audit-action.UNFEATURE         { background: rgba(255,255,255,.05); color: var(--muted); }
+    .audit-action.ARCHIVE           { background: rgba(255,255,255,.05); color: var(--muted); }
+    .audit-action.DELETE            { background: rgba(248,113,113,.1); color: var(--red); }
+    .audit-action.INQUIRY_CONTACTED { background: rgba(74,222,128,.1); color: var(--green); }
+    .audit-action.INQUIRY_CLOSED    { background: rgba(255,255,255,.05); color: var(--muted); }
+    .audit-meta { flex: 1; }
+    .audit-target { font-size: .8rem; color: var(--white); }
+    .audit-note { font-size: .74rem; color: var(--muted); margin-top: .12rem; }
+    .audit-time { font-size: .68rem; color: rgba(255,255,255,.28); margin-top: .12rem; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.75);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 999; opacity: 0; pointer-events: none; transition: opacity .2s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 16px; padding: 2rem; width: 100%; max-width: 460px;
+      transform: translateY(-12px); transition: transform .22s;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: .4rem; }
+    .modal p { font-size: .82rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.5; }
+    .modal textarea {
+      width: 100%; background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: 8px; color: var(--white); font-family: inherit;
+      font-size: .85rem; padding: .75rem; resize: vertical; min-height: 80px; outline: none;
+    }
+    .modal textarea:focus { border-color: var(--gold); }
+    .modal-actions { display: flex; gap: .6rem; margin-top: 1rem; justify-content: flex-end; }
+    .modal-btn {
+      padding: .55rem 1.3rem; border-radius: 7px; font-size: .83rem;
+      font-family: inherit; cursor: pointer; border: 1px solid var(--border);
+      background: transparent; color: var(--white); transition: all .15s;
+    }
+    .modal-btn.confirm { background: var(--gold); border-color: var(--gold); color: #000; font-weight: 700; }
+    .modal-btn.confirm:hover { background: var(--gold-lt); }
+    .modal-btn.confirm.red { background: var(--red); border-color: var(--red); color: #fff; }
+    .modal-btn.cancel { color: var(--muted); }
+    .modal-btn.cancel:hover { color: var(--white); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      background: var(--surface2); border: 1px solid var(--border2);
+      border-radius: 9px; padding: .8rem 1.2rem; font-size: .83rem;
+      z-index: 9999; opacity: 0; transition: opacity .2s;
+      pointer-events: none; display: flex; align-items: center; gap: .5rem;
+    }
+    .toast.show { opacity: 1; }
+    .toast.success { border-color: rgba(74,222,128,.4); color: var(--green); }
+    .toast.error   { border-color: rgba(248,113,113,.4); color: var(--red); }
+
+    /* ── MISC ── */
+    .loading { text-align: center; padding: 3rem; color: var(--muted); }
+    .spin {
+      display: inline-block; width: 20px; height: 20px;
+      border: 2px solid var(--border); border-top-color: var(--gold);
+      border-radius: 50%; animation: spin .75s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .section-head h3 { font-size: .78rem; font-weight: 600; letter-spacing: .07em; color: var(--muted); text-transform: uppercase; }
+
+    @media (max-width: 1200px) { .stat-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    @media (max-width: 900px)  { .stat-grid { grid-template-columns: 1fr 1fr; } .dash-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ LOGIN ═══════════════ -->
+<div id="login-screen">
+  <div class="login-left">
+    <div class="login-left-logo">
+      <img src="../images/logo.png" alt="FashionTV Magazine">
+      <div class="login-left-divider"></div>
+      <div class="login-left-title">Admin Panel</div>
+      <div class="login-left-sub">Casting Yönetim Sistemi</div>
+    </div>
+  </div>
+  <div class="login-right">
+    <div class="login-box">
+      <div class="login-box-label">Yönetim Girişi</div>
+      <h1>Hoş Geldiniz</h1>
+      <p>Panele erişmek için admin hesabınızla giriş yapın.</p>
+      <div class="l-field">
+        <label>E-posta Adresi</label>
+        <input type="email" id="l-email" placeholder="admin@fashiontv.com" autocomplete="username" />
+      </div>
+      <div class="l-field">
+        <label>Şifre</label>
+        <input type="password" id="l-pass" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+      <button class="l-btn" id="l-submit">Giriş Yap</button>
+      <p class="l-err" id="l-err"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PANEL ═══════════════ -->
+<div id="panel-screen">
+  <aside class="p-sidebar">
+    <div class="p-logo">
+      <img src="../images/logo.png" alt="FashionTV">
+      <div class="p-logo-badge">Admin Panel</div>
+    </div>
+    <nav class="p-nav">
+      <div class="p-nav-section">Genel</div>
+      <div class="p-nav-item active" data-view="dashboard">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </div>
+      <div class="p-nav-section">Casting</div>
+      <div class="p-nav-item" data-view="listings">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 12h6M9 16h6M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z"/></svg>
+        İlanlar
+        <span class="badge" id="pending-badge" style="display:none">0</span>
+      </div>
+      <div class="p-nav-item" data-view="inquiries">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Talepler
+        <span class="badge" id="inq-badge" style="display:none">0</span>
+      </div>
+      <div class="p-nav-section">Sistem</div>
+      <div class="p-nav-item" data-view="auditlog">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Audit Log
+      </div>
+    </nav>
+    <div class="p-sidebar-footer">
+      <div class="p-user-avatar" id="admin-avatar">A</div>
+      <div class="p-user-details">
+        <div class="p-user-info" id="admin-name">—</div>
+        <div class="p-user-role">Administrator</div>
+      </div>
+      <div class="p-logout" id="logout-btn" title="Çıkış Yap">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+      </div>
+    </div>
+  </aside>
+
+  <main class="p-main">
+    <div class="p-topbar">
+      <h1 id="view-title">Dashboard</h1>
+      <div class="p-topbar-right">
+        <div class="p-topbar-dot"></div>
+        <span class="p-topbar-meta" id="topbar-date"></span>
+      </div>
+    </div>
+    <div class="p-content">
+
+    <!-- ═════ DASHBOARD ═════ -->
+    <div class="view active" id="view-dashboard">
+      <div class="stat-grid" id="stat-grid">
+        <div class="stat-card">
+          <div class="stat-card__top">
+            <div class="stat-card__icon yellow"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+            <div class="stat-card__num yellow" id="s-pending">—</div>
+          </div>
+          <div class="stat-card__label">Beklemede</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__top">
+            <div class="stat-card__icon green"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="stat-card__num green" id="s-approved">—</div>
+          </div>
+          <div class="stat-card__label">Onaylı</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__top">
+            <div class="stat-card__icon red"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <div class="stat-card__num red" id="s-rejected">—</div>
+          </div>
+          <div class="stat-card__label">Reddedildi</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__top">
+            <div class="stat-card__icon blue"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <div class="stat-card__num blue" id="s-inquiries">—</div>
+          </div>
+          <div class="stat-card__label">Yeni Talep</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__top">
+            <div class="stat-card__icon gold"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div>
+            <div class="stat-card__num gold" id="s-revision">—</div>
+          </div>
+          <div class="stat-card__label">Revizyon Bekliyor</div>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-card__head">
+            <h3>Son Aktivite</h3>
+          </div>
+          <div id="dash-activity"><div class="loading"><div class="spin"></div></div></div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card__head">
+            <h3>Hızlı Erişim</h3>
+          </div>
+          <div class="quick-links">
+            <button class="quick-link-btn" onclick="switchView('listings','PENDING')">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Bekleyen ilanları incele
+            </button>
+            <button class="quick-link-btn" onclick="switchView('inquiries','NEW')">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Yeni talepleri incele
+            </button>
+            <button class="quick-link-btn" onclick="switchView('auditlog')">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              Audit log'u gör
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═════ LISTINGS ═════ -->
+    <div class="view" id="view-listings">
+      <div class="filter-bar" id="status-filters">
+        <button class="filter-pill active" data-status="">Tüm Durumlar</button>
+        <button class="filter-pill" data-status="PENDING">Beklemede</button>
+        <button class="filter-pill" data-status="APPROVED">Onaylı</button>
+        <button class="filter-pill" data-status="REJECTED">Reddedildi</button>
+        <button class="filter-pill" data-status="REVISION_REQUESTED">Revizyon</button>
+        <button class="filter-pill" data-status="ARCHIVED">Arşiv</button>
+      </div>
+      <div class="filter-bar" id="cat-filters">
+        <button class="filter-pill active" data-cat="">Tüm Kategoriler</button>
+        <button class="filter-pill" data-cat="model">Model</button>
+        <button class="filter-pill" data-cat="manken">Manken</button>
+        <button class="filter-pill" data-cat="oyuncu">Oyuncu</button>
+        <button class="filter-pill" data-cat="ic_giyim">İç Giyim</button>
+        <button class="filter-pill" data-cat="spor_giyim">Spor Giyim</button>
+        <button class="filter-pill" data-cat="abiye_gelinlik">Abiye & Gelinlik</button>
+      </div>
+      <div class="search-bar">
+        <input type="text" class="search-input" id="listings-search" placeholder="Ad, soyad veya şehir ara…" />
+      </div>
+      <div class="p-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Ad Soyad</th>
+              <th>Kategori</th>
+              <th>Şehir</th>
+              <th>Yaş / Boy</th>
+              <th>Durum</th>
+              <th>Tarih</th>
+              <th>İşlem</th>
+            </tr>
+          </thead>
+          <tbody id="listings-tbody">
+            <tr><td colspan="7"><div class="loading"><div class="spin"></div></div></td></tr>
+          </tbody>
+        </table>
+        <div class="pagination" id="listings-pagination" style="display:none">
+          <span class="pagination-info" id="listings-page-info"></span>
+          <div class="pagination-btns" id="listings-page-btns"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═════ INQUIRIES ═════ -->
+    <div class="view" id="view-inquiries">
+      <div class="filter-bar" id="inq-filters">
+        <button class="filter-pill active" data-status="">Tümü</button>
+        <button class="filter-pill" data-status="NEW">Yeni</button>
+        <button class="filter-pill" data-status="CONTACTED">İletişime Geçildi</button>
+        <button class="filter-pill" data-status="CLOSED">Kapalı</button>
+      </div>
+      <div class="p-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Ad Soyad / Firma</th>
+              <th>E-posta</th>
+              <th>Telefon</th>
+              <th>Proje Türü</th>
+              <th>Durum</th>
+              <th>Tarih</th>
+              <th>İşlem</th>
+            </tr>
+          </thead>
+          <tbody id="inquiries-tbody">
+            <tr><td colspan="7"><div class="loading"><div class="spin"></div></div></td></tr>
+          </tbody>
+        </table>
+        <div class="pagination" id="inq-pagination" style="display:none">
+          <span class="pagination-info" id="inq-page-info"></span>
+          <div class="pagination-btns" id="inq-page-btns"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═════ AUDIT LOG ═════ -->
+    <div class="view" id="view-auditlog">
+      <div class="p-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Aksiyon</th>
+              <th>Hedef</th>
+              <th>Not</th>
+              <th>Tarih</th>
+            </tr>
+          </thead>
+          <tbody id="audit-tbody">
+            <tr><td colspan="4"><div class="loading"><div class="spin"></div></div></td></tr>
+          </tbody>
+        </table>
+        <div class="pagination" id="audit-pagination" style="display:none">
+          <span class="pagination-info" id="audit-page-info"></span>
+          <div class="pagination-btns" id="audit-page-btns"></div>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /p-content -->
+  </main>
+</div>
+
+<!-- ═══════════════ DETAIL PANEL ═══════════════ -->
+<div class="detail-overlay" id="detail-overlay"></div>
+<div class="detail-panel" id="detail-panel">
+  <div class="detail-header">
+    <h2 id="detail-title">İlan Detayı</h2>
+    <button class="detail-close" id="detail-close">✕ Kapat</button>
+  </div>
+  <div class="detail-body" id="detail-body">
+    <div class="loading"><div class="spin"></div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ STATUS MODAL ═══════════════ -->
+<div class="modal-overlay" id="status-modal">
+  <div class="modal">
+    <h3 id="modal-title">Durum Güncelle</h3>
+    <p id="modal-subtitle"></p>
+    <textarea id="modal-note" placeholder="Admin notu (opsiyonel)…"></textarea>
+    <div class="modal-actions">
+      <button class="modal-btn cancel" id="modal-cancel">İptal</button>
+      <button class="modal-btn confirm" id="modal-confirm">Onayla</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM MODAL -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal">
+    <h3>İlanı Sil</h3>
+    <p id="delete-modal-msg">Bu ilanı kalıcı olarak silmek istediğinize emin misiniz? Bu işlem geri alınamaz.</p>
+    <div class="modal-actions">
+      <button class="modal-btn cancel" id="delete-cancel">İptal</button>
+      <button class="modal-btn confirm red" id="delete-confirm">Sil</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ TOAST ═══════════════ -->
+<div class="toast" id="toast"></div>
+
+<script>
+'use strict';
+
+const API = 'http://localhost:4000/api';
+let TOKEN = localStorage.getItem('ftv_token') || '';
+
+/* ── state ── */
+let listingsPage = 1, listingsTotalPages = 1;
+let listingsStatus = '', listingsCat = '', listingsSearch = '';
+let inqPage = 1, inqTotalPages = 1, inqStatus = '';
+let auditPage = 1, auditTotalPages = 1;
+let _detailId = '';
+let _delTarget = '';
+
+const CAT = { model:'Model', manken:'Manken', oyuncu:'Oyuncu', ic_giyim:'İç Giyim', spor_giyim:'Spor Giyim', abiye_gelinlik:'Abiye & Gelinlik' };
+const STATUS_TR = { PENDING:'Beklemede', APPROVED:'Onaylı', REJECTED:'Reddedildi', REVISION_REQUESTED:'Revizyon', ARCHIVED:'Arşiv', NEW:'Yeni', CONTACTED:'İletişime Geçildi', CLOSED:'Kapalı' };
+const GENDER_TR = { male:'Erkek', female:'Kadın', non_binary:'Diğer' };
+const EXP_TR    = { none:'Deneyimsiz', beginner:'Başlangıç', intermediate:'Orta', advanced:'İleri', professional:'Profesyonel' };
+const SKIN_TR   = { very_light:'Çok Açık', light:'Açık', medium:'Orta', olive:'Buğday', dark:'Koyu', very_dark:'Çok Koyu' };
+
+/* ══════════════════════════════════════════════════
+   UTILS
+══════════════════════════════════════════════════ */
+async function api(path, opts = {}) {
+  const res = await fetch(API + path, {
+    ...opts,
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${TOKEN}`, ...opts.headers }
+  });
+  return res.json();
+}
+
+function esc(s) {
+  if (s == null) return '—';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function fmtDate(s) {
+  if (!s) return '—';
+  return new Date(s).toLocaleDateString('tr-TR', { day:'2-digit', month:'short', year:'numeric' });
+}
+
+function toast(msg, type = 'success') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = `toast ${type} show`;
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+/* ══════════════════════════════════════════════════
+   LOGIN
+══════════════════════════════════════════════════ */
+document.getElementById('l-submit').addEventListener('click', doLogin);
+document.getElementById('l-pass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+async function doLogin() {
+  const email = document.getElementById('l-email').value.trim();
+  const pass  = document.getElementById('l-pass').value;
+  const errEl = document.getElementById('l-err');
+  errEl.style.display = 'none';
+  const data = await api('/auth/login', { method: 'POST', body: JSON.stringify({ email, password: pass }) });
+  if (!data.success) { errEl.textContent = data.message; errEl.style.display = 'block'; return; }
+  if (data.user?.role !== 'admin') { errEl.textContent = 'Admin yetkisi gereklidir.'; errEl.style.display = 'block'; return; }
+  TOKEN = data.token;
+  localStorage.setItem('ftv_token', TOKEN);
+  showPanel(data.user);
+}
+
+/* ══════════════════════════════════════════════════
+   PANEL
+══════════════════════════════════════════════════ */
+async function showPanel(user) {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('panel-screen').style.display = 'block';
+  const fullName = user.first_name + ' ' + user.last_name;
+  document.getElementById('admin-name').textContent = fullName;
+  const av = document.getElementById('admin-avatar');
+  if (av) av.textContent = (user.first_name?.[0] || 'A').toUpperCase();
+  const now = new Date();
+  document.getElementById('topbar-date').textContent = now.toLocaleDateString('tr-TR', { weekday:'long', day:'2-digit', month:'long', year:'numeric' });
+  await loadDashboard();
+}
+
+document.getElementById('logout-btn').addEventListener('click', () => {
+  localStorage.removeItem('ftv_token');
+  location.reload();
+});
+
+/* ══════════════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════════════ */
+const viewTitles = { dashboard:'Dashboard', listings:'İlanlar', inquiries:'Talepler', auditlog:'Audit Log' };
+
+document.querySelectorAll('.p-nav-item').forEach(item => {
+  item.addEventListener('click', () => switchView(item.dataset.view));
+});
+
+function switchView(viewName, autoFilter) {
+  document.querySelectorAll('.p-nav-item').forEach(i => i.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const navItem = document.querySelector(`[data-view="${viewName}"]`);
+  if (navItem) navItem.classList.add('active');
+  document.getElementById('view-' + viewName)?.classList.add('active');
+  document.getElementById('view-title').textContent = viewTitles[viewName] || viewName;
+  if (viewName === 'listings')  { if (autoFilter) setStatusFilter(autoFilter); else loadListings(); }
+  if (viewName === 'inquiries') { if (autoFilter) setInqFilter(autoFilter); else loadInquiries(); }
+  if (viewName === 'dashboard') loadDashboard();
+  if (viewName === 'auditlog')  loadAuditLog();
+}
+
+/* ══════════════════════════════════════════════════
+   DASHBOARD
+══════════════════════════════════════════════════ */
+async function loadDashboard() {
+  const [dash, logs] = await Promise.all([
+    api('/admin/casting/dashboard'),
+    api('/admin/casting/audit-logs?limit=8')
+  ]);
+
+  if (dash.success) {
+    const d = dash.dashboard;
+    document.getElementById('s-pending').textContent   = d.listings.pending;
+    document.getElementById('s-approved').textContent  = d.listings.approved;
+    document.getElementById('s-rejected').textContent  = d.listings.rejected;
+    document.getElementById('s-inquiries').textContent = d.new_inquiries;
+    document.getElementById('s-revision').textContent  = d.listings.revision_requested;
+
+    const badge = document.getElementById('pending-badge');
+    if (d.listings.pending > 0) { badge.textContent = d.listings.pending; badge.style.display = 'inline'; }
+    else badge.style.display = 'none';
+
+    const iBadge = document.getElementById('inq-badge');
+    if (d.new_inquiries > 0) { iBadge.textContent = d.new_inquiries; iBadge.style.display = 'inline'; }
+    else iBadge.style.display = 'none';
+  }
+
+  const act = document.getElementById('dash-activity');
+  if (logs.success && logs.logs?.length) {
+    const ACTION_COLOR = { APPROVE:'green', REJECT:'red', REQUEST_REVISION:'blue', FEATURE:'', UNFEATURE:'muted', ARCHIVE:'muted', DELETE:'red', INQUIRY_CONTACTED:'green', INQUIRY_CLOSED:'muted' };
+    const ACTION_LABEL = { APPROVE:'Onaylandı', REJECT:'Reddedildi', REQUEST_REVISION:'Revizyon İstendi', FEATURE:'Öne Çıkarıldı', UNFEATURE:'Öne Çıkar Kaldırıldı', ARCHIVE:'Arşivlendi', DELETE:'Silindi', INQUIRY_CONTACTED:'İletişime Geçildi', INQUIRY_CLOSED:'Talep Kapatıldı' };
+    act.innerHTML = '<div class="activity-list">' + logs.logs.map(l => `
+      <div class="activity-item">
+        <div class="activity-dot ${ACTION_COLOR[l.action] || ''}"></div>
+        <div>
+          <div class="activity-text">${ACTION_LABEL[l.action] || l.action} — <span style="color:var(--muted)">${esc(l.target_type)}</span></div>
+          ${l.note ? `<div class="activity-note" style="font-size:.73rem;color:var(--muted);margin-top:.1rem">${esc(l.note)}</div>` : ''}
+          <div class="activity-time">${fmtDate(l.created_at)}</div>
+        </div>
+      </div>
+    `).join('') + '</div>';
+  } else {
+    act.innerHTML = '<p style="color:var(--muted);font-size:.85rem">Henüz aktivite yok.</p>';
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   LISTINGS
+══════════════════════════════════════════════════ */
+let _searchTimer;
+document.getElementById('listings-search').addEventListener('input', e => {
+  clearTimeout(_searchTimer);
+  _searchTimer = setTimeout(() => { listingsSearch = e.target.value.trim(); listingsPage = 1; loadListings(); }, 350);
+});
+
+document.querySelectorAll('#status-filters .filter-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#status-filters .filter-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    listingsStatus = btn.dataset.status;
+    listingsPage = 1;
+    loadListings();
+  });
+});
+
+document.querySelectorAll('#cat-filters .filter-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#cat-filters .filter-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    listingsCat = btn.dataset.cat;
+    listingsPage = 1;
+    loadListings();
+  });
+});
+
+function setStatusFilter(status) {
+  document.querySelectorAll('#status-filters .filter-pill').forEach(b => {
+    b.classList.toggle('active', b.dataset.status === status);
+  });
+  listingsStatus = status;
+  listingsPage = 1;
+  loadListings();
+}
+
+async function loadListings() {
+  const tbody = document.getElementById('listings-tbody');
+  tbody.innerHTML = '<tr><td colspan="7"><div class="loading"><div class="spin"></div></div></td></tr>';
+
+  const params = new URLSearchParams({ limit: 20, page: listingsPage });
+  if (listingsStatus) params.set('status', listingsStatus);
+  if (listingsCat)    params.set('category', listingsCat);
+
+  const data = await api(`/admin/casting/listings?${params}`);
+  if (!data.success) { tbody.innerHTML = '<tr><td colspan="7"><div class="no-data">Yüklenemedi.</div></td></tr>'; return; }
+
+  listingsTotalPages = data.limit ? Math.ceil(data.total / data.limit) : 1;
+  renderPagination('listings', listingsPage, listingsTotalPages, data.total, () => loadListings());
+
+  let rows = data.listings || [];
+  if (listingsSearch) {
+    const q = listingsSearch.toLowerCase();
+    rows = rows.filter(l => l.full_name?.toLowerCase().includes(q) || l.city_name?.toLowerCase().includes(q));
+  }
+
+  if (!rows.length) { tbody.innerHTML = '<tr><td colspan="7"><div class="no-data">İlan bulunamadı.</div></td></tr>'; return; }
+
+  tbody.innerHTML = rows.map(l => `
+    <tr class="clickable" onclick="openDetail('${l.id}')">
+      <td>
+        ${l.is_featured ? '<span class="featured-star">★ </span>' : ''}
+        <strong>${esc(l.full_name)}</strong>
+      </td>
+      <td>${CAT[l.category] || esc(l.category)}</td>
+      <td>${esc(l.city_name)}</td>
+      <td>${l.age} y / ${l.height ? l.height+'cm' : '—'}</td>
+      <td><span class="status-badge status-${l.status}">${STATUS_TR[l.status] || l.status}</span></td>
+      <td>${fmtDate(l.created_at)}</td>
+      <td onclick="event.stopPropagation()">
+        ${l.status !== 'APPROVED' ? `<button class="action-btn approve" onclick="openStatusModal('${l.id}','APPROVED')">✓</button>` : ''}
+        ${l.status !== 'REJECTED' ? `<button class="action-btn reject"  onclick="openStatusModal('${l.id}','REJECTED')">✕</button>` : ''}
+        <button class="action-btn feature" onclick="toggleFeature('${l.id}','${l.is_featured}')">${l.is_featured ? '★' : '☆'}</button>
+        <button class="action-btn delete" onclick="openDeleteModal('${l.id}','${esc(l.full_name)}')">🗑</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+/* ══════════════════════════════════════════════════
+   DETAIL PANEL
+══════════════════════════════════════════════════ */
+document.getElementById('detail-overlay').addEventListener('click', closeDetail);
+document.getElementById('detail-close').addEventListener('click', closeDetail);
+
+function openDetail(id) {
+  _detailId = id;
+  document.getElementById('detail-overlay').classList.add('open');
+  document.getElementById('detail-panel').classList.add('open');
+  document.getElementById('detail-body').innerHTML = '<div class="loading"><div class="spin"></div></div>';
+  loadDetailData(id);
+}
+
+function closeDetail() {
+  document.getElementById('detail-overlay').classList.remove('open');
+  document.getElementById('detail-panel').classList.remove('open');
+}
+
+async function loadDetailData(id) {
+  const [listingRes, auditRes] = await Promise.all([
+    api(`/admin/casting/listings/${id}`),
+    api(`/admin/casting/audit-logs?target_id=${id}&limit=10`)
+  ]);
+
+  if (!listingRes.success) {
+    document.getElementById('detail-body').innerHTML = '<p style="color:var(--red)">Yüklenemedi.</p>';
+    return;
+  }
+
+  const l = listingRes.listing;
+  document.getElementById('detail-title').textContent = l.full_name;
+
+  const isFeat = l.is_featured;
+  const logs = auditRes.success ? (auditRes.logs || []) : [];
+
+  const ACTION_COLOR = { APPROVE:'green', REJECT:'red', REQUEST_REVISION:'blue', FEATURE:'', UNFEATURE:'muted', ARCHIVE:'muted', DELETE:'red', INQUIRY_CONTACTED:'green', INQUIRY_CLOSED:'muted' };
+  const ACTION_LABEL = { APPROVE:'Onaylandı', REJECT:'Reddedildi', REQUEST_REVISION:'Revizyon İstendi', FEATURE:'Öne Çıkarıldı', UNFEATURE:'Öne Çıkar Kaldırıldı', ARCHIVE:'Arşivlendi', DELETE:'Silindi', INQUIRY_CONTACTED:'İletişime Geçildi', INQUIRY_CLOSED:'Talep Kapatıldı' };
+
+  document.getElementById('detail-body').innerHTML = `
+    <!-- Actions -->
+    <div class="detail-actions">
+      ${l.status !== 'APPROVED' ? `<button class="det-btn approve" onclick="detailAction('${l.id}','APPROVED')">✓ Onayla</button>` : ''}
+      ${l.status !== 'REJECTED' ? `<button class="det-btn reject"  onclick="detailAction('${l.id}','REJECTED')">✕ Reddet</button>` : ''}
+      ${l.status !== 'REVISION_REQUESTED' ? `<button class="det-btn" style="border-color:rgba(96,165,250,.4);color:var(--blue)" onclick="detailAction('${l.id}','REVISION_REQUESTED')">↺ Revizyon İste</button>` : ''}
+      ${l.status !== 'ARCHIVED' ? `<button class="det-btn archive" onclick="detailAction('${l.id}','ARCHIVED')">🗄 Arşivle</button>` : ''}
+      <button class="det-btn feature" onclick="detailToggleFeature('${l.id}',${isFeat})">${isFeat ? '★ Çıkar' : '☆ Öne Çıkar'}</button>
+      <button class="det-btn danger" onclick="openDeleteModal('${l.id}','${esc(l.full_name)}')">Sil</button>
+    </div>
+
+    ${l.admin_note ? `<div class="detail-note ${l.status === 'APPROVED' ? 'approved' : ''}">📝 Admin Notu: ${esc(l.admin_note)}</div>` : ''}
+
+    <!-- Photos -->
+    ${l.images?.length ? `
+    <div class="detail-section">
+      <h4>Fotoğraflar (${l.images.length})</h4>
+      <div class="detail-photos">
+        ${l.images.map(img => `
+          <div class="detail-photo">
+            <img src="http://localhost:4000/uploads/casting/${img.file_name}" alt="foto" loading="lazy" onerror="this.parentElement.innerHTML='<span style=color:var(--muted);font-size:.7rem;text-align:center>Yüklenemedi</span>'" />
+          </div>
+        `).join('')}
+      </div>
+    </div>` : `
+    <div class="detail-section">
+      <h4>Fotoğraflar</h4>
+      <div class="no-data" style="padding:1.5rem">Fotoğraf yüklenmemiş.</div>
+    </div>`}
+
+    <!-- Basic Info -->
+    <div class="detail-section">
+      <h4>Kişisel Bilgiler</h4>
+      <div class="detail-grid">
+        <div class="detail-field"><label>Durum</label><span><span class="status-badge status-${l.status}">${STATUS_TR[l.status]||l.status}</span></span></div>
+        <div class="detail-field"><label>Kategori</label><span>${CAT[l.category]||esc(l.category)}</span></div>
+        <div class="detail-field"><label>Cinsiyet</label><span>${GENDER_TR[l.gender]||esc(l.gender)}</span></div>
+        <div class="detail-field"><label>Yaş</label><span>${l.age}</span></div>
+        <div class="detail-field"><label>Şehir</label><span>${esc(l.city_name)}${l.district ? ' / '+esc(l.district) : ''}</span></div>
+        <div class="detail-field"><label>Deneyim</label><span>${EXP_TR[l.experience]||esc(l.experience)}</span></div>
+        <div class="detail-field full"><label>Açıklama</label><span>${esc(l.description)}</span></div>
+        ${l.prev_works ? `<div class="detail-field full"><label>Önceki Çalışmalar</label><span>${esc(l.prev_works)}</span></div>` : ''}
+      </div>
+    </div>
+
+    <!-- Measurements -->
+    <div class="detail-section">
+      <h4>Ölçüler & Görünüm</h4>
+      <div class="detail-grid">
+        <div class="detail-field"><label>Boy</label><span>${l.height ? l.height+' cm' : '—'}</span></div>
+        <div class="detail-field"><label>Kilo</label><span>${l.weight ? l.weight+' kg' : '—'}</span></div>
+        <div class="detail-field"><label>Göz Rengi</label><span>${esc(l.eye_color)||'—'}</span></div>
+        <div class="detail-field"><label>Saç Rengi</label><span>${esc(l.hair_color)||'—'}</span></div>
+        <div class="detail-field"><label>Ayak Numarası</label><span>${l.shoe_size||'—'}</span></div>
+        <div class="detail-field"><label>Beden</label><span>${esc(l.body_size)||'—'}</span></div>
+        ${l.bust  ? `<div class="detail-field"><label>Göğüs</label><span>${l.bust} cm</span></div>` : ''}
+        ${l.waist ? `<div class="detail-field"><label>Bel</label><span>${l.waist} cm</span></div>` : ''}
+        ${l.hips  ? `<div class="detail-field"><label>Kalça</label><span>${l.hips} cm</span></div>` : ''}
+        ${l.skin_tone ? `<div class="detail-field"><label>Ten Rengi</label><span>${SKIN_TR[l.skin_tone]||l.skin_tone}</span></div>` : ''}
+      </div>
+    </div>
+
+    <!-- Skills & Languages -->
+    ${(l.languages?.length || l.skills?.length) ? `
+    <div class="detail-section">
+      <h4>Diller & Yetenekler</h4>
+      ${l.languages?.length ? `<div style="margin-bottom:.5rem"><label style="font-size:.65rem;color:rgba(255,255,255,.3);text-transform:uppercase">Diller</label><br>${l.languages.map(x=>`<span class="detail-tag">${esc(x)}</span>`).join('')}</div>` : ''}
+      ${l.skills?.length ? `<div><label style="font-size:.65rem;color:rgba(255,255,255,.3);text-transform:uppercase">Yetenekler</label><br>${l.skills.map(x=>`<span class="detail-tag">${esc(x)}</span>`).join('')}</div>` : ''}
+    </div>` : ''}
+
+    <!-- Contact (private) -->
+    <div class="detail-section">
+      <h4>İletişim Bilgileri <span style="color:var(--gold);font-size:.6rem;margin-left:.4rem">ÖZEL</span></h4>
+      <div class="detail-grid">
+        <div class="detail-field"><label>Telefon</label><span class="private">${l.phone ? `<a href="tel:${l.phone}" style="color:var(--gold)">${esc(l.phone)}</a>` : '—'}</span></div>
+        <div class="detail-field"><label>E-posta</label><span class="private">${l.contact_email ? `<a href="mailto:${l.contact_email}" style="color:var(--gold)">${esc(l.contact_email)}</a>` : '—'}</span></div>
+        <div class="detail-field"><label>Instagram</label><span class="private">${l.instagram ? `<a href="https://instagram.com/${l.instagram.replace('@','')}" target="_blank" style="color:var(--gold)">@${esc(l.instagram.replace('@',''))}</a>` : '—'}</span></div>
+      </div>
+    </div>
+
+    <!-- Meta -->
+    <div class="detail-section">
+      <h4>Sistem Bilgileri</h4>
+      <div class="detail-grid">
+        <div class="detail-field"><label>Kayıt Tarihi</label><span>${fmtDate(l.created_at)}</span></div>
+        <div class="detail-field"><label>Son Güncelleme</label><span>${fmtDate(l.updated_at)}</span></div>
+        ${l.approved_at ? `<div class="detail-field"><label>Onay Tarihi</label><span style="color:var(--green)">${fmtDate(l.approved_at)}</span></div>` : ''}
+        ${l.rejected_at ? `<div class="detail-field"><label>Red Tarihi</label><span style="color:var(--red)">${fmtDate(l.rejected_at)}</span></div>` : ''}
+        <div class="detail-field"><label>Öne Çıkarılmış</label><span>${isFeat ? '<span style="color:var(--gold)">★ Evet</span>' : 'Hayır'}</span></div>
+      </div>
+    </div>
+
+    <!-- Audit history -->
+    ${logs.length ? `
+    <div class="detail-section">
+      <h4>İşlem Geçmişi</h4>
+      ${logs.map(log => `
+        <div class="audit-item">
+          <span class="audit-action ${log.action}">${ACTION_LABEL[log.action]||log.action}</span>
+          <div class="audit-meta">
+            ${log.note ? `<div class="audit-note">${esc(log.note)}</div>` : ''}
+            <div class="audit-time">${fmtDate(log.created_at)}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>` : ''}
+  `;
+}
+
+/* ══════════════════════════════════════════════════
+   STATUS MODAL
+══════════════════════════════════════════════════ */
+let _targetId = '', _targetStatus = '', _fromDetail = false;
+const titleMap = { APPROVED:'İlanı Onayla', REJECTED:'İlanı Reddet', ARCHIVED:'İlanı Arşivle', REVISION_REQUESTED:'Revizyon İste' };
+const subMap   = { APPROVED:'Bu ilan onaylanacak ve yayına girecek.', REJECTED:'Bu ilan reddedilecek ve kullanıcıya bildirim gidecek.', ARCHIVED:'Bu ilan arşivlenecek.', REVISION_REQUESTED:'Kullanıcıdan revizyon istenecek.' };
+
+function openStatusModal(id, status, fromDetail = false) {
+  _targetId = id; _targetStatus = status; _fromDetail = fromDetail;
+  document.getElementById('modal-title').textContent = titleMap[status] || 'Durum Güncelle';
+  document.getElementById('modal-subtitle').textContent = subMap[status] || '';
+  document.getElementById('modal-note').value = '';
+  document.getElementById('modal-confirm').textContent = status === 'APPROVED' ? '✓ Onayla' : status === 'REJECTED' ? '✕ Reddet' : 'Güncelle';
+  document.getElementById('modal-confirm').className = 'modal-btn confirm';
+  document.getElementById('status-modal').classList.add('open');
+}
+
+function detailAction(id, status) { openStatusModal(id, status, true); }
+
+document.getElementById('modal-cancel').addEventListener('click', () => document.getElementById('status-modal').classList.remove('open'));
+document.getElementById('modal-confirm').addEventListener('click', async () => {
+  const note = document.getElementById('modal-note').value.trim();
+  const data = await api(`/admin/casting/listings/${_targetId}/status`, {
+    method: 'PATCH', body: JSON.stringify({ status: _targetStatus, note })
+  });
+  document.getElementById('status-modal').classList.remove('open');
+  if (data.success) {
+    toast('Durum güncellendi ✓');
+    loadListings();
+    loadDashboard();
+    if (_fromDetail) { closeDetail(); }
+  } else toast(data.message || 'Hata oluştu', 'error');
+});
+
+/* ══════════════════════════════════════════════════
+   FEATURE TOGGLE
+══════════════════════════════════════════════════ */
+async function toggleFeature(id, current) {
+  const featured = current === '1' || current === true || current === 'true' ? 0 : 1;
+  const data = await api(`/admin/casting/listings/${id}/feature`, { method: 'PATCH', body: JSON.stringify({ featured }) });
+  if (data.success) { toast(featured ? '★ Öne çıkarıldı' : 'Öne çıkarma kaldırıldı'); loadListings(); loadDashboard(); }
+  else toast(data.message || 'Hata', 'error');
+}
+
+async function detailToggleFeature(id, current) {
+  const featured = !current ? 1 : 0;
+  const data = await api(`/admin/casting/listings/${id}/feature`, { method: 'PATCH', body: JSON.stringify({ featured }) });
+  if (data.success) { toast(featured ? '★ Öne çıkarıldı' : 'Öne çıkarma kaldırıldı'); loadListings(); loadDashboard(); loadDetailData(id); }
+  else toast(data.message || 'Hata', 'error');
+}
+
+/* ══════════════════════════════════════════════════
+   DELETE
+══════════════════════════════════════════════════ */
+function openDeleteModal(id, name) {
+  _delTarget = id;
+  document.getElementById('delete-modal-msg').textContent = `"${name}" adlı ilanı kalıcı olarak silmek istediğinize emin misiniz? Bu işlem geri alınamaz.`;
+  document.getElementById('delete-modal').classList.add('open');
+}
+
+document.getElementById('delete-cancel').addEventListener('click', () => document.getElementById('delete-modal').classList.remove('open'));
+document.getElementById('delete-confirm').addEventListener('click', async () => {
+  const data = await api(`/admin/casting/listings/${_delTarget}`, { method: 'DELETE' });
+  document.getElementById('delete-modal').classList.remove('open');
+  if (data.success) {
+    toast('İlan silindi.', 'error');
+    closeDetail();
+    loadListings();
+    loadDashboard();
+  } else toast(data.message || 'Hata', 'error');
+});
+
+/* ══════════════════════════════════════════════════
+   INQUIRIES
+══════════════════════════════════════════════════ */
+document.querySelectorAll('#inq-filters .filter-pill').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#inq-filters .filter-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    inqStatus = btn.dataset.status;
+    inqPage = 1;
+    loadInquiries();
+  });
+});
+
+function setInqFilter(status) {
+  document.querySelectorAll('#inq-filters .filter-pill').forEach(b => b.classList.toggle('active', b.dataset.status === status));
+  inqStatus = status;
+  inqPage = 1;
+  loadInquiries();
+}
+
+async function loadInquiries() {
+  const tbody = document.getElementById('inquiries-tbody');
+  tbody.innerHTML = '<tr><td colspan="7"><div class="loading"><div class="spin"></div></div></td></tr>';
+  const params = new URLSearchParams({ limit: 20, page: inqPage });
+  if (inqStatus) params.set('status', inqStatus);
+  const data = await api(`/admin/casting/inquiries?${params}`);
+  if (!data.success || !data.inquiries?.length) {
+    tbody.innerHTML = '<tr><td colspan="7"><div class="no-data">Talep bulunamadı.</div></td></tr>'; return;
+  }
+  inqTotalPages = data.limit ? Math.ceil(data.total / data.limit) : 1;
+  renderPagination('inq', inqPage, inqTotalPages, data.total, () => loadInquiries());
+  tbody.innerHTML = data.inquiries.map(i => `
+    <tr>
+      <td>
+        <strong>${esc(i.full_name)}</strong>
+        ${i.company_name ? `<br><small style="color:var(--muted)">${esc(i.company_name)}</small>` : ''}
+      </td>
+      <td><a href="mailto:${esc(i.email)}" style="color:var(--gold)">${esc(i.email)}</a></td>
+      <td>${esc(i.phone)}</td>
+      <td>${esc(i.project_type)}</td>
+      <td><span class="status-badge status-${i.status==='NEW'?'PENDING':i.status==='CONTACTED'?'APPROVED':'ARCHIVED'}">${STATUS_TR[i.status]||i.status}</span></td>
+      <td>${fmtDate(i.created_at)}</td>
+      <td>
+        ${i.status === 'NEW' ? `<button class="action-btn approve" onclick="updateInquiry('${i.id}','CONTACTED')">İletişime Geç</button>` : ''}
+        ${i.status !== 'CLOSED' ? `<button class="action-btn" onclick="updateInquiry('${i.id}','CLOSED')">Kapat</button>` : ''}
+      </td>
+    </tr>
+  `).join('');
+}
+
+async function updateInquiry(id, status) {
+  const data = await api(`/admin/casting/inquiries/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status }) });
+  if (data.success) { toast('Güncellendi ✓'); loadInquiries(); loadDashboard(); }
+  else toast(data.message || 'Hata', 'error');
+}
+
+/* ══════════════════════════════════════════════════
+   AUDIT LOG
+══════════════════════════════════════════════════ */
+const AUDIT_LABEL = { APPROVE:'Onaylandı', REJECT:'Reddedildi', REQUEST_REVISION:'Revizyon İstendi', FEATURE:'Öne Çıkarıldı', UNFEATURE:'Öne Çıkar Kaldırıldı', ARCHIVE:'Arşivlendi', DELETE:'Silindi', INQUIRY_CONTACTED:'İletişime Geçildi', INQUIRY_CLOSED:'Talep Kapatıldı' };
+
+async function loadAuditLog() {
+  const tbody = document.getElementById('audit-tbody');
+  tbody.innerHTML = '<tr><td colspan="4"><div class="loading"><div class="spin"></div></div></td></tr>';
+  const data = await api(`/admin/casting/audit-logs?limit=25&page=${auditPage}`);
+  if (!data.success || !data.logs?.length) {
+    tbody.innerHTML = '<tr><td colspan="4"><div class="no-data">Log bulunamadı.</div></td></tr>'; return;
+  }
+  auditTotalPages = data.limit ? Math.ceil(data.total / data.limit) : 1;
+  renderPagination('audit', auditPage, auditTotalPages, data.total, () => loadAuditLog());
+  tbody.innerHTML = data.logs.map(l => `
+    <tr>
+      <td><span class="audit-action ${l.action}">${AUDIT_LABEL[l.action]||l.action}</span></td>
+      <td><span style="font-size:.78rem;color:var(--muted)">${esc(l.target_type)}</span></td>
+      <td style="color:var(--muted);font-size:.78rem">${l.note ? esc(l.note) : '—'}</td>
+      <td style="white-space:nowrap">${fmtDate(l.created_at)}</td>
+    </tr>
+  `).join('');
+}
+
+/* ══════════════════════════════════════════════════
+   PAGINATION
+══════════════════════════════════════════════════ */
+function renderPagination(prefix, currentPage, totalPages, total, loadFn) {
+  const wrap     = document.getElementById(`${prefix}-pagination`);
+  const info     = document.getElementById(`${prefix}-page-info`);
+  const btnsEl   = document.getElementById(`${prefix}-page-btns`);
+
+  if (totalPages <= 1) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'flex';
+  info.textContent = `Toplam ${total || '?'} kayıt — Sayfa ${currentPage} / ${totalPages}`;
+
+  const pages = [];
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === 1 || i === totalPages || Math.abs(i - currentPage) <= 1) pages.push(i);
+    else if (pages[pages.length-1] !== '…') pages.push('…');
+  }
+
+  btnsEl.innerHTML = '';
+  const prev = document.createElement('button');
+  prev.className = 'pg-btn'; prev.textContent = '←'; prev.disabled = currentPage === 1;
+  prev.onclick = () => { if (prefix === 'listings') listingsPage--; else if (prefix === 'inq') inqPage--; else auditPage--; loadFn(); };
+  btnsEl.appendChild(prev);
+
+  pages.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = 'pg-btn' + (p === currentPage ? ' active' : '');
+    btn.textContent = p;
+    if (p === '…') { btn.disabled = true; }
+    else btn.onclick = () => { if (prefix === 'listings') listingsPage=p; else if (prefix === 'inq') inqPage=p; else auditPage=p; loadFn(); };
+    btnsEl.appendChild(btn);
+  });
+
+  const next = document.createElement('button');
+  next.className = 'pg-btn'; next.textContent = '→'; next.disabled = currentPage === totalPages;
+  next.onclick = () => { if (prefix === 'listings') listingsPage++; else if (prefix === 'inq') inqPage++; else auditPage++; loadFn(); };
+  btnsEl.appendChild(next);
+}
+
+/* ══════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════ */
+(async function init() {
+  if (!TOKEN) return;
+  const data = await api('/user/me');
+  if (data.success && data.user?.role === 'admin') {
+    showPanel(data.user);
+  } else {
+    localStorage.removeItem('ftv_token');
+    TOKEN = '';
+  }
+})();
+</script>
+</body>
+</html>

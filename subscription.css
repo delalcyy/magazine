@@ -1,0 +1,560 @@
+/* ═══════════════════════════════════════════════════════
+   subscription.css — FashionTV Magazine Abonelik Sayfası
+   style.css token'larını miras alır.
+   SIFIR cursive · SIFIR script · SIFIR handwritten
+═══════════════════════════════════════════════════════ */
+
+
+/* Aktif nav linki */
+.nav-link--active {
+  color: var(--ink) !important;
+  position: relative;
+}
+.nav-link--active::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0; right: 0;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* ── HERO ──────────────────────────────────────────── */
+.sub-hero {
+  padding: calc(72px + clamp(64px, 10vw, 120px)) 0 clamp(60px, 9vw, 100px);
+  background: var(--ink);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.sub-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 65%, rgba(176, 144, 96, .11) 0%, transparent 62%),
+    repeating-linear-gradient(
+      -52deg, transparent 0 44px,
+      rgba(255, 255, 255, .018) 44px 45px
+    );
+  pointer-events: none;
+}
+
+/* Büyük arka plan yazı */
+.sub-hero::after {
+  content: 'ABONELİK';
+  position: absolute;
+  bottom: -20px; left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(80px, 14vw, 180px);
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: rgba(255, 255, 255, .03);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sub-hero__inner {
+  position: relative;
+  z-index: 1;
+}
+.sub-hero__label {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+.sub-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.0;
+  color: var(--white);
+  margin-bottom: 18px;
+}
+.sub-hero__title span {
+  color: var(--gold);
+}
+.sub-hero__desc {
+  font-family: var(--font-body);
+  font-size: clamp(13px, 1.5vw, 16px);
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, .45);
+  max-width: 560px;
+  margin: 0 auto 40px;
+}
+
+/* Güvence rozetleri */
+.sub-hero__badges {
+  display: flex;
+  justify-content: center;
+  gap: clamp(20px, 3vw, 48px);
+  flex-wrap: wrap;
+}
+.sub-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .38);
+}
+.sub-badge svg { color: var(--gold); flex-shrink: 0; }
+
+/* ── AVANTAJLAR ŞERİDİ ─────────────────────────────── */
+.benefits-bar {
+  background: var(--off-white);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+  overflow: hidden;
+}
+.benefits-bar__inner {
+  display: flex;
+  justify-content: center;
+  gap: clamp(20px, 4vw, 60px);
+  flex-wrap: wrap;
+  align-items: center;
+}
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+  white-space: nowrap;
+}
+.benefit svg { color: var(--gold); flex-shrink: 0; }
+
+/* ── PLANLAR BÖLÜMÜ ────────────────────────────────── */
+.plans-section {
+  padding: var(--section-v) 0;
+  background: var(--white);
+}
+.plans-section__head {
+  text-align: center;
+  margin-bottom: clamp(48px, 7vw, 72px);
+}
+.plans-section__label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.plans-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.08;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.plans-section__title span { color: var(--gold); }
+.plans-section__sub {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--ink-50);
+  line-height: 1.8;
+}
+
+/* 6 kart ızgarası */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ── PLAN KARTI ────────────────────────────────────── */
+.plan-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 34px 26px 30px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition:
+    transform .35s var(--ease-out),
+    box-shadow .35s var(--ease-out),
+    border-color .25s;
+}
+.plan-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 22px 56px rgba(0, 0, 0, .09);
+  border-color: var(--ink-20);
+}
+
+/* En popüler */
+.plan-card--featured {
+  background: var(--ink);
+  border-color: var(--gold);
+}
+.plan-card--featured:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 28px 72px rgba(0, 0, 0, .22);
+  border-color: var(--gold-lt);
+}
+
+/* Lüks plan */
+.plan-card--luxury {
+  background: linear-gradient(158deg, #141010 0%, #1c1c1c 100%);
+  border-color: rgba(176, 144, 96, .35);
+}
+.plan-card--luxury:hover {
+  border-color: var(--gold);
+}
+
+/* Popüler rozet */
+.plan-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  white-space: nowrap;
+}
+
+/* Plan içeriği */
+.plan-header { margin-bottom: 22px; }
+
+.plan-period {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 7px;
+}
+
+.plan-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 700;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  line-height: 1.15;
+}
+.plan-card--featured .plan-name,
+.plan-card--luxury   .plan-name { color: var(--white); }
+
+.plan-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 20px 0 18px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.plan-card--featured .plan-price-row,
+.plan-card--luxury   .plan-price-row {
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.plan-amount {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  line-height: 1;
+}
+.plan-card--featured .plan-amount,
+.plan-card--luxury   .plan-amount { color: var(--white); }
+
+.plan-cycle {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--ink-50);
+}
+.plan-card--featured .plan-cycle,
+.plan-card--luxury   .plan-cycle { color: rgba(255, 255, 255, .42); }
+
+/* Küçük indirim etiketi */
+.plan-saving {
+  margin-left: auto;
+  font-family: var(--font-display);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  background: var(--gold-pale);
+  color: var(--gold);
+  align-self: center;
+  white-space: nowrap;
+}
+.plan-card--featured .plan-saving { background: rgba(176, 144, 96, .2); }
+.plan-card--luxury   .plan-saving { background: rgba(176, 144, 96, .15); }
+
+.plan-features-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+.plan-features-list li {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--ink-50);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.5;
+}
+.plan-features-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 10px;
+  top: 1px;
+}
+.plan-card--featured .plan-features-list li,
+.plan-card--luxury   .plan-features-list li { color: rgba(255, 255, 255, .52); }
+
+/* Plan butonları */
+.btn-plan-select {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 14px;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .22s, color .22s, border-color .22s;
+  margin-top: auto;
+  text-decoration: none;
+}
+.btn-plan-select:hover {
+  background: var(--ink);
+  color: var(--white);
+  border-color: var(--ink);
+}
+
+.plan-card--featured .btn-plan-select {
+  background: var(--gold);
+  color: var(--white);
+  border-color: var(--gold);
+}
+.plan-card--featured .btn-plan-select:hover {
+  background: var(--gold-lt);
+  border-color: var(--gold-lt);
+}
+
+.plan-card--luxury .btn-plan-select {
+  background: transparent;
+  color: var(--gold);
+  border-color: rgba(176, 144, 96, .5);
+}
+.plan-card--luxury .btn-plan-select:hover {
+  background: var(--gold);
+  color: var(--white);
+  border-color: var(--gold);
+}
+
+/* ── SSS ───────────────────────────────────────────── */
+.faq-section {
+  padding: var(--section-v) 0;
+  background: var(--off-white);
+}
+.faq-section__head {
+  text-align: center;
+  margin-bottom: 52px;
+}
+.faq-section__label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.faq-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-item:first-child { border-top: 1px solid var(--border); }
+
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  text-align: left;
+  gap: 16px;
+  transition: color .2s;
+}
+.faq-q:hover { color: var(--gold); }
+.faq-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 16px;
+  font-weight: 300;
+  transition: transform .3s var(--ease-out), background .2s;
+  line-height: 1;
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .38s var(--ease-in-out);
+}
+.faq-item.open .faq-a { max-height: 240px; }
+.faq-a p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--ink-50);
+  padding-bottom: 20px;
+}
+
+/* ── ALT CTA ───────────────────────────────────────── */
+.sub-cta {
+  padding: clamp(64px, 10vw, 110px) 0;
+  background: var(--ink);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.sub-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(176, 144, 96, .09) 0%, transparent 65%);
+  pointer-events: none;
+}
+.sub-cta__inner { position: relative; z-index: 1; }
+.sub-cta__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 4vw, 3.8rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.06;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.sub-cta__title span { color: var(--gold); }
+.sub-cta__desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, .42);
+  margin-bottom: 36px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sub-cta__btns {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn-cta-primary {
+  display: inline-block;
+  padding: 15px 44px;
+  background: var(--gold);
+  color: var(--white);
+  border: 1px solid var(--gold);
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  transition: background .22s;
+  text-decoration: none;
+}
+.btn-cta-primary:hover { background: var(--gold-lt); border-color: var(--gold-lt); }
+.btn-cta-ghost {
+  display: inline-block;
+  padding: 15px 44px;
+  background: transparent;
+  color: rgba(255, 255, 255, .55);
+  border: 1px solid rgba(255, 255, 255, .22);
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  transition: border-color .22s, color .22s;
+  text-decoration: none;
+}
+.btn-cta-ghost:hover { border-color: rgba(255, 255, 255, .55); color: var(--white); }
+
+/* ── RESPONSIVE ────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .plans-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 760px) {
+  .plans-grid { grid-template-columns: 1fr 1fr; }
+  .benefits-bar__inner { gap: 14px 28px; }
+}
+@media (max-width: 500px) {
+  .plans-grid { grid-template-columns: 1fr; }
+  .sub-hero__badges { gap: 14px; }
+  .sub-cta__btns { flex-direction: column; align-items: center; }
+  .btn-cta-primary,
+  .btn-cta-ghost { width: 100%; max-width: 320px; text-align: center; }
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FashionTV Magazine Casting</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="casting.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+</head>
+<body class="c-page">
+
+<div class="casting-header">
+  <header class="site-header" id="site-header">
+    <div class="header-wrap">
+      <a class="logo" href="../index.html" aria-label="FashionTV Magazine">
+        <img src="../images/logo.png" class="logo-img" alt="FashionTV" />
+      </a>
+      <nav class="main-nav">
+        <a href="../index.html" data-i18n="nav.back">fashiontv magazine</a>
+        <a href="index.html" class="active" data-i18n="nav.casting">Casting</a>
+        <a href="ilanlar.html" data-i18n="nav.listings">Vitrin</a>
+        <a href="basvuru.html" data-i18n="nav.apply">Başvuru Oluştur</a>
+      </nav>
+      <div class="header-right">
+        <div class="lang-switcher">
+          <button class="lang-current">
+            <span class="lang-flag lang-flag-current">🇹🇷</span>
+            <span class="lang-code-current">TR</span>
+            <svg class="lang-chevron" viewBox="0 0 10 6" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="currentColor"/></svg>
+          </button>
+          <div class="lang-dropdown">
+            <button class="lang-opt active" data-lang="tr"><span class="lang-flag">🇹🇷</span><span class="lang-name">Türkçe</span><span class="lang-check">✓</span></button>
+            <button class="lang-opt" data-lang="en"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span><span class="lang-check">✓</span></button>
+            <button class="lang-opt" data-lang="ru"><span class="lang-flag">🇷🇺</span><span class="lang-name">Русский</span><span class="lang-check">✓</span></button>
+          </div>
+        </div>
+        <a href="basvuru.html" class="hdr-apply" data-i18n="nav.apply.hdr">Başvuru Oluştur</a>
+        <a href="../account.html" class="hdr-cta" id="c-nav-login" data-i18n="nav.login">Giriş Yap</a>
+        <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <nav>
+    <a href="../index.html" data-i18n="nav.back">fashiontv magazine</a>
+    <a href="index.html" data-i18n="nav.casting">Casting</a>
+    <a href="ilanlar.html" data-i18n="nav.listings">Vitrin</a>
+    <a href="basvuru.html" data-i18n="nav.apply">Başvuru Oluştur</a>
+    <a href="../account.html" class="mobile-cta" data-i18n="nav.login">Giriş Yap</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section class="c-hero">
+  <div class="c-hero__bg"></div>
+  <div class="c-hero__grid"></div>
+  <video class="c-hero__video" autoplay muted loop playsinline>
+    <source src="video1.mp4" type="video/mp4" />
+  </video>
+  <div class="c-hero__overlay"></div>
+  <div class="c-hero__content">
+    <div class="c-hero__eyebrow">
+      <span class="c-hero__line"></span>
+      <span class="c-label" data-i18n="hero.label">fashiontv magazine casting</span>
+      <span class="c-hero__line"></span>
+    </div>
+    <h1 class="c-hero__title" data-i18n="hero.title">Yeteneğini Göster,<br>Kariyerini İnşa Et</h1>
+    <p class="c-hero__sub" data-i18n="hero.sub">Model, Manken Ve Oyuncu İlanlarını Keşfet.</p>
+    <div class="c-hero__actions">
+      <a href="ilanlar.html" class="c-btn c-btn--gold" data-i18n="hero.browse">İlanları Keşfet</a>
+      <a href="basvuru.html" class="c-btn c-btn--outline" data-i18n="hero.apply">Başvuru Oluştur</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="c-stats-bar">
+  <div class="c-stats-bar__item">
+    <div class="c-stat"><span class="c-stat__num">—</span><span class="c-stat__label" data-i18n="stats.active">Aktif İlan</span></div>
+  </div>
+  <div class="c-stats-bar__item">
+    <div class="c-stat"><span class="c-stat__num">—</span><span class="c-stat__label" data-i18n="stats.cities">Şehir</span></div>
+  </div>
+  <div class="c-stats-bar__item">
+    <div class="c-stat"><span class="c-stat__num">6</span><span class="c-stat__label" data-i18n="stats.categories">Kategori</span></div>
+  </div>
+  <div class="c-stats-bar__item">
+    <div class="c-stat"><span class="c-stat__num">100%</span><span class="c-stat__label" data-i18n="stats.verified">Onaylı İlanlar</span></div>
+  </div>
+</div>
+
+<!-- KATEGORİLER -->
+<section class="c-categories">
+  <div class="c-wrap">
+    <span class="c-rule"></span>
+    <span class="c-label" data-i18n="categories.label">Kategoriler</span>
+    <h2 class="c-section-title" data-i18n="categories.title">Ne arıyorsunuz?</h2>
+    <div class="c-categories__grid">
+      <a href="ilanlar.html?category=model" class="c-cat-card">
+        <span class="c-cat-card__num">01</span>
+        <span class="c-cat-card__title" data-i18n="cat.model.title">Model</span>
+        <p class="c-cat-card__desc" data-i18n="cat.model.desc">Reklam, editöryal ve marka çalışmaları için profesyonel modeller.</p>
+        <span class="c-cat-card__arrow" data-i18n="cat.browse">İlanları Gör</span>
+      </a>
+      <a href="ilanlar.html?category=manken" class="c-cat-card">
+        <span class="c-cat-card__num">02</span>
+        <span class="c-cat-card__title" data-i18n="cat.manken.title">Manken</span>
+        <p class="c-cat-card__desc" data-i18n="cat.manken.desc">Defileler, showroom ve moda gösterileri için podyum mankenleri.</p>
+        <span class="c-cat-card__arrow" data-i18n="cat.browse">İlanları Gör</span>
+      </a>
+      <a href="ilanlar.html?category=oyuncu" class="c-cat-card">
+        <span class="c-cat-card__num">03</span>
+        <span class="c-cat-card__title" data-i18n="cat.oyuncu.title">Oyuncu</span>
+        <p class="c-cat-card__desc" data-i18n="cat.oyuncu.desc">Reklam filmleri, dizi ve sinema projeleri için deneyimli oyuncular.</p>
+        <span class="c-cat-card__arrow" data-i18n="cat.browse">İlanları Gör</span>
+      </a>
+      <a href="ilanlar.html?category=ic_giyim" class="c-cat-card">
+        <span class="c-cat-card__num">04</span>
+        <span class="c-cat-card__title" data-i18n="cat.ic_giyim.title">İç Giyim</span>
+        <p class="c-cat-card__desc" data-i18n="cat.ic_giyim.desc">İç giyim markaları ve kampanyaları için özel çekimler.</p>
+        <span class="c-cat-card__arrow" data-i18n="cat.browse">İlanları Gör</span>
+      </a>
+      <a href="ilanlar.html?category=spor_giyim" class="c-cat-card">
+        <span class="c-cat-card__num">05</span>
+        <span class="c-cat-card__title" data-i18n="cat.spor_giyim.title">Spor Giyim</span>
+        <p class="c-cat-card__desc" data-i18n="cat.spor_giyim.desc">Spor ve aktivewear markaları için dinamik çekimler.</p>
+        <span class="c-cat-card__arrow" data-i18n="cat.browse">İlanları Gör</span>
+      </a>
+      <a href="ilanlar.html?category=abiye_gelinlik" class="c-cat-card">
+        <span class="c-cat-card__num">06</span>
+        <span class="c-cat-card__title" data-i18n="cat.abiye.title">Abiye & Gelinlik</span>
+        <p class="c-cat-card__desc" data-i18n="cat.abiye.desc">Abiye, gece kıyafeti ve gelinlik koleksiyonları için özel çekimler.</p>
+        <span class="c-cat-card__arrow" data-i18n="cat.browse">İlanları Gör</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ÖNE ÇIKAN İLANLAR -->
+<section class="c-featured">
+  <div class="c-wrap">
+    <div class="c-section-head">
+      <div>
+        <span class="c-rule"></span>
+        <h2 class="c-section-title"><em data-i18n="featured.title">Vitrin</em></h2>
+      </div>
+      <a href="ilanlar.html" class="c-btn c-btn--outline c-btn--sm" data-i18n="featured.all">Tümünü Gör</a>
+    </div>
+    <div id="featured-grid">
+      <div class="c-loading"><div class="c-spinner"></div><span>Yükleniyor…</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="c-landing-cta">
+  <div class="c-wrap">
+    <span class="c-rule c-rule--center"></span>
+    <h2 class="c-landing-cta__title" data-i18n="cta.title">Sen de platformumuza katıl</h2>
+    <p class="c-landing-cta__sub" data-i18n="cta.sub">Başvurunu oluştur, ekibimiz incelesin.</p>
+    <a href="basvuru.html" class="c-btn c-btn--gold" data-i18n="cta.btn">Başvuru Oluştur</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="c-footer">
+  <div class="c-wrap">
+    <div class="c-footer__top">
+      <div class="c-footer__brand-col">
+        <a href="index.html" class="c-footer__logo">
+          <img src="../images/logo.png" class="c-footer__logo-img" alt="FashionTV" />
+        </a>
+        <p class="c-footer__desc" data-i18n="footer.desc">Moda, yetenek ve fırsatın buluştuğu platform.</p>
+        <a href="https://wa.me/" class="c-footer__whatsapp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-i18n="footer.whatsapp">WhatsApp İletişim</span>
+        </a>
+      </div>
+      <div>
+        <p class="c-footer__col-title" data-i18n="footer.col.casting">Casting</p>
+        <div class="c-footer__col-links">
+          <a href="ilanlar.html" data-i18n="footer.listings">İlanlar</a>
+          <a href="basvuru.html" data-i18n="footer.form">Başvuru Formu</a>
+          <a href="ilanlar.html?category=model" data-i18n="footer.models">Modeller</a>
+          <a href="ilanlar.html?category=oyuncu" data-i18n="footer.actors">Oyuncular</a>
+          <a href="ilanlar.html?category=manken" data-i18n="footer.mannequins">Mankenler</a>
+        </div>
+      </div>
+      <div>
+        <p class="c-footer__col-title" data-i18n="footer.col.corp">Kurumsal</p>
+        <div class="c-footer__col-links">
+          <a href="../about.html" data-i18n="footer.about">Hakkımızda</a>
+        </div>
+      </div>
+      <div>
+        <p class="c-footer__col-title" data-i18n="footer.col.contact">İletişim</p>
+        <div class="c-footer__col-links">
+          <a href="../contact.html">fashiontvmagazine.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="c-footer__bottom">
+      <span class="c-footer__copy" data-i18n="footer.copy">© 2026 fashiontv magazine casting.</span>
+      <div class="c-footer__bottom-links">
+        <a href="#" data-i18n="footer.privacy">Gizlilik Politikası</a>
+        <a href="#" data-i18n="footer.terms">Kullanım Koşulları</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../api.js"></script>
+<script src="casting-api.js"></script>
+<script src="lang.js"></script>
+<script src="page-landing.js"></script>
+</body>
+</html>

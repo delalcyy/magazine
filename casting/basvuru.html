@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Başvuru Oluştur — FashionTV Casting</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="casting.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+</head>
+<body class="c-page">
+
+<div class="casting-header">
+  <header class="site-header" id="site-header">
+    <div class="header-wrap">
+      <a class="logo" href="../index.html">
+        <img src="../images/logo.png" class="logo-img" alt="FashionTV" />
+      </a>
+      <nav class="main-nav">
+        <a href="../index.html" data-i18n="nav.back">fashiontv magazine</a>
+        <a href="index.html" data-i18n="nav.casting">Casting</a>
+        <a href="ilanlar.html" data-i18n="nav.listings">Vitrin</a>
+        <a href="basvuru.html" class="active" data-i18n="nav.apply">Başvuru Oluştur</a>
+      </nav>
+      <div class="header-right">
+        <div class="lang-switcher">
+          <button class="lang-current">
+            <span class="lang-flag lang-flag-current">🇹🇷</span>
+            <span class="lang-code-current">TR</span>
+            <svg class="lang-chevron" viewBox="0 0 10 6" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="currentColor"/></svg>
+          </button>
+          <div class="lang-dropdown">
+            <button class="lang-opt active" data-lang="tr"><span class="lang-flag">🇹🇷</span><span class="lang-name">Türkçe</span><span class="lang-check">✓</span></button>
+            <button class="lang-opt" data-lang="en"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span><span class="lang-check">✓</span></button>
+            <button class="lang-opt" data-lang="ru"><span class="lang-flag">🇷🇺</span><span class="lang-name">Русский</span><span class="lang-check">✓</span></button>
+          </div>
+        </div>
+        <a href="../account.html" class="hdr-cta" id="c-nav-login" data-i18n="nav.login">Giriş Yap</a>
+        <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <nav>
+    <a href="../index.html" data-i18n="nav.back">fashiontv magazine</a>
+    <a href="index.html" data-i18n="nav.casting">Casting</a>
+    <a href="ilanlar.html" data-i18n="nav.listings">Vitrin</a>
+    <a href="basvuru.html" data-i18n="nav.apply">Başvuru Oluştur</a>
+    <a href="../account.html" class="mobile-cta" data-i18n="nav.login">Giriş Yap</a>
+  </nav>
+</div>
+
+<!-- AUTH GATE (giriş yapılmamışsa göster) -->
+<div class="c-auth-gate" id="auth-gate">
+  <div class="c-auth-gate__icon">◇</div>
+  <h2 class="c-auth-gate__title" data-i18n="apply.login.title">Başvuru için giriş yapman gerekiyor</h2>
+  <p class="c-auth-gate__sub" data-i18n="apply.login.sub">Ücretsiz hesap oluşturabilir veya mevcut hesabınla giriş yapabilirsin.</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+    <a href="../login.html" class="c-btn c-btn--gold" data-i18n="apply.login.btn">Giriş Yap</a>
+    <a href="../register.html" class="c-btn c-btn--outline" data-i18n="apply.register.btn">Kayıt Ol</a>
+  </div>
+</div>
+
+<!-- FORM (giriş yapılmışsa göster) -->
+<div class="c-form-page" id="form-page" style="display:none;">
+  <div class="c-form-page__inner">
+    <div style="margin-bottom:48px;">
+      <span class="c-rule"></span>
+      <h1 class="c-form-page__title" data-i18n="apply.title">Başvuru Oluştur</h1>
+      <p class="c-form-page__sub" data-i18n="apply.sub">Bilgilerini doldur, ekibimiz incelesin.</p>
+    </div>
+
+    <div id="form-alert" class="c-alert" style="margin-bottom:24px;"></div>
+
+    <form id="apply-form" novalidate>
+      <!-- Honeypot -->
+      <div class="c-hp"><input type="text" name="website_url" tabindex="-1" autocomplete="off" /></div>
+
+      <!-- KİŞİSEL BİLGİLER -->
+      <div class="c-form-section">
+        <h2 class="c-form-section__title" data-i18n="section.personal">Kişisel Bilgiler</h2>
+        <div class="c-field-row">
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.fullname">Ad Soyad <span>*</span></label>
+            <input class="c-input" type="text" name="full_name" required data-i18n-ph="ph.fullname" placeholder="Adın ve soyadın" />
+          </div>
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.age">Yaş <span>*</span></label>
+            <input class="c-input" type="number" name="age" min="16" max="80" required data-i18n-ph="ph.age" placeholder="16-80" />
+          </div>
+        </div>
+        <div class="c-field-row">
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.gender">Cinsiyet <span>*</span></label>
+            <select class="c-select" name="gender" required>
+              <option value="" data-i18n="select.placeholder">Seç…</option>
+              <option value="kadin">Kadın</option>
+              <option value="erkek">Erkek</option>
+              <option value="diger">Diğer</option>
+            </select>
+          </div>
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.city">Şehir <span>*</span></label>
+            <select class="c-select" name="city_id" id="city-select" required>
+              <option value="">Seç…</option>
+            </select>
+          </div>
+        </div>
+        <div class="c-field">
+          <label class="c-field__label" data-i18n="field.district">İlçe</label>
+          <input class="c-input" type="text" name="district" data-i18n-ph="ph.district" placeholder="İlçe (opsiyonel)" />
+        </div>
+        <div class="c-field">
+          <label class="c-field__label" data-i18n="field.description">Hakkında <span>*</span></label>
+          <textarea class="c-input c-textarea" name="description" required data-i18n-ph="ph.description" placeholder="Kendin hakkında kısa bir tanıtım yaz…"></textarea>
+        </div>
+      </div>
+
+      <!-- KATEGORİ & DENEYİM -->
+      <div class="c-form-section">
+        <h2 class="c-form-section__title" data-i18n="section.category">Kategori & Deneyim</h2>
+        <div class="c-field-row">
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.category">Kategori <span>*</span></label>
+            <select class="c-select" name="category" required>
+              <option value="" data-i18n="select.placeholder">Seç…</option>
+              <option value="model">Model</option>
+              <option value="manken">Manken</option>
+              <option value="oyuncu">Oyuncu</option>
+              <option value="ic_giyim">İç Giyim</option>
+              <option value="spor_giyim">Spor Giyim</option>
+              <option value="abiye_gelinlik">Abiye & Gelinlik</option>
+            </select>
+          </div>
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.experience">Deneyim <span>*</span></label>
+            <select class="c-select" name="experience" required>
+              <option value="" data-i18n="select.placeholder">Seç…</option>
+              <option value="yeni_baslayan">Yeni Başlayan</option>
+              <option value="deneyimli">Deneyimli</option>
+              <option value="profesyonel">Profesyonel</option>
+            </select>
+          </div>
+        </div>
+        <div class="c-field">
+          <label class="c-field__label" data-i18n="field.prevworks">Önceki Çalışmalar</label>
+          <textarea class="c-input c-textarea" name="previous_works" data-i18n-ph="ph.prevworks" placeholder="Daha önce yaptığın işler, projeler…"></textarea>
+        </div>
+      </div>
+
+      <!-- FİZİKSEL ÖZELLİKLER -->
+      <div class="c-form-section">
+        <h2 class="c-form-section__title" data-i18n="section.physical">Fiziksel Özellikler</h2>
+        <div class="c-field-row c-field-row--3">
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.height">Boy (cm) <span>*</span></label>
+            <input class="c-input" type="number" name="height" min="140" max="220" required data-i18n-ph="ph.height" placeholder="Ör: 175" />
+          </div>
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.weight">Kilo (kg) <span>*</span></label>
+            <input class="c-input" type="number" name="weight" min="40" max="150" required data-i18n-ph="ph.weight" placeholder="Ör: 60" />
+          </div>
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.bodysize">Beden</label>
+            <input class="c-input" type="text" name="body_size" data-i18n-ph="ph.bodysize" placeholder="Ör: S, M, 38" />
+          </div>
+        </div>
+        <div class="c-field-row">
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.eyecolor">Göz Rengi</label>
+            <select class="c-select" name="eye_color">
+              <option value="">Seç…</option>
+              <option value="kahverengi">Kahverengi</option>
+              <option value="siyah">Siyah</option>
+              <option value="mavi">Mavi</option>
+              <option value="yesil">Yeşil</option>
+              <option value="ela">Ela</option>
+              <option value="gri">Gri</option>
+            </select>
+          </div>
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.haircolor">Saç Rengi</label>
+            <select class="c-select" name="hair_color">
+              <option value="">Seç…</option>
+              <option value="siyah">Siyah</option>
+              <option value="esmer">Esmer</option>
+              <option value="kumral">Kumral</option>
+              <option value="sari">Sarı</option>
+              <option value="kizil">Kızıl</option>
+              <option value="beyaz">Beyaz</option>
+              <option value="diger">Diğer</option>
+            </select>
+          </div>
+        </div>
+        <div class="c-field-row c-field-row--3">
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.bust">Göğüs (cm)</label>
+            <input class="c-input" type="number" name="bust" data-i18n-ph="ph.bust" placeholder="Ör: 90" />
+          </div>
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.waist">Bel (cm)</label>
+            <input class="c-input" type="number" name="waist" data-i18n-ph="ph.waist" placeholder="Ör: 65" />
+          </div>
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.hips">Kalça (cm)</label>
+            <input class="c-input" type="number" name="hips" data-i18n-ph="ph.hips" placeholder="Ör: 95" />
+          </div>
+        </div>
+        <div class="c-field">
+          <label class="c-field__label" data-i18n="field.shoesize">Ayakkabı No</label>
+          <input class="c-input" type="text" name="shoe_size" data-i18n-ph="ph.shoesize" placeholder="Ör: 39" />
+        </div>
+      </div>
+
+      <!-- FOTOĞRAFLAR -->
+      <div class="c-form-section">
+        <h2 class="c-form-section__title" data-i18n="section.photos">Fotoğraflar</h2>
+        <div class="c-field">
+          <label class="c-field__label" data-i18n="field.profile.label">Profil Fotoğrafı <span>*</span></label>
+          <div class="c-upload-area" id="profile-upload">
+            <input type="file" name="profile_photo" accept="image/*" id="profile-input" />
+            <div class="c-upload-area__icon">↑</div>
+            <span class="c-upload-area__label" data-i18n="field.profile.label">Profil Fotoğrafı</span>
+            <span class="c-upload-area__hint" data-i18n="field.profile.hint">Yüz görünür olmalı</span>
+          </div>
+          <div class="c-upload-preview" id="profile-preview"></div>
+        </div>
+        <div class="c-field">
+          <label class="c-field__label" data-i18n="field.fullbody.label">Tam Boy Fotoğraf</label>
+          <div class="c-upload-area">
+            <input type="file" name="fullbody_photo" accept="image/*" id="fullbody-input" />
+            <div class="c-upload-area__icon">↑</div>
+            <span class="c-upload-area__label" data-i18n="field.fullbody.label">Tam Boy Fotoğraf</span>
+          </div>
+          <div class="c-upload-preview" id="fullbody-preview"></div>
+        </div>
+        <div class="c-field">
+          <label class="c-field__label" data-i18n="field.gallery.label">Ek Fotoğraflar</label>
+          <div class="c-upload-area">
+            <input type="file" name="gallery_photos" accept="image/*" multiple id="gallery-input" />
+            <div class="c-upload-area__icon">↑</div>
+            <span class="c-upload-area__label" data-i18n="field.gallery.label">Ek Fotoğraflar</span>
+            <span class="c-upload-area__hint" data-i18n="field.gallery.hint">Birden fazla seçebilirsin</span>
+          </div>
+          <div class="c-upload-preview" id="gallery-preview"></div>
+        </div>
+      </div>
+
+      <!-- DİLLER & YETENEKLER -->
+      <div class="c-form-section">
+        <h2 class="c-form-section__title" data-i18n="section.skills">Diller & Yetenekler</h2>
+        <div class="c-field">
+          <label class="c-field__label" data-i18n="field.languages">Diller</label>
+          <div class="c-filter-pills" id="lang-pills">
+            <button type="button" class="c-filter-pill" data-lang="Türkçe">Türkçe</button>
+            <button type="button" class="c-filter-pill" data-lang="İngilizce">İngilizce</button>
+            <button type="button" class="c-filter-pill" data-lang="Rusça">Rusça</button>
+            <button type="button" class="c-filter-pill" data-lang="Almanca">Almanca</button>
+            <button type="button" class="c-filter-pill" data-lang="Fransızca">Fransızca</button>
+            <button type="button" class="c-filter-pill" data-lang="Arapça">Arapça</button>
+          </div>
+          <input type="hidden" name="languages" id="languages-val" />
+        </div>
+        <div class="c-field">
+          <label class="c-field__label" data-i18n="field.skills">Yetenekler</label>
+          <div style="display:flex;gap:8px;margin-bottom:8px;">
+            <input class="c-input" type="text" id="skill-input" data-i18n-ph="field.skills.ph" placeholder="Yetenek ekle…" style="flex:1;" />
+            <button type="button" class="c-btn c-btn--outline c-btn--sm" id="skill-add" data-i18n="field.skills.add">Ekle</button>
+          </div>
+          <div class="c-filter-pills" id="skills-pills"></div>
+          <input type="hidden" name="skills" id="skills-val" />
+        </div>
+      </div>
+
+      <!-- İLETİŞİM -->
+      <div class="c-form-section">
+        <h2 class="c-form-section__title" data-i18n="section.contact">İletişim Bilgileri</h2>
+        <div class="c-field-row">
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.phone">Telefon <span>*</span></label>
+            <input class="c-input" type="tel" name="phone" required data-i18n-ph="ph.phone" placeholder="05XX XXX XX XX" />
+          </div>
+          <div class="c-field">
+            <label class="c-field__label" data-i18n="field.email">E-posta</label>
+            <input class="c-input" type="email" name="contact_email" data-i18n-ph="ph.email" placeholder="ornek@mail.com" />
+          </div>
+        </div>
+        <div class="c-field">
+          <label class="c-field__label" data-i18n="field.instagram">Instagram</label>
+          <input class="c-input" type="text" name="instagram" data-i18n-ph="ph.instagram" placeholder="@kullaniciadi" />
+        </div>
+      </div>
+
+      <!-- KVKK -->
+      <div class="c-form-section">
+        <label class="c-checkbox-group">
+          <input type="checkbox" name="kvkk" id="kvkk" required />
+          <span class="c-checkbox-group__label">
+            <a href="#">Gizlilik Politikası</a> ve <a href="#">Kullanım Koşulları</a>'nı okudum, kabul ediyorum. <span style="color:var(--c-gold)">*</span>
+          </span>
+        </label>
+      </div>
+
+      <div id="form-alert-bottom" class="c-alert" style="margin-bottom:16px;"></div>
+
+      <button type="submit" class="c-btn c-btn--gold c-btn--full" id="submit-btn" data-i18n="apply.submit">
+        Başvuruyu Gönder
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="c-footer">
+  <div class="c-wrap">
+    <div class="c-footer__top">
+      <div class="c-footer__brand-col">
+        <a href="index.html" class="c-footer__logo">
+          <img src="../images/logo.png" class="c-footer__logo-img" alt="FashionTV" />
+        </a>
+        <p class="c-footer__desc" data-i18n="footer.desc">Moda, yetenek ve fırsatın buluştuğu platform.</p>
+      </div>
+      <div>
+        <p class="c-footer__col-title" data-i18n="footer.col.casting">Casting</p>
+        <div class="c-footer__col-links">
+          <a href="ilanlar.html" data-i18n="footer.listings">İlanlar</a>
+          <a href="basvuru.html" data-i18n="footer.form">Başvuru Formu</a>
+        </div>
+      </div>
+      <div>
+        <p class="c-footer__col-title" data-i18n="footer.col.corp">Kurumsal</p>
+        <div class="c-footer__col-links">
+          <a href="../about.html" data-i18n="footer.about">Hakkımızda</a>
+        </div>
+      </div>
+      <div>
+        <p class="c-footer__col-title" data-i18n="footer.col.contact">İletişim</p>
+        <div class="c-footer__col-links">
+          <a href="../contact.html">fashiontvmagazine.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="c-footer__bottom">
+      <span class="c-footer__copy" data-i18n="footer.copy">© 2026 fashiontv magazine casting.</span>
+      <div class="c-footer__bottom-links">
+        <a href="#" data-i18n="footer.privacy">Gizlilik Politikası</a>
+        <a href="#" data-i18n="footer.terms">Kullanım Koşulları</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../api.js"></script>
+<script src="casting-api.js"></script>
+<script src="lang.js"></script>
+<script>
+'use strict';
+
+(function init() {
+  initHeaderScroll();
+  initMobileMenu();
+  updateCastingNav();
+
+  const user = (typeof Auth !== 'undefined') ? Auth.getUser() : null;
+  if (!user) {
+    document.getElementById('auth-gate').classList.add('visible');
+  } else {
+    document.getElementById('form-page').style.display = 'block';
+    loadCities();
+    initSkills();
+    initLangPills();
+    initPhotoPreviews();
+    initForm();
+  }
+
+  if (typeof I18n !== 'undefined') I18n.applyAll();
+})();
+
+function loadCities() {
+  CastingAPI.getCities().then(({ ok, data }) => {
+    if (!ok) return;
+    const sel = document.getElementById('city-select');
+    data.cities.forEach(c => {
+      const o = document.createElement('option');
+      o.value = c.id; o.textContent = c.name;
+      sel.appendChild(o);
+    });
+  });
+}
+
+function initSkills() {
+  const skills = [];
+  const input = document.getElementById('skill-input');
+  const pills = document.getElementById('skills-pills');
+  const hidden = document.getElementById('skills-val');
+
+  function addSkill(val) {
+    val = val.trim();
+    if (!val || skills.includes(val)) return;
+    skills.push(val);
+    hidden.value = JSON.stringify(skills);
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'c-filter-pill active';
+    btn.textContent = val + ' ✕';
+    btn.addEventListener('click', () => {
+      const idx = skills.indexOf(val);
+      if (idx > -1) skills.splice(idx, 1);
+      hidden.value = JSON.stringify(skills);
+      btn.remove();
+    });
+    pills.appendChild(btn);
+    input.value = '';
+  }
+
+  document.getElementById('skill-add').addEventListener('click', () => addSkill(input.value));
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addSkill(input.value); } });
+}
+
+function initLangPills() {
+  const selected = [];
+  const hidden = document.getElementById('languages-val');
+  document.querySelectorAll('#lang-pills .c-filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      const idx = selected.indexOf(lang);
+      if (idx > -1) { selected.splice(idx, 1); btn.classList.remove('active'); }
+      else { selected.push(lang); btn.classList.add('active'); }
+      hidden.value = JSON.stringify(selected);
+    });
+  });
+}
+
+function initPhotoPreviews() {
+  [
+    { input: 'profile-input',  preview: 'profile-preview' },
+    { input: 'fullbody-input', preview: 'fullbody-preview' },
+    { input: 'gallery-input',  preview: 'gallery-preview' },
+  ].forEach(({ input, preview }) => {
+    document.getElementById(input)?.addEventListener('change', function () {
+      const container = document.getElementById(preview);
+      container.innerHTML = '';
+      Array.from(this.files).forEach(file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          const div = document.createElement('div');
+          div.className = 'c-upload-preview__item';
+          div.innerHTML = `<img src="${e.target.result}" alt="" />`;
+          container.appendChild(div);
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+  });
+}
+
+function initForm() {
+  document.getElementById('apply-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = (typeof I18n !== 'undefined') ? I18n.t('apply.sending') : 'Gönderiliyor…';
+
+    if (!document.getElementById('kvkk').checked) {
+      castAlert('form-alert-bottom', 'Gizlilik Politikası\'nı kabul etmelisiniz.');
+      btn.disabled = false; btn.textContent = (typeof I18n !== 'undefined') ? I18n.t('apply.submit') : 'Başvuruyu Gönder';
+      return;
+    }
+
+    const fd = new FormData(this);
+
+    /* Dil ve yetenek JSON -> array */
+    const langsVal = document.getElementById('languages-val').value;
+    const skillsVal = document.getElementById('skills-val').value;
+    if (langsVal) fd.set('languages', langsVal);
+    if (skillsVal) fd.set('skills', skillsVal);
+
+    const { ok, data } = await CastingAPI.createListing(fd);
+
+    btn.disabled = false;
+    btn.textContent = (typeof I18n !== 'undefined') ? I18n.t('apply.submit') : 'Başvuruyu Gönder';
+
+    if (ok) {
+      castAlert('form-alert-bottom', (typeof I18n !== 'undefined') ? I18n.t('apply.success') : 'Başvurunuz alındı!', 'success');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      this.reset();
+      document.getElementById('profile-preview').innerHTML = '';
+      document.getElementById('fullbody-preview').innerHTML = '';
+      document.getElementById('gallery-preview').innerHTML = '';
+    } else {
+      castAlert('form-alert-bottom', data?.message || 'Bir hata oluştu. Lütfen tekrar deneyin.');
+    }
+  });
+}
+</script>
+</body>
+</html>

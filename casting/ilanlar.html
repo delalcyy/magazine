@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İlanlar — FashionTV Casting</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="casting.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+</head>
+<body class="c-page">
+
+<div class="casting-header">
+  <header class="site-header" id="site-header">
+    <div class="header-wrap">
+      <a class="logo" href="../index.html" aria-label="FashionTV Magazine">
+        <img src="../images/logo.png" class="logo-img" alt="FashionTV" />
+      </a>
+      <nav class="main-nav">
+        <a href="../index.html" data-i18n="nav.back">fashiontv magazine</a>
+        <a href="index.html" data-i18n="nav.casting">Casting</a>
+        <a href="ilanlar.html" class="active" data-i18n="nav.listings">Vitrin</a>
+        <a href="basvuru.html" data-i18n="nav.apply">Başvuru Oluştur</a>
+      </nav>
+      <div class="header-right">
+        <div class="lang-switcher">
+          <button class="lang-current">
+            <span class="lang-flag lang-flag-current">🇹🇷</span>
+            <span class="lang-code-current">TR</span>
+            <svg class="lang-chevron" viewBox="0 0 10 6" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="currentColor"/></svg>
+          </button>
+          <div class="lang-dropdown">
+            <button class="lang-opt active" data-lang="tr"><span class="lang-flag">🇹🇷</span><span class="lang-name">Türkçe</span><span class="lang-check">✓</span></button>
+            <button class="lang-opt" data-lang="en"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span><span class="lang-check">✓</span></button>
+            <button class="lang-opt" data-lang="ru"><span class="lang-flag">🇷🇺</span><span class="lang-name">Русский</span><span class="lang-check">✓</span></button>
+          </div>
+        </div>
+        <a href="basvuru.html" class="hdr-apply" data-i18n="nav.apply.hdr">Başvuru Oluştur</a>
+        <a href="../account.html" class="hdr-cta" id="c-nav-login" data-i18n="nav.login">Giriş Yap</a>
+        <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <nav>
+    <a href="../index.html" data-i18n="nav.back">fashiontv magazine</a>
+    <a href="index.html" data-i18n="nav.casting">Casting</a>
+    <a href="ilanlar.html" data-i18n="nav.listings">Vitrin</a>
+    <a href="basvuru.html" data-i18n="nav.apply">Başvuru Oluştur</a>
+    <a href="../account.html" class="mobile-cta" data-i18n="nav.login">Giriş Yap</a>
+  </nav>
+</div>
+
+<!-- PAGE HERO -->
+<div class="c-page-hero">
+  <div class="c-wrap">
+    <div class="c-page-hero__inner">
+      <h1 class="c-page-hero__title" data-i18n="listings.title">İlanlar</h1>
+      <p class="c-page-hero__count"><span id="result-count">—</span> <span data-i18n="stats.active">ilan</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- FİLTRE + İLANLAR -->
+<div class="c-wrap">
+  <div class="c-browse">
+
+    <!-- Filtre sidebar -->
+    <aside class="c-filters" id="filter-panel">
+      <div class="c-filters__head">
+        <span class="c-filters__title" data-i18n="filter.title">Filtreler</span>
+        <button class="c-filters__reset" id="reset-filters" data-i18n="filter.clear">Temizle</button>
+      </div>
+
+      <!-- Kategori -->
+      <div class="c-filter-group">
+        <p class="c-filter-group__label" data-i18n="filter.category">Kategori</p>
+        <div class="c-filter-pills" id="cat-pills">
+          <button class="c-filter-pill active" data-val="" data-i18n="filter.all">Tümü</button>
+          <button class="c-filter-pill" data-val="model">Model</button>
+          <button class="c-filter-pill" data-val="manken">Manken</button>
+          <button class="c-filter-pill" data-val="oyuncu">Oyuncu</button>
+          <button class="c-filter-pill" data-val="ic_giyim">İç Giyim</button>
+          <button class="c-filter-pill" data-val="spor_giyim">Spor Giyim</button>
+          <button class="c-filter-pill" data-val="abiye_gelinlik">Abiye</button>
+        </div>
+      </div>
+
+      <!-- Cinsiyet -->
+      <div class="c-filter-group">
+        <p class="c-filter-group__label" data-i18n="filter.gender">Cinsiyet</p>
+        <div class="c-filter-pills" id="gender-pills">
+          <button class="c-filter-pill active" data-val="" data-i18n="filter.all">Tümü</button>
+          <button class="c-filter-pill" data-val="kadin" data-i18n="filter.female">Kadın</button>
+          <button class="c-filter-pill" data-val="erkek" data-i18n="filter.male">Erkek</button>
+          <button class="c-filter-pill" data-val="diger" data-i18n="filter.other">Diğer</button>
+        </div>
+      </div>
+
+      <!-- Şehir -->
+      <div class="c-filter-group">
+        <p class="c-filter-group__label" data-i18n="filter.city">Şehir</p>
+        <select class="c-filter-select" id="f-city">
+          <option value="" data-i18n="filter.all.cities">Tüm Şehirler</option>
+        </select>
+      </div>
+
+      <!-- Deneyim -->
+      <div class="c-filter-group">
+        <p class="c-filter-group__label" data-i18n="filter.experience">Deneyim</p>
+        <select class="c-filter-select" id="f-exp">
+          <option value="" data-i18n="filter.all.exp">Tümü</option>
+          <option value="yeni_baslayan" data-i18n="filter.exp.new">Yeni Başlayan</option>
+          <option value="deneyimli" data-i18n="filter.exp.mid">Deneyimli</option>
+          <option value="profesyonel" data-i18n="filter.exp.pro">Profesyonel</option>
+        </select>
+      </div>
+
+      <!-- Yaş -->
+      <div class="c-filter-group">
+        <p class="c-filter-group__label" data-i18n="filter.age">Yaş Aralığı</p>
+        <div class="c-filter-range">
+          <input class="c-filter-input" type="number" id="f-age-min" min="16" max="80" placeholder="Min" />
+          <input class="c-filter-input" type="number" id="f-age-max" min="16" max="80" placeholder="Max" />
+        </div>
+      </div>
+
+      <!-- Boy -->
+      <div class="c-filter-group">
+        <p class="c-filter-group__label" data-i18n="filter.height">Boy (cm)</p>
+        <div class="c-filter-range">
+          <input class="c-filter-input" type="number" id="f-h-min" min="140" max="220" placeholder="Min" />
+          <input class="c-filter-input" type="number" id="f-h-max" min="140" max="220" placeholder="Max" />
+        </div>
+      </div>
+
+      <!-- Kilo -->
+      <div class="c-filter-group">
+        <p class="c-filter-group__label" data-i18n="filter.weight">Kilo (kg)</p>
+        <div class="c-filter-range">
+          <input class="c-filter-input" type="number" id="f-w-min" min="40" max="150" placeholder="Min" />
+          <input class="c-filter-input" type="number" id="f-w-max" min="40" max="150" placeholder="Max" />
+        </div>
+      </div>
+
+      <!-- Saç rengi -->
+      <div class="c-filter-group">
+        <p class="c-filter-group__label" data-i18n="filter.hair">Saç Rengi</p>
+        <select class="c-filter-select" id="f-hair">
+          <option value="">Tümü</option>
+          <option value="siyah">Siyah</option>
+          <option value="esmer">Esmer</option>
+          <option value="kumral">Kumral</option>
+          <option value="sari">Sarı</option>
+          <option value="kizil">Kızıl</option>
+          <option value="beyaz">Beyaz</option>
+          <option value="diger">Diğer</option>
+        </select>
+      </div>
+
+      <!-- Göz rengi -->
+      <div class="c-filter-group">
+        <p class="c-filter-group__label" data-i18n="filter.eye">Göz Rengi</p>
+        <select class="c-filter-select" id="f-eye">
+          <option value="">Tümü</option>
+          <option value="kahverengi">Kahverengi</option>
+          <option value="siyah">Siyah</option>
+          <option value="mavi">Mavi</option>
+          <option value="yesil">Yeşil</option>
+          <option value="ela">Ela</option>
+          <option value="gri">Gri</option>
+        </select>
+      </div>
+
+      <!-- Togglelar -->
+      <div class="c-filter-group">
+        <label class="c-filter-toggle">
+          <input type="checkbox" id="f-featured" />
+          <span class="c-filter-toggle__track"></span>
+          <span class="c-filter-toggle__label" data-i18n="filter.featured.only">Sadece Öne Çıkanlar</span>
+        </label>
+        <label class="c-filter-toggle">
+          <input type="checkbox" id="f-photos" />
+          <span class="c-filter-toggle__track"></span>
+          <span class="c-filter-toggle__label" data-i18n="filter.photos.only">Sadece Fotoğraflılar</span>
+        </label>
+      </div>
+
+      <button class="c-btn c-btn--gold c-btn--full c-btn--sm" id="apply-filters" data-i18n="filter.apply">Filtrele</button>
+    </aside>
+
+    <!-- İlanlar -->
+    <main class="c-listings-main">
+      <div class="c-listings-bar">
+        <button class="c-filter-mob-toggle" id="filter-toggle" aria-expanded="false">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M3 5h14M6 10h8M9 15h2"/></svg>
+          <span data-i18n="filter.toggle">Filtreler</span>
+        </button>
+        <span class="c-listings-count" id="results-info"></span>
+      </div>
+      <div id="listings-grid" style="padding: 24px 0;">
+        <div class="c-loading"><div class="c-spinner"></div><span>Yükleniyor…</span></div>
+      </div>
+      <div id="pagination"></div>
+    </main>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="c-footer">
+  <div class="c-wrap">
+    <div class="c-footer__top">
+      <div class="c-footer__brand-col">
+        <a href="index.html" class="c-footer__logo">
+          <img src="../images/logo.png" class="c-footer__logo-img" alt="FashionTV" />
+        </a>
+        <p class="c-footer__desc" data-i18n="footer.desc">Moda, yetenek ve fırsatın buluştuğu platform.</p>
+      </div>
+      <div>
+        <p class="c-footer__col-title" data-i18n="footer.col.casting">Casting</p>
+        <div class="c-footer__col-links">
+          <a href="ilanlar.html" data-i18n="footer.listings">İlanlar</a>
+          <a href="basvuru.html" data-i18n="footer.form">Başvuru Formu</a>
+        </div>
+      </div>
+      <div>
+        <p class="c-footer__col-title" data-i18n="footer.col.corp">Kurumsal</p>
+        <div class="c-footer__col-links">
+          <a href="../about.html" data-i18n="footer.about">Hakkımızda</a>
+        </div>
+      </div>
+      <div>
+        <p class="c-footer__col-title" data-i18n="footer.col.contact">İletişim</p>
+        <div class="c-footer__col-links">
+          <a href="../contact.html">fashiontvmagazine.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="c-footer__bottom">
+      <span class="c-footer__copy" data-i18n="footer.copy">© 2026 fashiontv magazine casting.</span>
+      <div class="c-footer__bottom-links">
+        <a href="#" data-i18n="footer.privacy">Gizlilik Politikası</a>
+        <a href="#" data-i18n="footer.terms">Kullanım Koşulları</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../api.js"></script>
+<script src="casting-api.js"></script>
+<script src="lang.js"></script>
+<script src="page-ilanlar.js"></script>
+</body>
+</html>

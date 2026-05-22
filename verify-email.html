@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-posta Doğrulama — FashionTV Magazine</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="auth.css" />
+  <style>
+    .verify-wrap {
+      min-height: calc(100vh - 72px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+    }
+    .verify-card {
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      padding: 56px 48px;
+      border: 1px solid #e8e8e8;
+      background: #fff;
+    }
+    .verify-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+    }
+    .verify-icon--success { background: #f0faf4; }
+    .verify-icon--error   { background: #fff4f4; }
+    .verify-icon--info    { background: #f5f5f5; }
+    .verify-icon svg { display: block; }
+    .verify-card h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      margin: 0 0 12px;
+      color: #1a1a1a;
+    }
+    .verify-card p {
+      font-size: 15px;
+      color: #666;
+      line-height: 1.6;
+      margin: 0 0 32px;
+    }
+    .verify-btn {
+      display: inline-block;
+      padding: 13px 36px;
+      background: #c9a96e;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .verify-btn:hover { background: #b8945a; }
+    .verify-btn--outline {
+      background: transparent;
+      color: #1a1a1a;
+      border: 1px solid #ddd;
+      margin-left: 12px;
+    }
+    .verify-btn--outline:hover { background: #f5f5f5; }
+    .verify-loading { color: #999; font-size: 15px; }
+  </style>
+</head>
+<body class="auth-page">
+
+<!-- HEADER -->
+<header class="site-header" id="site-header">
+  <div class="header-wrap">
+    <a class="logo" href="index.html" aria-label="FashionTV Magazine">
+      <img src="images/logo-black.png" class="logo-img">
+    </a>
+    <nav class="main-nav" aria-label="Ana menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="news.html">Haberler</a>
+      <a href="subscription.html">Abonelik</a>
+      <a href="contact.html">İletişim</a>
+    </nav>
+    <div class="header-right">
+      <a href="login.html" class="hdr-cta">Giriş Yap</a>
+      <button class="burger" id="burger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <nav>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="news.html">Haberler</a>
+    <a href="subscription.html">Abonelik</a>
+    <a href="login.html" class="mobile-cta">Giriş Yap</a>
+  </nav>
+</div>
+
+<div class="verify-wrap">
+  <div class="verify-card" id="verify-card">
+    <p class="verify-loading">Doğrulanıyor...</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const card   = document.getElementById('verify-card');
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get('status');
+  const error  = params.get('error');
+
+  const states = {
+    success: {
+      iconClass: 'verify-icon--success',
+      iconSvg: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>',
+      title: 'E-postanız Doğrulandı!',
+      text: 'Hesabınız aktif hale geldi. Artık giriş yapabilirsiniz.',
+      primaryText: 'Giriş Yap',
+      primaryHref: 'login.html'
+    },
+    already: {
+      iconClass: 'verify-icon--info',
+      iconSvg: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+      title: 'Zaten Doğrulanmış',
+      text: 'Bu e-posta adresi daha önce doğrulanmış. Giriş yapabilirsiniz.',
+      primaryText: 'Giriş Yap',
+      primaryHref: 'login.html'
+    },
+    expired: {
+      iconClass: 'verify-icon--error',
+      iconSvg: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+      title: 'Link Süresi Doldu',
+      text: 'Doğrulama linkinin süresi dolmuş. Giriş sayfasından yeni bir link talep edebilirsiniz.',
+      primaryText: 'Giriş Sayfasına Git',
+      primaryHref: 'login.html'
+    },
+    invalid: {
+      iconClass: 'verify-icon--error',
+      iconSvg: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+      title: 'Geçersiz Link',
+      text: 'Bu doğrulama linki geçerli değil. Lütfen giriş sayfasından yeni bir link isteyin.',
+      primaryText: 'Giriş Sayfasına Git',
+      primaryHref: 'login.html'
+    },
+    missing: {
+      iconClass: 'verify-icon--error',
+      iconSvg: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+      title: 'Geçersiz Link',
+      text: 'Doğrulama linki eksik veya bozuk. E-postanızdaki linke tam olarak tıkladığınızdan emin olun.',
+      primaryText: 'Giriş Sayfasına Git',
+      primaryHref: 'login.html'
+    }
+  };
+
+  const key   = status || error || 'invalid';
+  const state = states[key] || states.invalid;
+
+  card.innerHTML = `
+    <div class="verify-icon ${state.iconClass}">${state.iconSvg}</div>
+    <h1>${state.title}</h1>
+    <p>${state.text}</p>
+    <a href="${state.primaryHref}" class="verify-btn">${state.primaryText}</a>
+  `;
+
+  /* Header scroll */
+  const hdr = document.getElementById('site-header');
+  window.addEventListener('scroll',
+    () => hdr.classList.toggle('scrolled', window.scrollY > 40),
+    { passive: true }
+  );
+
+  /* Mobil menü */
+  const burger   = document.getElementById('burger');
+  const mob      = document.getElementById('mobile-menu');
+  const mobClose = document.getElementById('mobile-menu-close');
+  burger.addEventListener('click',   () => { mob.classList.add('is-open');    document.body.style.overflow = 'hidden'; });
+  mobClose.addEventListener('click', () => { mob.classList.remove('is-open'); document.body.style.overflow = ''; });
+  mob.addEventListener('click', e => { if (e.target === mob) { mob.classList.remove('is-open'); document.body.style.overflow = ''; } });
+
+})();
+</script>
+
+</body>
+</html>

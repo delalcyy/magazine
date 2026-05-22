@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İletişim — FashionTV Magazine</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="contact.css" />
+  <style>
+    #site-header { background: #0a0a0a !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
+    #site-header .logo-img { filter: brightness(0) invert(1) !important; }
+    #site-header .main-nav > a, #site-header .nav-dropdown-trigger { color: rgba(255,255,255,0.75) !important; }
+    #site-header .main-nav > a:hover, #site-header .nav-dropdown-trigger:hover { color: #fff !important; }
+    #site-header .hdr-cta { color: #fff !important; border-color: rgba(255,255,255,0.3) !important; }
+    #site-header .burger span { background: #fff !important; }
+  </style>
+</head>
+<body class="contact-page">
+
+<!-- ═══════════════════════════════════════════
+     HEADER — index.html ile birebir
+═══════════════════════════════════════════ -->
+<header class="site-header" id="site-header">
+  <div class="header-wrap">
+    <a class="logo" href="home.html" aria-label="FashionTV Magazine">
+      <img src="images/logo.png" class="logo-img">
+    </a>
+
+    <nav class="main-nav" aria-label="Ana menü">
+      <a href="home.html">Ana Sayfa</a>
+     <a href="news.html">Haberler</a>
+      <div class="nav-dropdown">
+        <a href="about.html" class="nav-dropdown-trigger">Hakkımızda</a>
+        <div class="nav-dropdown-panel">
+          
+        </div>
+      </div>
+      <a href="subscription.html">Abonelik</a>
+
+      <a href="contact.html">İletişim</a>
+      <a href="casting/index.html" class="nav-casting">Casting <span class="nav-casting-badge">NEW</span></a>
+    </nav>
+
+    <!-- Right side -->
+    <div class="header-right">
+      <button class="burger" id="burger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- Mobil menü -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-head">
+    <a href="index.html" class="mobile-menu-logo">
+      <img src="images/logo.png" alt="FashionTV Magazine">
+    </a>
+    <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Menüyü kapat">✕</button>
+  </div>
+  <nav>
+    <a href="home.html">Ana Sayfa</a>
+    <a href="news.html">Haberler</a>
+    <a href="about.html">Hakkımızda</a>
+    <a href="subscription.html">Abonelik</a>
+    <a href="contact.html">İletişim</a>
+    <a href="casting/index.html" class="nav-casting">Casting</a>
+  </nav>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     1 · HERO
+═══════════════════════════════════════════ -->
+<section class="contact-hero">
+  <div class="container">
+    <div class="contact-hero__inner c-reveal" style="--delay:0s">
+      <div class="contact-hero__left">
+        <span class="contact-hero__label">Bizimle İletişime Geçin</span>
+        <h1 class="contact-hero__title">
+          Sizi<br />
+          <span>Duymak</span><br />
+          İstiyoruz
+        </h1>
+      </div>
+      <div class="contact-hero__right">
+        <p class="contact-hero__desc">
+          Reklam, iş birliği, içerik önerileri veya abonelik konularında bize ulaşabilirsiniz.
+          Ekibimiz en kısa sürede size geri dönecektir. FashionTV Magazine olarak her mesajı
+          özenle değerlendiriyor ve okurlarımızla yakın bir ilişki kurmayı önceliğimiz
+          olarak benimsiyoruz.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     2 · BİLGİLER + FORM
+═══════════════════════════════════════════ -->
+<section class="contact-main">
+  <div class="container contact-layout">
+
+    <!-- ── SOL: İletişim Bilgileri ── -->
+    <div class="contact-info c-reveal" style="--delay:0s">
+      <span class="contact-info__label">İletişim Bilgileri</span>
+      <h2 class="contact-info__title">Bize Ulaşın</h2>
+      <p class="contact-info__intro">
+        Hafta içi 09:00–18:00 saatleri arasında tüm kanallardan
+        bize ulaşabilirsiniz. Genellikle 24 saat içinde yanıt veriyoruz.
+      </p>
+
+      <div class="contact-details">
+
+        <div class="contact-detail">
+          <div class="contact-detail__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div class="contact-detail__body">
+            <span class="contact-detail__label">Adres</span>
+            <div class="contact-detail__value">
+           <br />
+               İstanbul, Türkiye
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <div class="contact-detail__body">
+            <span class="contact-detail__label">E-posta</span>
+            <div class="contact-detail__value">
+              <a href="mailto:info@fashiontvmagazine.com">info@fashiontvmagazine.com</a><br />
+              <a href="mailto:reklam@fashiontvmagazine.com">reklam@fashiontvmagazine.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.07 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.14 7.79a16 16 0 006.07 6.07l1.15-1.15a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </div>
+          <div class="contact-detail__body">
+            <span class="contact-detail__label">Telefon</span>
+            <div class="contact-detail__value">
+              <a href="tel:+902121234567">+90 212 123 45 67</a><br />
+              <span style="font-size:12px;color:var(--ink-50);">Pzt–Cum: 09:00–18:00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="contact-detail__body">
+            <span class="contact-detail__label">Çalışma Saatleri</span>
+            <div class="contact-detail__value">
+              Pazartesi – Cuma<br />
+              09:00 – 18:00 (TSİ)
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /contact-details -->
+
+      <!-- Sosyal medya -->
+      <div class="contact-social">
+        <span class="contact-social__label">Sosyal Medya</span>
+        <div class="contact-social__links">
+          <a href="#" class="contact-social__link" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.8"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="contact-social__link" aria-label="X / Twitter">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" class="contact-social__link" aria-label="Pinterest">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.99.04-2.85.18-.78 1.17-4.97 1.17-4.97s-.3-.6-.3-1.48c0-1.39.81-2.43 1.81-2.43.85 0 1.26.64 1.26 1.41 0 .86-.55 2.14-.83 3.33-.24.99.5 1.8 1.48 1.8 1.77 0 3.13-1.87 3.13-4.56 0-2.38-1.71-4.05-4.16-4.05-2.84 0-4.5 2.13-4.5 4.33 0 .86.33 1.78.74 2.28.08.1.09.19.07.29-.08.31-.25 1-.28 1.13-.04.18-.15.22-.34.13-1.25-.58-2.03-2.41-2.03-3.88 0-3.15 2.29-6.05 6.61-6.05 3.47 0 6.16 2.47 6.16 5.78 0 3.45-2.17 6.22-5.19 6.22-1.01 0-1.97-.53-2.29-1.15l-.62 2.38c-.23.87-.84 1.96-1.24 2.62.94.29 1.93.45 2.96.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          </a>
+          <a href="#" class="contact-social__link" aria-label="YouTube">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="6" width="20" height="14" rx="3"/><polygon points="10,9.5 16,13 10,16.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /contact-info -->
+
+
+    <!-- ── SAĞ: Form ── -->
+    <div class="contact-form-wrap c-reveal" style="--delay:.1s">
+
+      <div class="contact-form-head">
+        <span class="contact-form-head__label">Mesaj Gönderin</span>
+        <h2 class="contact-form-head__title">Formdan Yazın</h2>
+      </div>
+
+      <!-- Durum mesajı (JS ile gösterilir) -->
+      <div id="contact-alert" class="contact-form-alert"></div>
+
+      <form class="contact-form" id="contact-form" novalidate>
+
+        <!-- Ad / Soyad -->
+        <div class="form-row-2">
+          <div class="cf-field">
+            <label class="cf-label" for="cf-firstname">Adınız</label>
+            <input
+              class="cf-input"
+              type="text" id="cf-firstname" name="first_name"
+              placeholder="Adınız"
+              autocomplete="given-name"
+              required
+            />
+          </div>
+          <div class="cf-field">
+            <label class="cf-label" for="cf-lastname">Soyadınız</label>
+            <input
+              class="cf-input"
+              type="text" id="cf-lastname" name="last_name"
+              placeholder="Soyadınız"
+              autocomplete="family-name"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- E-posta -->
+        <div class="cf-field">
+          <label class="cf-label" for="cf-email">E-posta Adresi</label>
+          <input
+            class="cf-input"
+            type="email" id="cf-email" name="email"
+            placeholder="ornek@email.com"
+            autocomplete="email"
+            required
+          />
+        </div>
+
+        <!-- Konu -->
+        <div class="cf-field">
+          <label class="cf-label" for="cf-subject">Konu</label>
+          <select class="cf-select" id="cf-subject" name="subject">
+            <option value="" disabled selected>Bir konu seçin</option>
+            <option value="reklam">Reklam &amp; İş Birliği</option>
+            <option value="abonelik">Abonelik</option>
+            <option value="icerik">İçerik Önerisi</option>
+            <option value="teknik">Teknik Destek</option>
+            <option value="diger">Diğer</option>
+          </select>
+        </div>
+
+        <!-- Mesaj -->
+        <div class="cf-field">
+          <label class="cf-label" for="cf-message">Mesajınız</label>
+          <textarea
+            class="cf-textarea"
+            id="cf-message" name="message"
+            placeholder="Mesajınızı buraya yazın…"
+            required
+          ></textarea>
+        </div>
+
+        <button
+          class="btn-contact-submit"
+          type="submit"
+          id="contact-submit-btn"
+        >
+          <span>Mesajı Gönder</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+
+      </form>
+    </div><!-- /contact-form-wrap -->
+
+  </div><!-- /contact-layout -->
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     3 · HARİTA
+═══════════════════════════════════════════ -->
+<div <div class="contact-map">
+  <!--
+    GERÇEK HARİTA EMBED:
+    Aşağıdaki placeholder bloğunu kaldırıp yerine Google Maps embed
+    iframe kodunuzu yapıştırın. Örnek:
+
+    <iframe
+      src="https://www.google.com/maps/embed?pb=..."
+      width="100%"
+      height="420"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  -->
+  <div class="contact-map__placeholder">
+    <div class="contact-map__label">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      <strong>FashionTV Magazine</strong>
+      <p>İstanbul, Türkiye</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     4 · SSS
+═══════════════════════════════════════════ -->
+<section class="contact-faq">
+  <div class="container">
+
+    <div class="contact-faq__head c-reveal" style="--delay:0s">
+      <span class="contact-hero__label">Soru &amp; Cevap</span>
+      <h2>Sıkça Sorulan Sorular</h2>
+    </div>
+
+    <ul class="faq-list">
+
+      <li class="faq-item c-reveal" style="--delay:.04s">
+        <button class="faq-btn">
+          Reklam ve iş birliği için kime ulaşmalıyım?
+          <span class="faq-btn__icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Reklam ve marka iş birlikleri için <a href="mailto:reklam@fashiontvmagazine.com" style="color:var(--gold);">reklam@fashiontvmagazine.com</a> adresine yazabilir ya da iletişim formundan "Reklam &amp; İş Birliği" konusunu seçerek mesaj gönderebilirsiniz.</p>
+        </div>
+      </li>
+
+      <li class="faq-item c-reveal" style="--delay:.08s">
+        <button class="faq-btn">
+          İçerik önerisi nasıl yapabilirim?
+          <span class="faq-btn__icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Editöryal içerik önerilerinizi iletişim formu aracılığıyla "İçerik Önerisi" konusuyla bize iletebilirsiniz. Editöryal ekibimiz her öneriyi dikkatlice değerlendirir ve size geri dönüş yapar.</p>
+        </div>
+      </li>
+
+      <li class="faq-item c-reveal" style="--delay:.12s">
+        <button class="faq-btn">
+          Aboneliğimle ilgili bir sorun yaşıyorum, ne yapmalıyım?
+          <span class="faq-btn__icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Abonelik konularında <a href="mailto:info@fashiontvmagazine.com" style="color:var(--gold);">info@fashiontvmagazine.com</a> adresine e-posta gönderebilir ya da iletişim formumuzu kullanabilirsiniz. Üye numaranızı ve yaşadığınız sorunu belirtin; en kısa sürede yardımcı oluruz.</p>
+        </div>
+      </li>
+
+      <li class="faq-item c-reveal" style="--delay:.16s">
+        <button class="faq-btn">
+          Kaç saat içinde yanıt alırım?
+          <span class="faq-btn__icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Hafta içi alınan mesajları genellikle aynı gün ya da ertesi iş günü sonuna kadar yanıtlıyoruz. Hafta sonu gönderilen mesajlar Pazartesi sabahı işleme alınır. Acil durumlar için telefon hattımızı kullanabilirsiniz.</p>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER — index.html ile birebir
+═══════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="footer-logo" href="index.html">
+        <img src="images/logo.png" alt="FashionTV Magazine" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1);">
+      </a>
+      <p class="footer-tagline">
+        Modanın, güzelliğin ve yaşam sanatının<br />buluştuğu premium editorial platform.
+      </p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram" class="social-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.8"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" aria-label="X / Twitter" class="social-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" aria-label="Pinterest" class="social-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.99.04-2.85.18-.78 1.17-4.97 1.17-4.97s-.3-.6-.3-1.48c0-1.39.81-2.43 1.81-2.43.85 0 1.26.64 1.26 1.41 0 .86-.55 2.14-.83 3.33-.24.99.5 1.8 1.48 1.8 1.77 0 3.13-1.87 3.13-4.56 0-2.38-1.71-4.05-4.16-4.05-2.84 0-4.5 2.13-4.5 4.33 0 .86.33 1.78.74 2.28.08.1.09.19.07.29-.08.31-.25 1-.28 1.13-.04.18-.15.22-.34.13-1.25-.58-2.03-2.41-2.03-3.88 0-3.15 2.29-6.05 6.61-6.05 3.47 0 6.16 2.47 6.16 5.78 0 3.45-2.17 6.22-5.19 6.22-1.01 0-1.97-.53-2.29-1.15l-.62 2.38c-.23.87-.84 1.96-1.24 2.62.94.29 1.93.45 2.96.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube" class="social-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="6" width="20" height="14" rx="3"/><polygon points="10,9.5 16,13 10,16.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-col-heading">Keşfet</h4>
+      <ul>
+        <li><a href="#">Bu Ayın Sayısı</a></li>
+        <li><a href="#">Moda</a></li>
+        <li><a href="#">Güzellik</a></li>
+        <li><a href="#">Yaşam</a></li>
+        <li><a href="#">Trendler</a></li>
+        <li><a href="#">Özel Röportajlar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-col-heading">Kurumsal</h4>
+      <ul>
+        <li><a href="about.html">Hakkımızda</a></li>
+        <li><a href="#">Reklam &amp; Medya</a></li>
+        <li><a href="#">Kariyer</a></li>
+        <li><a href="contact.html">İletişim</a></li>
+        <li><a href="#">Basın</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-col-heading">Üyelik</h4>
+      <ul>
+        <li><a href="subscription.html">Planlar</a></li>
+        <li><a href="#">Hediye Aboneliği</a></li>
+        <li><a href="#">Dijital Arşiv</a></li>
+        <li><a href="#">Dergi Tasarla</a></li>
+        <li><a href="#">Destek</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2026 FashionTV Magazine. Tüm hakları saklıdır.</p>
+      <div class="footer-legal">
+        <a href="#">Gizlilik Politikası</a>
+        <a href="#">Kullanım Koşulları</a>
+        <a href="#">Çerez</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  'use strict';
+
+  /* Header scroll */
+  const hdr = document.getElementById('site-header');
+  window.addEventListener('scroll',
+    () => hdr.classList.toggle('scrolled', window.scrollY > 40),
+    { passive: true }
+  );
+
+  /* Mobil menü */
+  const burger   = document.getElementById('burger');
+  const mob      = document.getElementById('mobile-menu');
+  const mobClose = document.getElementById('mobile-menu-close');
+  const closeMob = () => { mob.classList.remove('is-open'); document.body.style.overflow = ''; };
+  burger.addEventListener('click',   () => { mob.classList.add('is-open');    document.body.style.overflow = 'hidden'; });
+  mobClose.addEventListener('click', closeMob);
+  mob.addEventListener('click', (e) => { if (e.target === mob) closeMob(); });
+
+  /* Scroll reveal */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.c-reveal').forEach((el) => io.observe(el));
+
+  /* SSS accordion */
+  document.querySelectorAll('.faq-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item    = btn.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach((i) => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  /* ── İLETİŞİM FORMU ── */
+  const form      = document.getElementById('contact-form');
+  const alertBox  = document.getElementById('contact-alert');
+  const submitBtn = document.getElementById('contact-submit-btn');
+
+  function showFormAlert(msg, type) {
+    alertBox.className   = 'contact-form-alert ' + type;
+    alertBox.textContent = msg;
+    alertBox.style.display = 'block';
+    alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  function hideFormAlert() {
+    alertBox.style.display = 'none';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hideFormAlert();
+
+    const firstName = document.getElementById('cf-firstname').value.trim();
+    const lastName  = document.getElementById('cf-lastname').value.trim();
+    const email     = document.getElementById('cf-email').value.trim();
+    const subject   = document.getElementById('cf-subject').value;
+    const message   = document.getElementById('cf-message').value.trim();
+
+    /* Validasyon */
+    if (!firstName || !lastName) {
+      showFormAlert('Lütfen adınızı ve soyadınızı giriniz.', 'error'); return;
+    }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showFormAlert('Geçerli bir e-posta adresi giriniz.', 'error'); return;
+    }
+    if (!subject) {
+      showFormAlert('Lütfen bir konu seçiniz.', 'error'); return;
+    }
+    if (!message || message.length < 20) {
+      showFormAlert('Mesajınız en az 20 karakter olmalıdır.', 'error'); return;
+    }
+
+    /* Gönderme durumu */
+    submitBtn.disabled = true;
+    const btnSpan = submitBtn.querySelector('span');
+    btnSpan.textContent = 'Gönderiliyor…';
+
+    try {
+      /*
+       * Gerçek form gönderimi için bu bloğu backend endpoint'inizle değiştirin:
+       *
+       * const response = await fetch('/api/contact', {
+       *   method: 'POST',
+       *   headers: { 'Content-Type': 'application/json' },
+       *   body: JSON.stringify({ firstName, lastName, email, subject, message })
+       * });
+       * const data = await response.json();
+       * if (!response.ok) throw new Error(data.message);
+       */
+
+      /* Şimdilik: 1 saniyelik simülasyon */
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      /* Başarı */
+      showFormAlert(
+        `Teşekkürler ${firstName}! Mesajınız alındı. En kısa sürede size dönüş yapacağız.`,
+        'success'
+      );
+      form.reset();
+
+    } catch (err) {
+      showFormAlert(
+        'Mesajınız gönderilemedi. Lütfen daha sonra tekrar deneyin veya doğrudan e-posta gönderin.',
+        'error'
+      );
+    } finally {
+      submitBtn.disabled = false;
+      btnSpan.textContent = 'Mesajı Gönder';
+    }
+  });
+
+})();
+</script>
+
+</body>
+</html>

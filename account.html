@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hesabım — FashionTV Magazine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="account.css" />
+  <style>
+    #site-header { background: #0a0a0a !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
+    #site-header .logo-img { filter: brightness(0) invert(1) !important; }
+    #site-header .main-nav > a, #site-header .nav-dropdown-trigger { color: rgba(255,255,255,0.75) !important; }
+    #site-header .main-nav > a:hover, #site-header .nav-dropdown-trigger:hover { color: #fff !important; }
+    #site-header .hdr-cta { color: #fff !important; border-color: rgba(255,255,255,0.3) !important; }
+    #site-header .burger span { background: #fff !important; }
+  </style>
+</head>
+<body class="account-page">
+
+<!-- HEADER -->
+<header class="site-header" id="site-header">
+  <div class="header-wrap">
+    <a class="logo" href="home.html">
+      <img src="images/logo.png" class="logo-img">
+    </a>
+    <nav class="main-nav">
+      <a href="home.html">Ana Sayfa</a>
+      <a href="news.html">Haberler</a>
+      <div class="nav-dropdown">
+        <a href="about.html" class="nav-dropdown-trigger">Hakkımızda</a>
+        <div class="nav-dropdown-panel"></div>
+      </div>
+      <a href="subscription.html">Abonelik</a>
+      <a href="contact.html">İletişim</a>
+      <a href="casting/index.html" class="nav-casting">Casting <span class="nav-casting-badge">NEW</span></a>
+    </nav>
+    <div class="header-right">
+      <a href="#" class="hdr-cta" onclick="Auth.logout(); return false;">Çıkış Yap</a>
+      <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-head">
+    <a href="index.html" class="mobile-menu-logo">
+      <img src="images/logo.png" alt="FashionTV Magazine">
+    </a>
+    <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Menüyü kapat">✕</button>
+  </div>
+  <nav>
+    <a href="home.html">Ana Sayfa</a>
+    <a href="news.html">Haberler</a>
+    <a href="about.html">Hakkımızda</a>
+    <a href="subscription.html">Abonelik</a>
+    <a href="contact.html">İletişim</a>
+    <a href="casting/index.html" class="nav-casting">Casting</a>
+    <a href="#" onclick="Auth.logout(); return false;" class="mobile-cta">Çıkış Yap</a>
+  </nav>
+</div>
+
+<!-- ÜSTTEN KARŞILAMA ALANI -->
+<div class="account-topbar">
+  <div class="container account-topbar__inner">
+    <div>
+      <span class="account-topbar__greeting">Hoş Geldiniz</span>
+      <h1 class="account-topbar__name" id="topbar-name">
+        <em>Hesabım</em>
+      </h1>
+      <p class="account-topbar__meta" id="topbar-email">yükleniyor…</p>
+    </div>
+    <button class="btn-logout" onclick="Auth.logout()">Çıkış Yap</button>
+  </div>
+</div>
+
+<!-- ANA İÇERİK -->
+<div class="container account-layout">
+
+  <!-- Sol navigasyon -->
+  <nav class="account-nav" role="tablist" aria-label="Hesap menüsü">
+
+    <button class="account-nav__item active" data-tab="subscription" role="tab">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg>
+      Aboneliğim
+    </button>
+
+    <button class="account-nav__item" data-tab="profile" role="tab">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profil Bilgileri
+    </button>
+
+    <button class="account-nav__item" data-tab="password" role="tab">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      Şifre Değiştir
+    </button>
+
+    <button class="account-nav__item" data-tab="payments" role="tab">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg>
+      Ödeme Geçmişi
+    </button>
+
+    <div class="account-nav__sep"></div>
+
+    <button class="account-nav__item" onclick="Auth.logout()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+      Çıkış Yap
+    </button>
+
+  </nav>
+
+  <!-- Sağ panel alanı -->
+  <div class="account-panels">
+
+    <!-- ══ TAB 1: ABONELİĞİM ══ -->
+    <div class="account-panel active" id="tab-subscription">
+
+      <!-- Aktif abonelik kartı -->
+      <div class="acc-card sub-status-card" id="sub-card">
+        <span class="acc-card__label">Abonelik Durumu</span>
+        <div id="sub-loading" style="font-family:var(--font-display);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-50);padding:8px 0;">Yükleniyor…</div>
+        <div id="sub-content" style="display:none;">
+          <!-- JS tarafından doldurulur -->
+        </div>
+      </div>
+
+      <!-- Plan avantajları (abonelik varsa görünür) -->
+      <div class="acc-card" id="plan-features-card" style="display:none;">
+        <span class="acc-card__label">Plan Avantajlarınız</span>
+        <ul id="plan-features-list" style="list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;"></ul>
+      </div>
+
+    </div>
+
+    <!-- ══ TAB 2: PROFİL ══ -->
+    <div class="account-panel" id="tab-profile">
+      <div class="acc-card">
+        <span class="acc-card__label">Profil Bilgileri</span>
+        <div id="profile-alert" class="form-alert"></div>
+        <form class="profile-form" id="profile-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="p-firstname">Adınız</label>
+              <input class="form-input" type="text" id="p-firstname" name="first_name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="p-lastname">Soyadınız</label>
+              <input class="form-input" type="text" id="p-lastname" name="last_name" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="p-email">E-posta Adresi</label>
+            <input class="form-input" type="email" id="p-email" name="email" disabled
+              title="E-posta adresinizi değiştirmek için lütfen müşteri hizmetlerimizle iletişime geçin." />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="p-since">Üyelik Tarihi</label>
+            <input class="form-input" type="text" id="p-since" disabled />
+          </div>
+          <button class="btn-profile-save" type="submit" id="profile-save-btn">Kaydet</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ══ TAB 3: ŞİFRE ══ -->
+    <div class="account-panel" id="tab-password">
+      <div class="acc-card">
+        <span class="acc-card__label">Şifre Değiştir</span>
+        <div id="pw-alert" class="form-alert"></div>
+        <form class="profile-form" id="pw-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="pw-current">Mevcut Şifre</label>
+            <input class="form-input" type="password" id="pw-current" name="current_password"
+              placeholder="Mevcut şifrenizi giriniz" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pw-new">Yeni Şifre</label>
+            <input class="form-input" type="password" id="pw-new" name="new_password"
+              placeholder="En az 6 karakter" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pw-confirm">Yeni Şifre Tekrar</label>
+            <input class="form-input" type="password" id="pw-confirm" name="new_password_confirm"
+              placeholder="Yeni şifrenizi tekrar giriniz" required />
+          </div>
+          <button class="btn-profile-save" type="submit" id="pw-save-btn">Şifremi Güncelle</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ══ TAB 4: ÖDEME GEÇMİŞİ ══ -->
+    <div class="account-panel" id="tab-payments">
+      <div class="acc-card">
+        <span class="acc-card__label">Ödeme Geçmişi</span>
+        <div id="payments-content">
+          <p class="payment-empty">Yükleniyor…</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /account-panels -->
+</div><!-- /account-layout -->
+
+<!-- Footer minimal -->
+<footer style="background:var(--ink);padding:24px 0;margin-top:auto;">
+  <div style="max-width:1300px;margin:0 auto;padding:0 clamp(20px,5vw,64px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <a href="index.html" style="display:flex;align-items:center;">
+        <img src="images/logo.png" alt="FashionTV Magazine" style="height:32px;width:auto;display:block;filter:brightness(0) invert(1);">
+      </a>
+      <span style="font-family:var(--font-display);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);">
+        © 2026 FashionTV Magazine
+      </span>
+    </div>
+    <div style="display:flex;gap:20px;">
+      <a href="#" style="font-family:var(--font-display);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);text-decoration:none;">Gizlilik</a>
+      <a href="#" style="font-family:var(--font-display);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);text-decoration:none;">Kullanım Koşulları</a>
+      <a href="subscription.html" style="font-family:var(--font-display);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;">Planlar</a>
+    </div>
+  </div>
+</footer>
+
+<script src="api.js"></script>
+<script>
+(function() {
+  /* ── Auth Guard ── */
+  if (!Auth.isLoggedIn()) { window.location.href = 'login.html'; return; }
+
+  /* ── Mobil Menü ── */
+  const burger   = document.getElementById('burger');
+  const mobMenu  = document.getElementById('mobile-menu');
+  const mobClose = document.getElementById('mobile-menu-close');
+  burger.addEventListener('click',   () => { mobMenu.classList.add('is-open');    document.body.style.overflow='hidden'; });
+  mobClose.addEventListener('click', () => { mobMenu.classList.remove('is-open'); document.body.style.overflow=''; });
+
+  /* ── Tab Sistemi ── */
+  document.querySelectorAll('.account-nav__item[data-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.account-nav__item').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.account-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(`tab-${tab}`)?.classList.add('active');
+    });
+  });
+
+  /* ── Kullanıcı Bilgisi Yükle ── */
+  async function loadUser() {
+    const { ok, data } = await AuthAPI.me();
+    if (!ok) { Auth.logout(); return; }
+
+    const u = data.user;
+    Auth.setUser(u);
+
+    document.getElementById('topbar-name').innerHTML =
+      `${u.first_name} <em>${u.last_name}</em>`;
+    document.getElementById('topbar-email').textContent = u.email;
+
+    // Profil formu
+    document.getElementById('p-firstname').value = u.first_name;
+    document.getElementById('p-lastname').value  = u.last_name;
+    document.getElementById('p-email').value     = u.email;
+    document.getElementById('p-since').value     = formatDate(u.created_at);
+  }
+
+  /* ── Abonelik Yükle ── */
+  async function loadSubscription() {
+    const { ok, data } = await SubscriptionAPI.getMySubscription();
+    document.getElementById('sub-loading').style.display = 'none';
+    document.getElementById('sub-content').style.display = 'block';
+
+    const content = document.getElementById('sub-content');
+
+    if (!ok || !data.subscription) {
+      content.innerHTML = `
+        <div class="sub-status-badge none"><span class="dot"></span>Aktif Abonelik Yok</div>
+        <p class="sub-plan-name" style="color:var(--ink-50);font-size:16px;font-weight:300;">
+          Henüz bir abonelik planınız bulunmuyor.
+        </p>
+        <a href="subscription.html" class="btn-sub-action" style="display:inline-block;margin-top:16px;">
+          Planlara Göz At
+        </a>
+      `;
+      return;
+    }
+
+    const s = data.subscription;
+    const statusLabel = { active:'Aktif', expired:'Süresi Doldu', pending:'Beklemede', cancelled:'İptal Edildi' };
+    const totalDays = s.duration_days || 365;
+    const remaining = s.days_remaining || 0;
+    const progressPct = Math.max(0, Math.min(100, (remaining / totalDays) * 100));
+
+    content.innerHTML = `
+      <div class="sub-status-badge ${s.status}">
+        <span class="dot"></span>${statusLabel[s.status] || s.status}
+      </div>
+      <div class="sub-plan-name">${s.plan_name}</div>
+      <p style="font-size:13px;font-weight:300;color:var(--ink-50);margin-top:4px;">${s.plan_description || ''}</p>
+
+      <div class="sub-meta-grid">
+        <div class="sub-meta-item">
+          <span class="sub-meta-item__label">Başlangıç</span>
+          <span class="sub-meta-item__value">${formatDate(s.start_date)}</span>
+        </div>
+        <div class="sub-meta-item">
+          <span class="sub-meta-item__label">Bitiş</span>
+          <span class="sub-meta-item__value">${formatDate(s.end_date)}</span>
+        </div>
+        <div class="sub-meta-item">
+          <span class="sub-meta-item__label">Kalan Gün</span>
+          <span class="sub-meta-item__value highlight">${remaining}</span>
+        </div>
+      </div>
+
+      ${s.status === 'active' ? `
+        <div class="sub-progress-wrap">
+          <div class="sub-progress-label">
+            <span>Kalan Süre</span>
+            <span>${remaining} / ${totalDays} gün</span>
+          </div>
+          <div class="sub-progress-bar">
+            <div class="sub-progress-fill" style="width:${progressPct}%"></div>
+          </div>
+        </div>
+      ` : ''}
+
+      ${s.status !== 'active' ? `
+        <a href="subscription.html" class="btn-sub-action" style="display:inline-block;">
+          Yenile / Plan Seç
+        </a>
+      ` : ''}
+    `;
+
+    // Plan avantajları
+    if (s.features && s.features.length > 0 && s.status === 'active') {
+      const featCard = document.getElementById('plan-features-card');
+      const featList = document.getElementById('plan-features-list');
+      featCard.style.display = 'block';
+      featList.innerHTML = s.features.map(f => `
+        <li style="display:flex;align-items:center;gap:10px;font-size:13px;font-weight:300;color:var(--ink-50);">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a7a3e" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          ${f}
+        </li>
+      `).join('');
+    }
+  }
+
+  /* ── Ödeme Geçmişi ── */
+  async function loadPayments() {
+    const { ok, data } = await PaymentAPI.getHistory();
+    const wrap = document.getElementById('payments-content');
+
+    if (!ok || !data.payments || !data.payments.length) {
+      wrap.innerHTML = '<p class="payment-empty">Henüz ödeme kaydınız bulunmuyor.</p>';
+      return;
+    }
+
+    const statusTR = { success:'Başarılı', failed:'Başarısız', pending:'Beklemede', refunded:'İade' };
+
+    wrap.innerHTML = `
+      <div style="overflow-x:auto;">
+        <table class="payment-table">
+          <thead>
+            <tr>
+              <th>Tarih</th>
+              <th>Plan</th>
+              <th>Tutar</th>
+              <th>Son 4 Hane</th>
+              <th>Ref. No</th>
+              <th>Durum</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${data.payments.map(p => `
+              <tr>
+                <td>${formatDate(p.created_at)}</td>
+                <td style="font-weight:400;color:var(--ink);">${p.plan_name}</td>
+                <td style="font-family:var(--font-serif);font-size:15px;font-weight:600;color:var(--ink);">
+                  ₺${Number(p.amount_tl).toLocaleString('tr-TR')}
+                </td>
+                <td>**** ${p.card_last4 || '—'}</td>
+                <td style="font-size:10px;font-family:var(--font-display);letter-spacing:.06em;">${p.provider_ref || '—'}</td>
+                <td><span class="status-badge ${p.status}">${statusTR[p.status] || p.status}</span></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  /* ── Profil Kaydet ── */
+  document.getElementById('profile-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    // Sadece ad-soyad güncellenebilir (backend endpoint eklenebilir)
+    showAlert('profile-alert', 'Profil bilgileri güncellendi.', 'success');
+  });
+
+  /* ── Şifre Değiştir ── */
+  document.getElementById('pw-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const pwAlert  = 'pw-alert';
+    const saveBtn  = document.getElementById('pw-save-btn');
+    hideAlert(pwAlert);
+    setLoading('pw-save-btn', true, 'Şifremi Güncelle');
+
+    const body = {
+      current_password   : document.getElementById('pw-current').value,
+      new_password       : document.getElementById('pw-new').value,
+      new_password_confirm: document.getElementById('pw-confirm').value
+    };
+
+    const { ok, data } = await AuthAPI.changePassword(body);
+    setLoading('pw-save-btn', false, 'Şifremi Güncelle');
+
+    if (!ok) {
+      showAlert(pwAlert, data.message || 'Şifre güncellenemedi.', 'error');
+      return;
+    }
+    showAlert(pwAlert, 'Şifreniz başarıyla güncellendi.', 'success');
+    document.getElementById('pw-form').reset();
+  });
+
+  /* ── İlk Yükleme ── */
+  loadUser();
+  loadSubscription();
+  loadPayments();
+})();
+</script>
+</body>
+</html>

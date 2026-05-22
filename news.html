@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haberler &amp; Trendler — FashionTV Magazine</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="news.css" />
+  <style>
+    #site-header { background: #0a0a0a !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
+    #site-header .logo-img { filter: brightness(0) invert(1) !important; }
+    #site-header .main-nav > a, #site-header .nav-dropdown-trigger { color: rgba(255,255,255,0.75) !important; }
+    #site-header .main-nav > a:hover, #site-header .nav-dropdown-trigger:hover { color: #fff !important; }
+    #site-header .hdr-cta { color: #fff !important; border-color: rgba(255,255,255,0.3) !important; }
+    #site-header .burger span { background: #fff !important; }
+  </style>
+</head>
+<body class="news-page">
+
+<!-- ══════════════════════════════════════
+     HEADER — index.html ile birebir aynı
+══════════════════════════════════════ -->
+<header class="site-header" id="site-header">
+  <div class="header-wrap">
+
+    <a class="logo" href="home.html" aria-label="FashionTV Magazine — Ana Sayfa">
+      <img src="images/logo.png" class="logo-img">
+    </a>
+
+   <nav class="main-nav" aria-label="Ana menü">
+      <a href="home.html">Ana Sayfa</a>
+     <a href="news.html">Haberler</a>
+      <div class="nav-dropdown">
+        <a href="about.html" class="nav-dropdown-trigger">Hakkımızda</a>
+        <div class="nav-dropdown-panel">
+          
+        </div>
+      </div>
+      <a href="subscription.html">Abonelik</a>
+
+      <a href="contact.html">İletişim</a>
+      <a href="casting/index.html" class="nav-casting">Casting <span class="nav-casting-badge">NEW</span></a>
+    </nav>
+
+    <!-- Right side -->
+    <div class="header-right">
+      <button class="burger" id="burger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+
+  </div>
+</header>
+
+<!-- Mobil menü -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-head">
+    <a href="index.html" class="mobile-menu-logo">
+      <img src="images/logo.png" alt="FashionTV Magazine">
+    </a>
+    <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Menüyü kapat">✕</button>
+  </div>
+  <nav>
+    <a href="home.html">Ana Sayfa</a>
+    <a href="news.html">Haberler</a>
+    <a href="about.html">Hakkımızda</a>
+    <a href="subscription.html">Abonelik</a>
+    <a href="contact.html">İletişim</a>
+    <a href="casting/index.html" class="nav-casting">Casting</a>
+  </nav>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     BÖLÜM 1 — GİRİŞ (DERGI KAPAK STİLİ)
+══════════════════════════════════════ -->
+<div class="cover-entry">
+
+  <!-- Üst ince bilgi şeridi -->
+  <div class="cover-entry__tape">
+    <div class="container cover-entry__tape-inner">
+      <span>Haziran 2026</span>
+      <span class="tape-sep">·</span>
+      <span>Editörün Seçimi</span>
+      <span class="tape-sep">·</span>
+      <span>Moda · Güzellik · Wellness · Yaşam · Astroloji · Röportaj</span>
+    </div>
+  </div>
+
+  <!-- Ana kapak -->
+  <div class="cover-entry__main">
+    <div class="container cover-entry__grid">
+
+      <!-- SOL — başlık bloğu -->
+      <div class="cover-left">
+        <span class="cover-kicker">Haziran 2026 · Yaz Özel Sayısı</span>
+        <h1 class="cover-title">
+          Moda,<br />
+          Güzellik<br />
+          <em>&amp; Yaşam</em>
+        </h1>
+        <p class="cover-desc">
+          Yaz enerjisiyle şekillenen 2026 sezonunda podyumdan cilt bakımına,
+          yavaş yaşamdan yıldızların rehberliğine — FashionTV Magazine'in
+          Haziran editöryal seçkileri burada.
+        </p>
+        <div class="cover-actions">
+          <a href="#spotlight" class="btn-cover-primary">Öne Çıkanları Gör</a>
+          <a href="#icerik" class="btn-cover-ghost">Tüm İçerikler</a>
+        </div>
+        <div class="cover-meta">
+          <span>12 Haziran 2026</span>
+          <span class="cover-meta-sep"></span>
+          <span>Haziran Sayısı · Vol. 27</span>
+        </div>
+      </div>
+
+      <!-- ORTA — büyük öne çıkan kart (Moda) -->
+      <article class="cover-hero-card">
+        <div class="chc-img chc-bg-moda">
+          <div class="chc-img__overlay"></div>
+          <div class="chc-img__content">
+            <span class="cover-tag cover-tag--default">Moda</span>
+            <h2 class="chc-title">
+              2026 Yaz Sezonu: Minimalizmin Güçlü Geri Dönüşü
+            </h2>
+            <p class="chc-excerpt">
+              Milano, Paris ve Kopenhag podyumlarında bu sezonun ortak dili: net çizgiler, premium kumaşlar ve zamansız sadelik manifestosu.
+            </p>
+            <a href="haber-minimalizm.html" class="chc-link">Yazıyı Oku →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- SAĞ — 3 mini kart (her biri farklı kategori) -->
+      <div class="cover-side-stack">
+
+        <article class="css-item">
+          <div class="css-item__img css-bg-guzellik"></div>
+          <div class="css-item__body">
+            <span class="css-tag">Güzellik</span>
+            <h3 class="css-title">Glazed Skin Rutini: Yazın Işıltılı Cilt Görünümü</h3>
+            <a href="haber-glazed-skin.html" class="css-link">Oku →</a>
+          </div>
+        </article>
+
+        <article class="css-item">
+          <div class="css-item__img css-bg-wellness"></div>
+          <div class="css-item__body">
+            <span class="css-tag">Wellness</span>
+            <h3 class="css-title">Yavaş Yaşamın Yükselişi: 2026'nın Yeni Lüks Anlayışı</h3>
+            <a href="haber-yavas-yasam.html" class="css-link">Oku →</a>
+          </div>
+        </article>
+
+        <article class="css-item">
+          <div class="css-item__img css-bg-astro"></div>
+          <div class="css-item__body">
+            <span class="css-tag">Astroloji</span>
+            <h3 class="css-title">Haziran Burç Yorumları: Yaz Enerjisi Başlıyor</h3>
+            <a href="haber-haziran-burc.html" class="css-link">Oku →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+
+</div><!-- /cover-entry -->
+
+
+<!-- ══════════════════════════════════════
+     BÖLÜM 2 — KATEGORİ ŞERİDİ
+     (tüm kategoriler eşit görsel ağırlıkta)
+══════════════════════════════════════ -->
+<div class="cat-strip">
+  <div class="container cat-strip__inner">
+
+    <a href="#" class="cat-strip__item">
+      <span class="csi-label">Moda</span>
+      <span class="csi-count">12 yazı</span>
+    </a>
+    <a href="#" class="cat-strip__item">
+      <span class="csi-label">Güzellik</span>
+      <span class="csi-count">10 yazı</span>
+    </a>
+    <a href="#" class="cat-strip__item">
+      <span class="csi-label">Wellness</span>
+      <span class="csi-count">9 yazı</span>
+    </a>
+    <a href="#" class="cat-strip__item">
+      <span class="csi-label">Yaşam</span>
+      <span class="csi-count">8 yazı</span>
+    </a>
+    <a href="#" class="cat-strip__item">
+      <span class="csi-label">Astroloji</span>
+      <span class="csi-count">8 yazı</span>
+    </a>
+    <a href="#" class="cat-strip__item">
+      <span class="csi-label">Röportajlar</span>
+      <span class="csi-count">5 yazı</span>
+    </a>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     BÖLÜM 3 — ÖNE ÇIKAN İÇERİKLER
+     (her kategoriden 1 kart, eşit düzen)
+══════════════════════════════════════ -->
+<section class="spotlight-section" id="spotlight">
+  <div class="container">
+
+    <div class="sec-head sec-head--between">
+      <div>
+        <span class="sec-label">Bu Haftanın Seçkileri</span>
+        <h2 class="sec-title">Öne Çıkan İçerikler</h2>
+      </div>
+      <a href="#" class="sec-more-link">Tümünü Gör →</a>
+    </div>
+
+    <!-- 3 büyük overlay kart — sol büyük + sağ 2 küçük -->
+    <div class="spotlight-layout">
+
+      <!-- Büyük sol kart — Güzellik -->
+      <article class="sp-card sp-card--hero fade-up" data-cat="guzellik" style="--delay:0s">
+        <div class="sp-card__img sp-bg-guzellik">
+          <div class="sp-card__img-overlay"></div>
+          <div class="sp-card__content">
+            <span class="cat-pill">Güzellik</span>
+            <div class="sp-card__text">
+              <h2 class="sp-card__title">
+                Cilt Bakımının Yeni Altın Kuralı: Az Ürün, Daha Fazla Etki
+              </h2>
+              <p class="sp-card__excerpt">
+                2026 güzellik trendleri karmaşık rutinler yerine sade ve etkili cilt bakımını ön plana çıkarıyor. Dermatologlara göre doğru ürün seçimi her şeyden önce geliyor.
+              </p>
+              <a href="haber-az-urun.html" class="sp-card__link">Yazıyı Oku →</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Sağ — 2 küçük kart (Moda + Wellness) -->
+      <div class="sp-stack">
+
+        <article class="sp-card sp-card--sm fade-up" data-cat="moda" style="--delay:0.1s">
+          <div class="sp-card__img sp-bg-moda">
+            <div class="sp-card__img-overlay"></div>
+            <div class="sp-card__content">
+              <span class="cat-pill">Moda</span>
+              <div class="sp-card__text">
+                <h3 class="sp-card__title">Yaz Sezonunda Capsule Wardrobe: 10 Parça ile Güçlü Stil</h3>
+                <a href="haber-capsule-wardrobe.html" class="sp-card__link">Yazıyı Oku →</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="sp-card sp-card--sm fade-up" data-cat="wellness" style="--delay:0.2s">
+          <div class="sp-card__img sp-bg-wellness">
+            <div class="sp-card__img-overlay"></div>
+            <div class="sp-card__content">
+              <span class="cat-pill">Wellness</span>
+              <div class="sp-card__text">
+                <h3 class="sp-card__title">Sabah Rutinini Değiştiren 6 Küçük Alışkanlık</h3>
+                <a href="haber-sabah-rutini.html" class="sp-card__link">Yazıyı Oku →</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Alt şerit — 3 eşit yatay kart (Yaşam + Röportaj + Astroloji) -->
+    <div class="spotlight-strip">
+
+      <article class="ss-card fade-up" data-cat="yasam" style="--delay:0s">
+        <div class="ss-card__img ss-bg-yasam"></div>
+        <div class="ss-card__body">
+          <span class="cat-pill cat-pill--dark">Yaşam</span>
+          <h3 class="ss-card__title">Yavaş Yaşamın Yükselişi: 2026'nın Yeni Lüks Anlayışı</h3>
+          <p class="ss-card__excerpt">Slow living 2026 wellness dünyasının merkezine oturdu. Zihinsel huzur, yeni nesil lüks anlayışının temeli.</p>
+          <a href="haber-yavas-yasam.html" class="ss-card__link">Devamını Oku</a>
+        </div>
+      </article>
+
+      <article class="ss-card fade-up" data-cat="roportaj" style="--delay:0.08s">
+        <div class="ss-card__img ss-bg-roportaj"></div>
+        <div class="ss-card__body">
+          <span class="cat-pill cat-pill--dark">Röportaj</span>
+          <h3 class="ss-card__title">Moda Editörü Zeynep Arıkan ile Özel Söyleşi</h3>
+          <p class="ss-card__excerpt">20 yıllık editöryal deneyimin ardındaki ilhamları, moda felsefesini ve gelecek vizyonunu aktardı.</p>
+          <a href="news.html" class="ss-card__link">Devamını Oku</a>
+        </div>
+      </article>
+
+      <article class="ss-card fade-up" data-cat="astroloji" style="--delay:0.16s">
+        <div class="ss-card__img ss-bg-astro"></div>
+        <div class="ss-card__body">
+          <span class="cat-pill cat-pill--dark">Astroloji</span>
+          <h3 class="ss-card__title">Haziran Burç Yorumları: Yaz Enerjisi Başlıyor</h3>
+          <p class="ss-card__excerpt">Haziran 2026, ilişkiler ve kariyer alanlarında güçlü başlangıç enerjileri sunuyor.</p>
+          <a href="haber-haziran-burc.html" class="ss-card__link">Devamını Oku</a>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     BÖLÜM 4 — KATEGORİ FİLTRE ÇUBUĞU
+══════════════════════════════════════ -->
+<div class="filter-bar-outer" id="filter-bar">
+  <div class="container filter-bar-inner">
+    <div class="filter-bar">
+      <button class="f-btn f-btn--on" data-f="tümü">Tümü</button>
+      <button class="f-btn" data-f="moda">Moda</button>
+      <button class="f-btn" data-f="guzellik">Güzellik</button>
+      <button class="f-btn" data-f="wellness">Wellness</button>
+      <button class="f-btn" data-f="yasam">Yaşam</button>
+      <button class="f-btn" data-f="astroloji">Astroloji</button>
+      <button class="f-btn" data-f="roportaj">Röportaj</button>
+    </div>
+    <span class="filter-count" id="filter-count">52 içerik</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     BÖLÜM 5 — ANA İÇERİK + SIDEBAR
+══════════════════════════════════════ -->
+<section class="content-wrap" id="icerik">
+  <div class="container content-layout">
+
+    <main class="ng-wrap">
+
+      <!-- Editör seçki şeridi -->
+      <div class="editor-strip">
+        <span class="editor-strip__label">Editörün Seçkisi</span>
+        <div class="editor-strip__items">
+          <a href="haber-minimalizm.html" class="es-link">2026 Moda Trendleri</a>
+          <span>·</span>
+          <a href="haber-glazed-skin.html" class="es-link">Cilt Bakım Rutini</a>
+          <span>·</span>
+          <a href="haber-haziran-burc.html" class="es-link">Haziran Burç Yorumları</a>
+          <span>·</span>
+          <a href="haber-yavas-yasam.html" class="es-link">Minimalist Yaşam</a>
+          <span>·</span>
+          <a href="news.html" class="es-link">Özel Röportajlar</a>
+        </div>
+      </div>
+
+      <!-- İçerik ızgarası — 2 kart her kategoriden (12 toplam) -->
+      <div class="ng" id="ng">
+
+        <!-- GÖRÜNEN 6 KART: Moda·Güzellik·Wellness·Yaşam·Astroloji·Röportaj -->
+
+        <!-- 01 — Moda -->
+        <article class="nc fade-up" style="--delay:0s" data-cat="moda">
+          <a href="haber-minimalizm.html" class="nc__img-link">
+            <div class="nc__img img-m1"><span class="cat-pill">Moda</span></div>
+          </a>
+          <div class="nc__body">
+            <time class="nc__date">12 Haziran 2026</time>
+            <h3 class="nc__title">2026 Yaz Sezonu: Minimalizmin Güçlü Geri Dönüşü</h3>
+            <p class="nc__excerpt">Milano, Paris ve Kopenhag podyumlarında bu sezonun ortak dili: net çizgiler, premium kumaşlar ve zamansız sadelik.</p>
+            <a href="haber-minimalizm.html" class="nc__btn">Devamını Oku</a>
+          </div>
+        </article>
+
+        <!-- 02 — Güzellik -->
+        <article class="nc fade-up" style="--delay:0.06s" data-cat="guzellik">
+          <a href="haber-glazed-skin.html" class="nc__img-link">
+            <div class="nc__img img-g1"><span class="cat-pill">Güzellik</span></div>
+          </a>
+          <div class="nc__body">
+            <time class="nc__date">10 Haziran 2026</time>
+            <h3 class="nc__title">Glazed Skin Rutini: Yazın Işıltılı Cilt Görünümü</h3>
+            <p class="nc__excerpt">Hyaluronik asit, seramid ve peptid ile yazın en çok konuşulan doğal parlaklık trendi.</p>
+            <a href="haber-glazed-skin.html" class="nc__btn">Devamını Oku</a>
+          </div>
+        </article>
+
+        <!-- 03 — Wellness -->
+        <article class="nc fade-up" style="--delay:0.12s" data-cat="wellness">
+          <a href="haber-yavas-yasam.html" class="nc__img-link">
+            <div class="nc__img img-w1"><span class="cat-pill">Wellness</span></div>
+          </a>
+          <div class="nc__body">
+            <time class="nc__date">8 Haziran 2026</time>
+            <h3 class="nc__title">Yavaş Yaşamın Yükselişi: 2026'nın Yeni Lüks Anlayışı</h3>
+            <p class="nc__excerpt">Slow living yaklaşımı 2026 wellness dünyasının merkezine oturdu. Zihinsel huzur yeni lüks.</p>
+            <a href="haber-yavas-yasam.html" class="nc__btn">Devamını Oku</a>
+          </div>
+        </article>
+
+        <!-- 04 — Yaşam -->
+        <article class="nc fade-up" style="--delay:0s" data-cat="yasam">
+          <a href="#" class="nc__img-link">
+            <div class="nc__img img-y1"><span class="cat-pill">Yaşam</span></div>
+          </a>
+          <div class="nc__body">
+            <time class="nc__date">6 Haziran 2026</time>
+            <h3 class="nc__title">Cilt Bakımının Yeni Altın Kuralı: Az Ürün, Daha Fazla Etki</h3>
+            <p class="nc__excerpt">Dermatologlara göre doğru ürün seçimi, uzun ve karmaşık bakım rutinlerinden çok daha etkili.</p>
+            <a href="haber-az-urun.html" class="nc__btn">Devamını Oku</a>
+          </div>
+        </article>
+
+        <!-- 05 — Astroloji -->
+        <article class="nc fade-up" style="--delay:0.06s" data-cat="astroloji">
+          <a href="haber-haziran-burc.html" class="nc__img-link">
+            <div class="nc__img img-a1"><span class="cat-pill">Astroloji</span></div>
+          </a>
+          <div class="nc__body">
+            <time class="nc__date">5 Haziran 2026</time>
+            <h3 class="nc__title">Haziran Burç Yorumları: Yaz Enerjisi Başlıyor</h3>
+            <p class="nc__excerpt">Venüs ve Mars etkileriyle Haziran 2026'da güçlü başlangıç enerjileri tüm burçlara yansıyor.</p>
+            <a href="haber-haziran-burc.html" class="nc__btn">Devamını Oku</a>
+          </div>
+        </article>
+
+        <!-- 06 — Röportaj -->
+        <article class="nc fade-up" style="--delay:0.12s" data-cat="roportaj">
+          <a href="news.html" class="nc__img-link">
+            <div class="nc__img img-r1"><span class="cat-pill">Röportaj</span></div>
+          </a>
+          <div class="nc__body">
+            <time class="nc__date">3 Haziran 2026</time>
+            <h3 class="nc__title">Tasarımcı Bora Aksu ile Moda, Kimlik ve İstanbul Üzerine</h3>
+            <p class="nc__excerpt">Londra podyumlarını fetheden Türk tasarımcı, kültürel köklerin moda diline nasıl dönüştüğünü anlattı.</p>
+            <a href="news.html" class="nc__btn">Devamını Oku</a>
+          </div>
+        </article>
+
+        <!-- GİZLİ KARTLAR — her kategoriden 1 tane daha -->
+
+        <!-- 07 — Moda -->
+        <article class="nc nc--hidden fade-up" style="--delay:0s" data-cat="moda">
+          <a href="haber-capsule-wardrobe.html" class="nc__img-link">
+            <div class="nc__img img-m2"><span class="cat-pill">Moda</span></div>
+          </a>
+          <div class="nc__body">
+            <time class="nc__date">1 Haziran 2026</time>
+            <h3 class="nc__title">Valentino'nun Yeni Vizyonu: Lükste Sanatsal Anlatının Dönüşümü</h3>
+            <p class="nc__excerpt">Yeni yaratıcı direktörün koleksiyonu, moda dünyasında köklü bir kırılmaya işaret ediyor.</p>
+            <a href="news.html" class="nc__btn">Devamını Oku</a>
+          </div>
+        </article>
+
+        <!-- 08 — Güzellik -->
+        <article class="nc nc--hidden fade-up" style="--delay:0.06s" data-cat="guzellik">
+          <a href="news.html" class="nc__img-link">
+            <div class="nc__img img-g2"><span class="cat-pill">Güzellik</span></div>
+          </a>
+          <div class="nc__body">
+            <time class="nc__date">28 Mayıs 2026</time>
+            <h3 class="nc__title">Nişan Makyajında Klasik ile Modernin Buluşma Noktası</h3>
+            <p class="nc__excerpt">Düğün sezonu için en çok tercih edilen makyaj stilleri ve ürünler üzerine kapsamlı bir rehber.</p>
+            <a href="news.html" class="nc__btn">Devamını Oku</a>
+          </div>
+        </article>
+
+        <!-- 09 — Wellness -->
+        <article class="nc nc--hidden fade-up" style="--delay:0.12s" data-cat="wellness">
+          <a href="haber-sabah-rutini.html" class="nc__img-link">
+            <div class="nc__img img-w2"><span class="cat-pill">Wellness</span></div>
+          </a>
+          <div class="nc__body">
+            <time class="nc__date">21 Mart 2026</time>
+            <h3 class="nc__title">Bitkisel Uyku Rutini: Derin ve Kaliteli Uyku İçin 7 Adım</h3>
+            <p class="nc__excerpt">Uyku kalitesini artıran doğal yöntemler ve uzman önerileriyle gece rutininizi dönüştürün.</p>
+            <a href="news.html" class="nc__btn">Devamını Oku</a>
+          </div>
+        </article>
+
+        <!-- 10 — Yaşam -->
+        <article class="nc nc--hidden fade-up" style="--delay:0s" data-cat="yasam">
+          <a href="news.html" class="nc__img-link">
+            <div class="nc__img img-y2"><span class="cat-pill">Yaşam</span></div>
+          </a>
+          <div class="nc__body">
+            <time class="nc__date">19 Mart 2026</time>
+            <h3 class="nc__title">Yavaş Seyahat Lüks mü? Moda Editörlerinin Yeni Keşif Biçimi</h3>
+            <p class="nc__excerpt">Koşturmacalı turların yerini alan derin, anlamlı yolculuklar artık yeni prestij simgesi.</p>
+            <a href="news.html" class="nc__btn">Devamını Oku</a>
+          </div>
+        </article>
+
+        <!-- 11 — Astroloji -->
+        <article class="nc nc--hidden fade-up" style="--delay:0.06s" data-cat="astroloji">
+          <a href="news.html" class="nc__img-link">
+            <div class="nc__img img-a2"><span class="cat-pill">Astroloji</span></div>
+          </a>
+          <div class="nc__body">
+            <time class="nc__date">17 Mart 2026</time>
+            <h3 class="nc__title">Merkür Retrosu Bitti: İletişim ve Karar Süreçlerinde Yeni Dönem</h3>
+            <p class="nc__excerpt">Retrodan çıkan Merkür ile birlikte sözleşmeler, seyahat ve iletişimde beklenen netlik geri dönüyor.</p>
+            <a href="news.html" class="nc__btn">Devamını Oku</a>
+          </div>
+        </article>
+
+        <!-- 12 — Röportaj -->
+        <article class="nc nc--hidden fade-up" style="--delay:0.12s" data-cat="roportaj">
+          <a href="news.html" class="nc__img-link">
+            <div class="nc__img img-r2"><span class="cat-pill">Röportaj</span></div>
+          </a>
+          <div class="nc__body">
+            <time class="nc__date">15 Mart 2026</time>
+            <h3 class="nc__title">Güzellik Editörü Serra Kaya: "Güzellik Kendine Saygıdan Başlar"</h3>
+            <p class="nc__excerpt">15 yıllık kariyer deneyimi, ilham kaynakları ve güzellik anlayışını paylaştı.</p>
+            <a href="news.html" class="nc__btn">Devamını Oku</a>
+          </div>
+        </article>
+
+      </div><!-- /ng -->
+
+      <!-- Daha Fazla Yükle -->
+      <div class="load-more-area">
+        <button class="load-more" id="load-more">
+          <span>Daha Fazla İçerik Yükle</span>
+          <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M7 1v12M1 7.5l6 6 6-6"/>
+          </svg>
+        </button>
+        <p class="load-more-info" id="load-more-info">6 / 12 içerik gösteriliyor</p>
+      </div>
+
+    </main>
+
+
+    <!-- SIDEBAR -->
+    <aside class="sb">
+
+      <!-- Arama -->
+      <div class="sb-widget">
+        <h4 class="sb-title">Ara</h4>
+        <div class="sb-search">
+          <input type="text" placeholder="İçerik ara…" class="sb-search__input" />
+          <button class="sb-search__btn" aria-label="Ara">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Popüler Yazılar — dengeli dağılım -->
+      <div class="sb-widget">
+        <h4 class="sb-title">Popüler Yazılar</h4>
+        <ul class="sb-trending">
+
+          <li class="sbt-item">
+            <div class="sbt-thumb sbt-t1"></div>
+            <div class="sbt-info">
+              <span class="sbt-cat">Moda</span>
+              <a href="haber-capsule-wardrobe.html" class="sbt-title">Yaz Sezonunda Capsule Wardrobe</a>
+              <time class="sbt-date">3 Haz</time>
+            </div>
+          </li>
+
+          <li class="sbt-item">
+            <div class="sbt-thumb sbt-t2"></div>
+            <div class="sbt-info">
+              <span class="sbt-cat">Güzellik</span>
+              <a href="haber-az-urun.html" class="sbt-title">Az Ürün, Daha Fazla Etki</a>
+              <time class="sbt-date">6 Haz</time>
+            </div>
+          </li>
+
+          <li class="sbt-item">
+            <div class="sbt-thumb sbt-t3"></div>
+            <div class="sbt-info">
+              <span class="sbt-cat">Wellness</span>
+              <a href="haber-sabah-rutini.html" class="sbt-title">Sabah Rutinini Değiştiren 6 Alışkanlık</a>
+              <time class="sbt-date">1 Haz</time>
+            </div>
+          </li>
+
+          <li class="sbt-item">
+            <div class="sbt-thumb sbt-t4"></div>
+            <div class="sbt-info">
+              <span class="sbt-cat">Astroloji</span>
+              <a href="haber-haziran-burc.html" class="sbt-title">Haziran Burç Yorumları: Yaz Enerjisi</a>
+              <time class="sbt-date">5 Haz</time>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+      <!-- Kategoriler — eşit ağırlık -->
+      <div class="sb-widget">
+        <h4 class="sb-title">Kategoriler</h4>
+        <ul class="sb-cats">
+          <li><button class="sb-cat-btn" data-sb-filter="tümü">Tüm İçerikler <span>52</span></button></li>
+          <li><button class="sb-cat-btn" data-sb-filter="moda">Moda <span>12</span></button></li>
+          <li><button class="sb-cat-btn" data-sb-filter="guzellik">Güzellik <span>10</span></button></li>
+          <li><button class="sb-cat-btn" data-sb-filter="wellness">Wellness <span>9</span></button></li>
+          <li><button class="sb-cat-btn" data-sb-filter="yasam">Yaşam <span>8</span></button></li>
+          <li><button class="sb-cat-btn" data-sb-filter="astroloji">Astroloji <span>8</span></button></li>
+          <li><button class="sb-cat-btn" data-sb-filter="roportaj">Röportajlar <span>5</span></button></li>
+        </ul>
+      </div>
+
+      <!-- Editörün Seçkileri -->
+      <div class="sb-widget sb-edpick">
+        <h4 class="sb-title">Editörün Seçkileri</h4>
+        <div class="sb-edpick__list">
+          <a href="haber-minimalizm.html" class="sb-edpick__item">
+            <span class="sb-edpick__num">01</span>
+            <span class="sb-edpick__txt">2026 Yaz Moda Rehberi</span>
+          </a>
+          <a href="haber-az-urun.html" class="sb-edpick__item">
+            <span class="sb-edpick__num">02</span>
+            <span class="sb-edpick__txt">Cilt Bakımında Minimalist Yaklaşım</span>
+          </a>
+          <a href="haber-haziran-burc.html" class="sb-edpick__item">
+            <span class="sb-edpick__num">03</span>
+            <span class="sb-edpick__txt">Haziran Wellness &amp; Astroloji</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Abonelik -->
+      <div class="sb-widget sb-newsletter">
+        <span class="sec-label">Bülten</span>
+        <h4 class="sb-newsletter__title">
+          Trendlerden<br /><em>Haberdar Ol</em>
+        </h4>
+        <p class="sb-newsletter__desc">
+          Haftalık moda, güzellik, wellness ve yaşam içerikleri doğrudan gelen kutunuza gelsin.
+        </p>
+        <form class="sb-newsletter__form" onsubmit="return false">
+          <input type="email" placeholder="E-posta adresiniz" class="sb-newsletter__input" />
+          <button type="submit" class="sb-newsletter__btn">Abone Ol</button>
+        </form>
+      </div>
+
+    </aside>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER — index.html ile aynı
+══════════════════════════════════════ -->
+<footer class="site-footer" id="footer">
+  <div class="container footer-grid">
+
+    <div class="footer-brand">
+      <a class="footer-logo" href="index.html">
+        <img src="images/logo.png" alt="FashionTV Magazine" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1);">
+      </a>
+      <p class="footer-tagline">
+        Modanın, güzelliğin ve yaşam sanatının<br />buluştuğu premium editorial platform.
+      </p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram" class="social-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.8"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" aria-label="X / Twitter" class="social-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" aria-label="Pinterest" class="social-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.99.04-2.85.18-.78 1.17-4.97 1.17-4.97s-.3-.6-.3-1.48c0-1.39.81-2.43 1.81-2.43.85 0 1.26.64 1.26 1.41 0 .86-.55 2.14-.83 3.33-.24.99.5 1.8 1.48 1.8 1.77 0 3.13-1.87 3.13-4.56 0-2.38-1.71-4.05-4.16-4.05-2.84 0-4.5 2.13-4.5 4.33 0 .86.33 1.78.74 2.28.08.1.09.19.07.29-.08.31-.25 1-.28 1.13-.04.18-.15.22-.34.13-1.25-.58-2.03-2.41-2.03-3.88 0-3.15 2.29-6.05 6.61-6.05 3.47 0 6.16 2.47 6.16 5.78 0 3.45-2.17 6.22-5.19 6.22-1.01 0-1.97-.53-2.29-1.15l-.62 2.38c-.23.87-.84 1.96-1.24 2.62.94.29 1.93.45 2.96.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube" class="social-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="6" width="20" height="14" rx="3"/><polygon points="10,9.5 16,13 10,16.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-col-heading">Keşfet</h4>
+      <ul>
+        <li><a href="#">Bu Ayın Sayısı</a></li>
+        <li><a href="#">Moda</a></li>
+        <li><a href="#">Güzellik</a></li>
+        <li><a href="#">Wellness</a></li>
+        <li><a href="#">Yaşam</a></li>
+        <li><a href="#">Astroloji</a></li>
+        <li><a href="#">Röportajlar</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-col-heading">Kurumsal</h4>
+      <ul>
+        <li><a href="#">Hakkımızda</a></li>
+        <li><a href="#">Reklam &amp; Medya</a></li>
+        <li><a href="#">Kariyer</a></li>
+        <li><a href="#">İletişim</a></li>
+        <li><a href="#">Basın</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-col-heading">Üyelik</h4>
+      <ul>
+        <li><a href="#">Planlar</a></li>
+        <li><a href="#">Hediye Aboneliği</a></li>
+        <li><a href="#">Dijital Arşiv</a></li>
+        <li><a href="#">Dergi Tasarla</a></li>
+        <li><a href="#">Destek</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2026 FashionTV Magazine. Tüm hakları saklıdır.</p>
+      <div class="footer-legal">
+        <a href="#">Gizlilik Politikası</a>
+        <a href="#">Kullanım Koşulları</a>
+        <a href="#">Çerez</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script>
+/* Header scroll */
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* Mobil menü */
+const burger      = document.getElementById('burger');
+const mobileMenu  = document.getElementById('mobile-menu');
+const mobileClose = document.getElementById('mobile-menu-close');
+burger.addEventListener('click', () => {
+  mobileMenu.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+});
+const closeMenu = () => {
+  mobileMenu.classList.remove('is-open');
+    burger.classList.remove('is-open');
+  document.body.style.overflow = '';
+};
+mobileClose.addEventListener('click', closeMenu);
+mobileMenu.addEventListener('click', e => { if (e.target === mobileMenu) closeMenu(); });
+
+/* Scroll reveal */
+const fadeEls = document.querySelectorAll('.fade-up');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+  });
+}, { threshold: 0.07 });
+fadeEls.forEach(el => revealObs.observe(el));
+
+/* Kategori filtresi */
+const fBtns   = document.querySelectorAll('.f-btn');
+const ncCards = document.querySelectorAll('#ng .nc');
+const countEl = document.getElementById('filter-count');
+
+const catLabels = {
+  'tümü':'içerik','moda':'moda içeriği','guzellik':'güzellik içeriği',
+  'wellness':'wellness içeriği','yasam':'yaşam içeriği',
+  'astroloji':'astroloji içeriği','roportaj':'röportaj'
+};
+
+function applyFilter(filter) {
+  let visible = 0;
+  ncCards.forEach(card => {
+    if (card.classList.contains('nc--hidden')) return;
+    const match = filter === 'tümü' || card.dataset.cat === filter;
+    card.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+  if (countEl) countEl.textContent = `${visible} ${catLabels[filter] || 'içerik'}`;
+}
+
+fBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    fBtns.forEach(b => b.classList.remove('f-btn--on'));
+    btn.classList.add('f-btn--on');
+    applyFilter(btn.dataset.f);
+  });
+});
+
+document.querySelectorAll('.sb-cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.sbFilter;
+    const target = document.querySelector(`.f-btn[data-f="${filter}"]`);
+    if (target) {
+      target.click();
+      document.getElementById('filter-bar').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+/* Daha Fazla Yükle */
+const loadBtn = document.getElementById('load-more');
+const infoEl  = document.getElementById('load-more-info');
+const total   = document.querySelectorAll('#ng .nc').length;
+let   shown   = document.querySelectorAll('#ng .nc:not(.nc--hidden)').length;
+
+loadBtn.addEventListener('click', () => {
+  const hidden = document.querySelectorAll('#ng .nc--hidden');
+  if (!hidden.length) return;
+  const reveal = Math.min(3, hidden.length);
+  for (let i = 0; i < reveal; i++) {
+    hidden[i].classList.remove('nc--hidden');
+    revealObs.observe(hidden[i]);
+  }
+  shown += reveal;
+  if (infoEl) infoEl.textContent = `${shown} / ${total} içerik gösteriliyor`;
+  if (!document.querySelectorAll('#ng .nc--hidden').length) {
+    loadBtn.style.opacity = '0';
+    loadBtn.style.pointerEvents = 'none';
+    if (infoEl) infoEl.textContent = 'Tüm içerikler yüklendi';
+  }
+  applyFilter(document.querySelector('.f-btn--on')?.dataset.f || 'tümü');
+});
+</script>
+
+</body>
+</html>

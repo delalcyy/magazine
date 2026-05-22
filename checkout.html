@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ödeme — FashionTV Magazine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="auth.css" />
+  <style>
+    /* ─── Checkout-specific overrides ─── */
+    body.auth-page .auth-wrapper { grid-template-columns: 1fr 560px; }
+
+    .checkout-summary {
+      background: var(--ink);
+      padding: clamp(40px,6vw,72px) clamp(32px,5vw,56px);
+      display: flex; flex-direction: column;
+      justify-content: center; gap: 32px;
+    }
+    .checkout-summary::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 60%, rgba(176,144,96,.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cs-logo { margin-bottom: 8px; }
+    .cs-logo .logo-primary { font-family:var(--font-display);font-size:18px;font-weight:700;letter-spacing:.08em;color:var(--white); }
+    .cs-logo .logo-secondary { font-family:var(--font-display);font-size:7px;font-weight:500;letter-spacing:.5em;text-transform:uppercase;color:rgba(255,255,255,.3); display:block;margin-top:2px; }
+
+    .cs-plan-box {
+      border: 1px solid rgba(176,144,96,.35);
+      padding: 24px;
+      position: relative; z-index: 1;
+    }
+    .cs-plan-label { font-family:var(--font-display);font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block; }
+    .cs-plan-name  { font-family:var(--font-serif);font-size:22px;font-weight:600;color:var(--white);margin-bottom:4px; }
+    .cs-plan-desc  { font-size:13px;font-weight:300;color:rgba(255,255,255,.45); }
+    .cs-plan-price { font-family:var(--font-serif);font-size:34px;font-weight:600;color:var(--white);margin-top:16px; }
+    .cs-plan-price span { font-size:13px;font-weight:300;color:rgba(255,255,255,.45);font-family:var(--font-body); }
+
+    .cs-features { list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px; position:relative;z-index:1; }
+    .cs-features li { font-size:13px;font-weight:300;color:rgba(255,255,255,.5);padding-left:16px;position:relative; }
+    .cs-features li::before { content:'—';position:absolute;left:0;color:var(--gold);font-weight:700;font-size:10px; }
+
+    .cs-security { display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.28);position:relative;z-index:1; }
+
+    /* Kart input maskeleme görseli */
+    .card-icons { display:flex;gap:8px;margin-bottom:14px; }
+    .card-icon { padding:4px 8px;border:1px solid var(--border);font-family:var(--font-display);font-size:8.5px;font-weight:700;letter-spacing:.06em;color:var(--ink-50);text-transform:uppercase; }
+
+    .form-row-3 { display:grid;grid-template-columns:2fr 1fr;gap:16px; }
+
+    /* Yüklenme overlay */
+    .payment-loading {
+      display:none;position:fixed;inset:0;background:rgba(255,255,255,.92);
+      z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+    }
+    .payment-loading.active { display:flex; }
+    .spinner { width:36px;height:36px;border:2px solid var(--border);border-top-color:var(--ink);border-radius:50%;animation:spin .7s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .payment-loading p { font-family:var(--font-display);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-50); }
+
+    @media(max-width:900px){
+      .checkout-summary{display:none;}
+      body.auth-page .auth-wrapper{grid-template-columns:1fr;}
+    }
+    @media(max-width:520px){ .form-row-3{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body class="auth-page">
+
+<!-- Ödeme yüklenme overlay -->
+<div class="payment-loading" id="payment-loading">
+  <div class="spinner"></div>
+  <p>Ödeme İşleniyor…</p>
+</div>
+
+<header class="site-header" id="site-header">
+  <div class="header-wrap">
+    <a class="logo" href="index.html">
+      <img src="images/logo-black.png" class="logo-img">
+    </a>
+    <nav class="main-nav">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="subscription.html">Abonelik</a>
+      <a href="account.html">Hesabım</a>
+    </nav>
+    <div class="header-right">
+      <a href="account.html" class="hdr-cta">Hesabım</a>
+      <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
+  <nav>
+    <a href="index.html">Ana Sayfa</a>
+    <a href="subscription.html">Abonelik</a>
+    <a href="account.html">Hesabım</a>
+  </nav>
+</div>
+
+<div class="auth-wrapper">
+
+  <!-- Sol: Sipariş özeti -->
+  <div class="checkout-summary" style="position:relative;">
+    <div>
+      <a href="index.html" class="cs-logo">
+      </a>
+    </div>
+
+    <div class="cs-plan-box" id="cs-plan-box">
+      <span class="cs-plan-label">Seçilen Plan</span>
+      <div class="cs-plan-name" id="cs-name">—</div>
+      <div class="cs-plan-desc" id="cs-desc">—</div>
+      <div class="cs-plan-price" id="cs-price">—</div>
+    </div>
+
+    <ul class="cs-features" id="cs-features"></ul>
+
+    <div class="cs-security">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+      </svg>
+      256-bit SSL şifrelemeli güvenli ödeme
+    </div>
+  </div>
+
+  <!-- Sağ: Ödeme formu -->
+  <div class="auth-form-wrap">
+    <div class="auth-heading">
+      <span class="auth-heading__label">Güvenli Ödeme</span>
+      <h1 class="auth-heading__title">Ödeme<br /><em>Bilgileri</em></h1>
+      <p class="auth-heading__sub">
+        <a href="subscription.html">← Plan değiştir</a>
+      </p>
+    </div>
+
+    <!-- Test kartı notu -->
+    <div class="form-alert form-alert--info" style="display:block;margin-bottom:20px;">
+      <strong>Test Modu:</strong> Başarılı ödeme için herhangi bir kart numarası (4242...) kullanın.
+      Başarısız test için 4000 ile başlayan kart numarası girin.
+    </div>
+
+    <div id="checkout-alert" class="form-alert"></div>
+
+    <form id="checkout-form" class="auth-form" novalidate>
+
+      <!-- Kart ikonları -->
+      <div class="card-icons">
+        <span class="card-icon">VISA</span>
+        <span class="card-icon">MC</span>
+        <span class="card-icon">AMEX</span>
+      </div>
+
+      <!-- Kart sahibi -->
+      <div class="form-group">
+        <label class="form-label" for="card_holder">Kart Sahibinin Adı</label>
+        <input class="form-input" type="text" id="card_holder" name="card_holder"
+          placeholder="Kartın üzerindeki isim" autocomplete="cc-name" required />
+      </div>
+
+      <!-- Kart numarası -->
+      <div class="form-group">
+        <label class="form-label" for="card_number">Kart Numarası</label>
+        <input class="form-input" type="text" id="card_number" name="card_number"
+          placeholder="1234 5678 9012 3456" maxlength="19"
+          autocomplete="cc-number" inputmode="numeric" required />
+      </div>
+
+      <!-- Son kullanma + CVV -->
+      <div class="form-row-3">
+        <div class="form-group">
+          <label class="form-label" for="card_expiry">Son Kullanma Tarihi</label>
+          <input class="form-input" type="text" id="card_expiry" name="card_expiry"
+            placeholder="AA / YY" maxlength="7" autocomplete="cc-exp" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="card_cvv">CVV</label>
+          <input class="form-input" type="text" id="card_cvv" name="card_cvv"
+            placeholder="***" maxlength="4" autocomplete="cc-csc" inputmode="numeric" required />
+        </div>
+      </div>
+
+      <!-- Fatura ayrıştırıcı -->
+      <div class="auth-divider"><span>Fatura Bilgileri (İsteğe Bağlı)</span></div>
+
+      <div class="form-group">
+        <label class="form-label" for="billing_name">Ad Soyad</label>
+        <input class="form-input" type="text" id="billing_name" name="billing_name"
+          placeholder="Fatura adı soyadı" autocomplete="name" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="billing_city">Şehir</label>
+          <input class="form-input" type="text" id="billing_city" name="billing_city" placeholder="İstanbul" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="billing_zip">Posta Kodu</label>
+          <input class="form-input" type="text" id="billing_zip" name="billing_zip" placeholder="34000" />
+        </div>
+      </div>
+
+      <button class="btn-auth btn-auth--gold" type="submit" id="pay-btn">
+        Ödemeyi Tamamla
+      </button>
+
+    </form>
+
+    <div class="auth-security-note">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="11" width="18" height="11" rx="2"/>
+        <path d="M7 11V7a5 5 0 0110 0v4"/>
+      </svg>
+      Kart bilgileriniz sunucularımızda saklanmaz
+    </div>
+  </div>
+
+</div>
+
+<script src="api.js"></script>
+<script>
+(function() {
+  // Giriş yapılmamışsa gönder
+  if (!Auth.isLoggedIn()) { window.location.href = 'login.html'; return; }
+
+  // Mobil menü
+  const burger   = document.getElementById('burger');
+  const mobMenu  = document.getElementById('mobile-menu');
+  const mobClose = document.getElementById('mobile-menu-close');
+  burger.addEventListener('click',   () => { mobMenu.classList.add('is-open');    document.body.style.overflow='hidden'; });
+  mobClose.addEventListener('click', () => { mobMenu.classList.remove('is-open'); document.body.style.overflow=''; });
+
+  // Plan bilgisini yükle
+  const stored = localStorage.getItem('ftv_selected_plan');
+  if (!stored) { window.location.href = 'subscription.html'; return; }
+
+  const selected = JSON.parse(stored);
+
+  async function loadPlanDetails() {
+    const { ok, data } = await SubscriptionAPI.getPlans();
+    if (!ok) return;
+    const plan = data.plans.find(p => p.id == selected.id);
+    if (!plan) { window.location.href = 'subscription.html'; return; }
+
+    const periodLabels = { 90:'3 Aylık', 180:'6 Aylık', 365:'1 Yıllık', 1095:'3 Yıllık', 1825:'5 Yıllık' };
+    document.getElementById('cs-name').textContent  = plan.name;
+    document.getElementById('cs-desc').textContent  = plan.description;
+    document.getElementById('cs-price').innerHTML   =
+      `₺${plan.price_tl.toLocaleString('tr-TR')} <span>/ ${periodLabels[plan.duration_days]}</span>`;
+
+    document.getElementById('cs-features').innerHTML =
+      plan.features.map(f => `<li>${f}</li>`).join('');
+
+    document.getElementById('pay-btn').textContent =
+      `₺${plan.price_tl.toLocaleString('tr-TR')} Öde`;
+  }
+  loadPlanDetails();
+
+  // Kart numarası formatlama
+  document.getElementById('card_number').addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g,'').substring(0,16);
+    e.target.value = v.replace(/(.{4})/g,'$1 ').trim();
+  });
+
+  // Son kullanma tarihi formatlama
+  document.getElementById('card_expiry').addEventListener('input', (e) => {
+    let v = e.target.value.replace(/\D/g,'').substring(0,4);
+    if (v.length >= 3) v = v.substring(0,2) + ' / ' + v.substring(2);
+    e.target.value = v;
+  });
+
+  // Form submit
+  document.getElementById('checkout-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hideAlert('checkout-alert');
+
+    const card_holder  = document.getElementById('card_holder').value.trim();
+    const card_number  = document.getElementById('card_number').value.replace(/\s/g,'');
+    const card_expiry  = document.getElementById('card_expiry').value.trim();
+    const card_cvv     = document.getElementById('card_cvv').value.trim();
+
+    if (!card_holder || !card_number || !card_expiry || !card_cvv) {
+      showAlert('checkout-alert', 'Lütfen tüm kart bilgilerini doldurunuz.', 'error');
+      return;
+    }
+
+    // Loading overlay göster
+    document.getElementById('payment-loading').classList.add('active');
+
+    const { ok, data } = await PaymentAPI.createPayment({
+      plan_id      : selected.id,
+      card_holder,
+      card_number,
+      card_expiry,
+      card_cvv,
+      billing_name : document.getElementById('billing_name').value.trim(),
+      billing_city : document.getElementById('billing_city').value.trim(),
+      billing_zip  : document.getElementById('billing_zip').value.trim()
+    });
+
+    document.getElementById('payment-loading').classList.remove('active');
+
+    if (!ok) {
+      showAlert('checkout-alert', data.message || 'Ödeme başarısız oldu.', 'error');
+      return;
+    }
+
+    // Başarılı → seçilen planı temizle ve başarı sayfasına git
+    localStorage.removeItem('ftv_selected_plan');
+    localStorage.setItem('ftv_last_payment', JSON.stringify(data));
+    window.location.href = 'payment-success.html';
+  });
+})();
+</script>
+</body>
+</html>
