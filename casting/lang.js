@@ -587,6 +587,12 @@ const I18n = {
         sw.classList.toggle('open');
       });
     });
+    document.querySelectorAll('.lang-opt').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        I18n.setLang(btn.dataset.lang);
+      });
+    });
     document.addEventListener('click', () => {
       document.querySelectorAll('.lang-switcher').forEach(s => s.classList.remove('open'));
     });

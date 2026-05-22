@@ -108,7 +108,7 @@ function verifyEmail(req, res) {
   const frontendUrl = process.env.FRONTEND_URL || '';
 
   if (!token) {
-    return res.redirect(`${frontendUrl}/verify-email.html?error=missing`);
+    return res.redirect(`${frontendUrl}/eposta-dogrula?error=missing`);
   }
 
   const db = getDb();
@@ -117,15 +117,15 @@ function verifyEmail(req, res) {
   ).get(token);
 
   if (!user) {
-    return res.redirect(`${frontendUrl}/verify-email.html?error=invalid`);
+    return res.redirect(`${frontendUrl}/eposta-dogrula?error=invalid`);
   }
 
   if (user.email_verified) {
-    return res.redirect(`${frontendUrl}/verify-email.html?status=already`);
+    return res.redirect(`${frontendUrl}/eposta-dogrula?status=already`);
   }
 
   if (new Date(user.verification_token_expires) < new Date()) {
-    return res.redirect(`${frontendUrl}/verify-email.html?error=expired`);
+    return res.redirect(`${frontendUrl}/eposta-dogrula?error=expired`);
   }
 
   db.prepare(`
@@ -134,7 +134,7 @@ function verifyEmail(req, res) {
     WHERE id = ?
   `).run(user.id);
 
-  return res.redirect(`${frontendUrl}/verify-email.html?status=success`);
+  return res.redirect(`${frontendUrl}/eposta-dogrula?status=success`);
 }
 
 /* ════════════════════════════════════════════════════

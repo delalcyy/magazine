@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ödeme — FashionTV Magazine</title>
+  <title>Ödeme — Fashiontv Magazine</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
@@ -79,16 +80,16 @@
 
 <header class="site-header" id="site-header">
   <div class="header-wrap">
-    <a class="logo" href="index.html">
+    <a class="logo" href="index">
       <img src="images/logo-black.png" class="logo-img">
     </a>
     <nav class="main-nav">
-      <a href="index.html">Ana Sayfa</a>
-      <a href="subscription.html">Abonelik</a>
-      <a href="account.html">Hesabım</a>
+      <a href="index">Ana Sayfa</a>
+      <a href="abonelik">Abonelik</a>
+      <a href="hesabim">Hesabım</a>
     </nav>
     <div class="header-right">
-      <a href="account.html" class="hdr-cta">Hesabım</a>
+      <a href="hesabim" class="hdr-cta">Hesabım</a>
       <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -96,9 +97,9 @@
 <div class="mobile-menu" id="mobile-menu">
   <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
   <nav>
-    <a href="index.html">Ana Sayfa</a>
-    <a href="subscription.html">Abonelik</a>
-    <a href="account.html">Hesabım</a>
+    <a href="index">Ana Sayfa</a>
+    <a href="abonelik">Abonelik</a>
+    <a href="hesabim">Hesabım</a>
   </nav>
 </div>
 
@@ -107,7 +108,7 @@
   <!-- Sol: Sipariş özeti -->
   <div class="checkout-summary" style="position:relative;">
     <div>
-      <a href="index.html" class="cs-logo">
+      <a href="index" class="cs-logo">
       </a>
     </div>
 
@@ -134,7 +135,7 @@
       <span class="auth-heading__label">Güvenli Ödeme</span>
       <h1 class="auth-heading__title">Ödeme<br /><em>Bilgileri</em></h1>
       <p class="auth-heading__sub">
-        <a href="subscription.html">← Plan değiştir</a>
+        <a href="abonelik">← Plan değiştir</a>
       </p>
     </div>
 
@@ -225,7 +226,7 @@
 <script>
 (function() {
   // Giriş yapılmamışsa gönder
-  if (!Auth.isLoggedIn()) { window.location.href = 'login.html'; return; }
+  if (!Auth.isLoggedIn()) { window.location.href = 'giris'; return; }
 
   // Mobil menü
   const burger   = document.getElementById('burger');
@@ -236,7 +237,7 @@
 
   // Plan bilgisini yükle
   const stored = localStorage.getItem('ftv_selected_plan');
-  if (!stored) { window.location.href = 'subscription.html'; return; }
+  if (!stored) { window.location.href = 'abonelik'; return; }
 
   const selected = JSON.parse(stored);
 
@@ -244,7 +245,7 @@
     const { ok, data } = await SubscriptionAPI.getPlans();
     if (!ok) return;
     const plan = data.plans.find(p => p.id == selected.id);
-    if (!plan) { window.location.href = 'subscription.html'; return; }
+    if (!plan) { window.location.href = 'abonelik'; return; }
 
     const periodLabels = { 90:'3 Aylık', 180:'6 Aylık', 365:'1 Yıllık', 1095:'3 Yıllık', 1825:'5 Yıllık' };
     document.getElementById('cs-name').textContent  = plan.name;
@@ -312,7 +313,7 @@
     // Başarılı → seçilen planı temizle ve başarı sayfasına git
     localStorage.removeItem('ftv_selected_plan');
     localStorage.setItem('ftv_last_payment', JSON.stringify(data));
-    window.location.href = 'payment-success.html';
+    window.location.href = 'odeme-basarili';
   });
 })();
 </script>

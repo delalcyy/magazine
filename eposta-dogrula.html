@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E-posta Doğrulama — FashionTV Magazine</title>
+  <title>E-posta Doğrulama — Fashiontv Magazine</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -83,17 +84,17 @@
 <!-- HEADER -->
 <header class="site-header" id="site-header">
   <div class="header-wrap">
-    <a class="logo" href="index.html" aria-label="FashionTV Magazine">
+    <a class="logo" href="index" aria-label="Fashiontv Magazine">
       <img src="images/logo-black.png" class="logo-img">
     </a>
     <nav class="main-nav" aria-label="Ana menü">
-      <a href="index.html">Ana Sayfa</a>
-      <a href="news.html">Haberler</a>
-      <a href="subscription.html">Abonelik</a>
-      <a href="contact.html">İletişim</a>
+      <a href="index">Ana Sayfa</a>
+      <a href="haberler">Haberler</a>
+      <a href="abonelik">Abonelik</a>
+      <a href="iletisim">İletişim</a>
     </nav>
     <div class="header-right">
-      <a href="login.html" class="hdr-cta">Giriş Yap</a>
+      <a href="giris" class="hdr-cta">Giriş Yap</a>
       <button class="burger" id="burger" aria-label="Menü">
         <span></span><span></span><span></span>
       </button>
@@ -104,10 +105,10 @@
 <div class="mobile-menu" id="mobile-menu">
   <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
   <nav>
-    <a href="index.html">Ana Sayfa</a>
-    <a href="news.html">Haberler</a>
-    <a href="subscription.html">Abonelik</a>
-    <a href="login.html" class="mobile-cta">Giriş Yap</a>
+    <a href="index">Ana Sayfa</a>
+    <a href="haberler">Haberler</a>
+    <a href="abonelik">Abonelik</a>
+    <a href="giris" class="mobile-cta">Giriş Yap</a>
   </nav>
 </div>
 
@@ -133,7 +134,7 @@
       title: 'E-postanız Doğrulandı!',
       text: 'Hesabınız aktif hale geldi. Artık giriş yapabilirsiniz.',
       primaryText: 'Giriş Yap',
-      primaryHref: 'login.html'
+      primaryHref: 'giris.html'
     },
     already: {
       iconClass: 'verify-icon--info',
@@ -141,7 +142,7 @@
       title: 'Zaten Doğrulanmış',
       text: 'Bu e-posta adresi daha önce doğrulanmış. Giriş yapabilirsiniz.',
       primaryText: 'Giriş Yap',
-      primaryHref: 'login.html'
+      primaryHref: 'giris.html'
     },
     expired: {
       iconClass: 'verify-icon--error',
@@ -149,7 +150,7 @@
       title: 'Link Süresi Doldu',
       text: 'Doğrulama linkinin süresi dolmuş. Giriş sayfasından yeni bir link talep edebilirsiniz.',
       primaryText: 'Giriş Sayfasına Git',
-      primaryHref: 'login.html'
+      primaryHref: 'giris.html'
     },
     invalid: {
       iconClass: 'verify-icon--error',
@@ -157,7 +158,7 @@
       title: 'Geçersiz Link',
       text: 'Bu doğrulama linki geçerli değil. Lütfen giriş sayfasından yeni bir link isteyin.',
       primaryText: 'Giriş Sayfasına Git',
-      primaryHref: 'login.html'
+      primaryHref: 'giris.html'
     },
     missing: {
       iconClass: 'verify-icon--error',
@@ -165,7 +166,7 @@
       title: 'Geçersiz Link',
       text: 'Doğrulama linki eksik veya bozuk. E-postanızdaki linke tam olarak tıkladığınızdan emin olun.',
       primaryText: 'Giriş Sayfasına Git',
-      primaryHref: 'login.html'
+      primaryHref: 'giris.html'
     }
   };
 

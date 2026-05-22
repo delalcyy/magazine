@@ -1,166 +1,156 @@
-/* ═══════════════════════════════════════════════════════
-   auth.css — FashionTV Magazine
-   Giriş / Kayıt Sayfaları
-   style.css token'larını miras alır.
-   SIFIR cursive · SIFIR script · SIFIR handwritten
-═══════════════════════════════════════════════════════ */
+/* auth.css — FashionTV Magazine Auth Pages */
 
-/* ── SAYFA TEMEL ────────────────────────────────────── */
 body.auth-page {
-  background: var(--off-white);
+  background: #0a0a0a;
   min-height: 100vh;
+  font-family: var(--font-body);
+  color: #fff;
+  overflow-x: hidden;
+  display: block;
+}
+
+/* ── MINIMAL HEADER ── */
+.auth-topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+  background: rgba(10,10,10,.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,.07);
 }
+.auth-topbar__logo img {
+  height: 34px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  display: block;
+}
+.auth-topbar__back {
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: color .2s;
+}
+.auth-topbar__back:hover { color: var(--gold); }
+.auth-topbar__back svg { opacity: .6; }
 
-
-/* ── İKİ SÜTUN DÜZENI ──────────────────────────────── */
+/* ── MAIN LAYOUT ── */
 .auth-layout {
-  flex: 1;
   display: grid;
-  grid-template-columns: 1fr 520px;
-  margin-top: 72px;          /* header yüksekliği */
-  min-height: calc(100vh - 72px);
+  grid-template-columns: 1fr 500px;
+  min-height: 100vh;
+  padding-top: 64px;
 }
 
-/* ── SOL: EDİTORYAL PANEL ──────────────────────────── */
-.auth-editorial {
-  background: var(--ink);
+/* ── LEFT PANEL ── */
+.auth-left {
   position: relative;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(48px, 7vw, 88px) clamp(40px, 6vw, 72px);
 }
-
-/* Diyagonal doku */
-.auth-editorial::before {
-  content: '';
+.auth-left__bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse at 25% 55%, rgba(176, 144, 96, .13) 0%, transparent 62%),
-    repeating-linear-gradient(
-      -54deg,
-      transparent 0 42px,
-      rgba(255, 255, 255, .018) 42px 43px
-    );
-  pointer-events: none;
+  background: #0a0a0a;
 }
-
-/* Logo — sol üst */
-.auth-editorial__logo {
+.auth-left__overlay {
+  display: none;
+}
+.auth-left__content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  position: relative;
-  z-index: 1;
-  text-decoration: none;
+  justify-content: center;
+  padding: clamp(40px,6vw,72px);
 }
-.auth-editorial__logo .logo-primary  { color: var(--white); }
-.auth-editorial__logo .logo-secondary { color: rgba(255, 255, 255, .28); }
-
-/* Büyük dekoratif numara */
-.auth-editorial__index {
-  position: absolute;
-  bottom: clamp(40px, 7vw, 80px);
-  right: clamp(32px, 5vw, 60px);
+.auth-left__kicker {
+  display: inline-block;
   font-family: var(--font-display);
-  font-size: clamp(100px, 16vw, 200px);
-  font-weight: 700;
-  letter-spacing: -.04em;
-  line-height: 1;
-  color: rgba(255, 255, 255, .04);
-  user-select: none;
-  pointer-events: none;
-}
-
-/* Alt editoryal metin bloğu */
-.auth-editorial__body {
-  position: relative;
-  z-index: 1;
-}
-.auth-editorial__kicker {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 600;
   letter-spacing: .34em;
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 18px;
 }
-.auth-editorial__heading {
+.auth-left__heading {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 3.4rem);
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
   font-weight: 700;
-  letter-spacing: -.01em;
-  line-height: 1.08;
-  color: var(--white);
-  margin-bottom: 20px;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: #fff;
+  margin-bottom: 16px;
 }
-.auth-editorial__heading span {
+.auth-left__heading em {
+  font-style: italic;
   color: var(--gold);
 }
-.auth-editorial__text {
+.auth-left__text {
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 300;
-  line-height: 1.85;
-  color: rgba(255, 255, 255, .42);
-  max-width: 380px;
+  line-height: 1.8;
+  color: rgba(255,255,255,.55);
+  max-width: 400px;
+  margin-bottom: 36px;
 }
-
-/* Sayı bandı — alt çizgi */
-.auth-editorial__stats {
+.auth-left__stats {
   display: flex;
-  gap: clamp(24px, 4vw, 48px);
-  margin-top: 40px;
+  gap: 36px;
   padding-top: 28px;
-  border-top: 1px solid rgba(255, 255, 255, .08);
-  position: relative;
-  z-index: 1;
+  border-top: 1px solid rgba(255,255,255,.12);
 }
-.auth-stat {}
 .auth-stat__n {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-size: 1.8rem;
   font-weight: 700;
-  color: var(--white);
-  letter-spacing: -.01em;
+  color: #fff;
   line-height: 1;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 .auth-stat__l {
   display: block;
   font-family: var(--font-display);
-  font-size: 8.5px;
-  font-weight: 500;
-  letter-spacing: .26em;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .28em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, .32);
+  color: rgba(255,255,255,.35);
 }
 
-/* ── SAĞ: FORM ALANI ───────────────────────────────── */
-.auth-form-col {
-  background: var(--white);
+/* ── RIGHT PANEL ── */
+.auth-right {
+  background: #111;
+  border-left: 1px solid rgba(255,255,255,.06);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(48px, 6vw, 72px) clamp(36px, 5.5vw, 64px);
+  padding: clamp(40px,5vw,64px) clamp(32px,5vw,56px);
   overflow-y: auto;
 }
 
-/* Form başlığı */
+/* Form header */
 .auth-form-head {
   margin-bottom: 36px;
 }
 .auth-form-head__label {
   display: block;
   font-family: var(--font-display);
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 600;
   letter-spacing: .32em;
   text-transform: uppercase;
@@ -169,18 +159,18 @@ body.auth-page {
 }
 .auth-form-head__title {
   font-family: var(--font-display);
-  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
   font-weight: 700;
   letter-spacing: -.02em;
   line-height: 1.1;
-  color: var(--ink);
-  margin-bottom: 12px;
+  color: #fff;
+  margin-bottom: 10px;
 }
 .auth-form-head__sub {
   font-family: var(--font-body);
   font-size: 13.5px;
   font-weight: 300;
-  color: var(--ink-50);
+  color: rgba(255,255,255,.42);
   line-height: 1.7;
 }
 .auth-form-head__sub a {
@@ -192,7 +182,7 @@ body.auth-page {
 }
 .auth-form-head__sub a:hover { opacity: .65; }
 
-/* ── ALERT / MESAJ ─────────────────────────────────── */
+/* ── ALERT ── */
 .auth-alert {
   display: none;
   padding: 13px 16px;
@@ -202,16 +192,16 @@ body.auth-page {
   font-weight: 400;
   line-height: 1.55;
   border-left: 3px solid;
+  border-radius: 2px;
 }
-.auth-alert.error   { background: #fdf0f0; color: #b0291e; border-color: #b0291e; }
-.auth-alert.success { background: #eef8f2; color: #1a6b3a; border-color: #1a6b3a; }
-.auth-alert.info    { background: var(--gold-pale); color: var(--ink); border-color: var(--gold); }
+.auth-alert.error   { background: rgba(176,41,30,.12); color: #e07068; border-color: #b0291e; }
+.auth-alert.success { background: rgba(26,107,58,.12); color: #6dbf8a; border-color: #1a6b3a; }
+.auth-alert.info    { background: rgba(193,156,96,.1); color: rgba(255,255,255,.7); border-color: var(--gold); }
 
-/* ── FORM GRUPLARI ─────────────────────────────────── */
+/* ── FORM FIELDS ── */
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 0;
 }
 .form-row-2 {
   display: grid;
@@ -222,7 +212,7 @@ body.auth-page {
   display: flex;
   flex-direction: column;
   gap: 7px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 .form-field:last-of-type { margin-bottom: 0; }
 
@@ -232,54 +222,61 @@ body.auth-page {
   font-weight: 700;
   letter-spacing: .24em;
   text-transform: uppercase;
-  color: var(--ink-50);
+  color: rgba(255,255,255,.38);
 }
-
 .form-field__input {
-  padding: 13px 15px;
-  border: 1px solid var(--border);
-  background: var(--white);
+  padding: 13px 16px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 300;
-  color: var(--ink);
+  color: #fff;
   outline: none;
-  border-radius: 0;
-  transition: border-color .2s;
+  border-radius: 4px;
+  transition: border-color .2s, background .2s;
   width: 100%;
   -webkit-appearance: none;
   appearance: none;
 }
-.form-field__input::placeholder { color: rgba(12, 12, 12, .28); }
-.form-field__input:focus { border-color: var(--ink); }
+.form-field__input::placeholder { color: rgba(255,255,255,.2); }
+.form-field__input:focus {
+  border-color: var(--gold);
+  background: rgba(255,255,255,.07);
+}
 .form-field__input.is-error { border-color: #b0291e; }
 
-/* Şifre göster/gizle */
-.pw-field {
-  position: relative;
+/* Autofill dark fix */
+.form-field__input:-webkit-autofill,
+.form-field__input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #1a1a1a inset !important;
+  -webkit-text-fill-color: #fff !important;
 }
+
+/* Şifre toggle */
+.pw-field { position: relative; }
 .pw-field .form-field__input { padding-right: 46px; }
 .pw-toggle {
   position: absolute;
-  right: 13px;
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   padding: 4px;
   cursor: pointer;
-  color: var(--ink-50);
+  color: rgba(255,255,255,.3);
   transition: color .2s;
   line-height: 0;
 }
-.pw-toggle:hover { color: var(--ink); }
+.pw-toggle:hover { color: var(--gold); }
 
 /* Checkbox */
 .form-checkbox {
   display: flex;
   align-items: flex-start;
   gap: 11px;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   margin-top: 4px;
 }
 .form-checkbox input[type="checkbox"] {
@@ -287,14 +284,14 @@ body.auth-page {
   height: 15px;
   flex-shrink: 0;
   margin-top: 2px;
-  accent-color: var(--ink);
+  accent-color: var(--gold);
   cursor: pointer;
 }
 .form-checkbox label {
   font-family: var(--font-body);
   font-size: 12.5px;
   font-weight: 300;
-  color: var(--ink-50);
+  color: rgba(255,255,255,.38);
   line-height: 1.65;
   cursor: pointer;
 }
@@ -305,7 +302,7 @@ body.auth-page {
 }
 .form-checkbox label a:hover { opacity: .65; }
 
-/* Şifremi Unuttum linki */
+/* Şifremi unuttum */
 .form-forgot {
   display: block;
   text-align: right;
@@ -314,14 +311,14 @@ body.auth-page {
   font-weight: 600;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: var(--ink-50);
+  color: rgba(255,255,255,.3);
   margin-bottom: 22px;
   margin-top: -10px;
   transition: color .2s;
 }
 .form-forgot:hover { color: var(--gold); }
 
-/* ── BUTONLAR ──────────────────────────────────────── */
+/* ── BUTONLAR ── */
 .auth-btn {
   display: block;
   width: 100%;
@@ -333,34 +330,36 @@ body.auth-page {
   letter-spacing: .24em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background .22s, color .22s, border-color .22s;
+  transition: all .22s;
   border: 1px solid transparent;
+  border-radius: 4px;
   margin-top: 8px;
+  text-decoration: none;
 }
-.auth-btn:disabled { opacity: .5; cursor: not-allowed; }
-
-.auth-btn--primary {
-  background: var(--ink);
-  color: var(--white);
-  border-color: var(--ink);
-}
-.auth-btn--primary:hover:not(:disabled) { background: #1e1e1e; }
+.auth-btn:disabled { opacity: .45; cursor: not-allowed; }
 
 .auth-btn--gold {
   background: var(--gold);
-  color: var(--white);
+  color: #fff;
   border-color: var(--gold);
 }
-.auth-btn--gold:hover:not(:disabled) { background: var(--gold-lt); border-color: var(--gold-lt); }
+.auth-btn--gold:hover:not(:disabled) {
+  background: var(--gold-lt);
+  border-color: var(--gold-lt);
+}
 
 .auth-btn--outline {
   background: transparent;
-  color: var(--ink);
-  border-color: var(--border);
+  color: rgba(255,255,255,.6);
+  border-color: rgba(255,255,255,.15);
 }
-.auth-btn--outline:hover:not(:disabled) { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.auth-btn--outline:hover:not(:disabled) {
+  background: rgba(255,255,255,.07);
+  color: #fff;
+  border-color: rgba(255,255,255,.3);
+}
 
-/* ── AYRAÇ ─────────────────────────────────────────── */
+/* ── AYRAÇ ── */
 .auth-divider {
   display: flex;
   align-items: center;
@@ -372,7 +371,7 @@ body.auth-page {
   content: '';
   flex: 1;
   height: 1px;
-  background: var(--border);
+  background: rgba(255,255,255,.1);
 }
 .auth-divider span {
   font-family: var(--font-display);
@@ -380,32 +379,33 @@ body.auth-page {
   font-weight: 600;
   letter-spacing: .22em;
   text-transform: uppercase;
-  color: var(--ink-50);
+  color: rgba(255,255,255,.28);
 }
 
-/* ── GÜVENLİK NOTU ─────────────────────────────────── */
+/* ── GÜVENLİK NOTU ── */
 .auth-security {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgba(255,255,255,.07);
   font-family: var(--font-display);
   font-size: 8.5px;
   font-weight: 500;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--ink-50);
+  color: rgba(255,255,255,.2);
 }
 
-/* ── RESPONSIVE ────────────────────────────────────── */
+/* ── RESPONSIVE ── */
 @media (max-width: 960px) {
   .auth-layout { grid-template-columns: 1fr; }
-  .auth-editorial { display: none; }
-  .auth-form-col { padding: 48px 28px; min-height: calc(100vh - 72px); }
+  .auth-left { display: none; }
+  .auth-right { min-height: calc(100vh - 64px); }
 }
 @media (max-width: 480px) {
   .form-row-2 { grid-template-columns: 1fr; }
-  .auth-form-col { padding: 36px 20px; }
+  .auth-right { padding: 36px 20px; }
+  .auth-topbar { padding: 0 20px; }
 }

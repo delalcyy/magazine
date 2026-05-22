@@ -132,7 +132,7 @@ function buildCardHTML(listing) {
     ? `<span class="c-card__featured-mark" data-i18n="card.featured">Öne Çıkan</span>` : '';
 
   return `
-    <a class="c-card" href="ilan.html?slug=${encodeURIComponent(listing.slug || listing.id)}">
+    <a class="c-card" href="ilan?slug=${encodeURIComponent(listing.slug || listing.id)}">
       <div class="c-card__photo c-card__img">
         ${photoHTML}
         ${featuredMark}
@@ -200,7 +200,7 @@ function updateCastingNav() {
   const user = (typeof Auth !== 'undefined') ? Auth.getUser() : null;
   if (user) {
     loginBtn.textContent = user.first_name;
-    loginBtn.href = '../account.html';
+    loginBtn.href = '../hesabim';
   }
 }
 

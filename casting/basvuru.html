@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Başvuru Oluştur — FashionTV Casting</title>
@@ -15,14 +16,14 @@
 <div class="casting-header">
   <header class="site-header" id="site-header">
     <div class="header-wrap">
-      <a class="logo" href="../index.html">
+      <a class="logo" href="../index">
         <img src="../images/logo.png" class="logo-img" alt="FashionTV" />
       </a>
       <nav class="main-nav">
-        <a href="../index.html" data-i18n="nav.back">fashiontv magazine</a>
-        <a href="index.html" data-i18n="nav.casting">Casting</a>
-        <a href="ilanlar.html" data-i18n="nav.listings">Vitrin</a>
-        <a href="basvuru.html" class="active" data-i18n="nav.apply">Başvuru Oluştur</a>
+        <a href="../index" data-i18n="nav.back">fashiontv magazine</a>
+        <a href="index" data-i18n="nav.casting">Casting</a>
+        <a href="ilanlar" data-i18n="nav.listings">Vitrin</a>
+        <a href="basvuru" class="active" data-i18n="nav.apply">Başvuru Oluştur</a>
       </nav>
       <div class="header-right">
         <div class="lang-switcher">
@@ -37,7 +38,7 @@
             <button class="lang-opt" data-lang="ru"><span class="lang-flag">🇷🇺</span><span class="lang-name">Русский</span><span class="lang-check">✓</span></button>
           </div>
         </div>
-        <a href="../account.html" class="hdr-cta" id="c-nav-login" data-i18n="nav.login">Giriş Yap</a>
+        <a href="../hesabim" class="hdr-cta" id="c-nav-login" data-i18n="nav.login">Giriş Yap</a>
         <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -47,11 +48,11 @@
 <div class="mobile-menu" id="mobile-menu">
   <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
   <nav>
-    <a href="../index.html" data-i18n="nav.back">fashiontv magazine</a>
-    <a href="index.html" data-i18n="nav.casting">Casting</a>
-    <a href="ilanlar.html" data-i18n="nav.listings">Vitrin</a>
-    <a href="basvuru.html" data-i18n="nav.apply">Başvuru Oluştur</a>
-    <a href="../account.html" class="mobile-cta" data-i18n="nav.login">Giriş Yap</a>
+    <a href="../index" data-i18n="nav.back">fashiontv magazine</a>
+    <a href="index" data-i18n="nav.casting">Casting</a>
+    <a href="ilanlar" data-i18n="nav.listings">Vitrin</a>
+    <a href="basvuru" data-i18n="nav.apply">Başvuru Oluştur</a>
+    <a href="../hesabim" class="mobile-cta" data-i18n="nav.login">Giriş Yap</a>
   </nav>
 </div>
 
@@ -61,8 +62,8 @@
   <h2 class="c-auth-gate__title" data-i18n="apply.login.title">Başvuru için giriş yapman gerekiyor</h2>
   <p class="c-auth-gate__sub" data-i18n="apply.login.sub">Ücretsiz hesap oluşturabilir veya mevcut hesabınla giriş yapabilirsin.</p>
   <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-    <a href="../login.html" class="c-btn c-btn--gold" data-i18n="apply.login.btn">Giriş Yap</a>
-    <a href="../register.html" class="c-btn c-btn--outline" data-i18n="apply.register.btn">Kayıt Ol</a>
+    <a href="../giris" class="c-btn c-btn--gold" data-i18n="apply.login.btn">Giriş Yap</a>
+    <a href="../kayit" class="c-btn c-btn--outline" data-i18n="apply.register.btn">Kayıt Ol</a>
   </div>
 </div>
 
@@ -301,7 +302,7 @@
         <label class="c-checkbox-group">
           <input type="checkbox" name="kvkk" id="kvkk" required />
           <span class="c-checkbox-group__label">
-            <a href="#">Gizlilik Politikası</a> ve <a href="#">Kullanım Koşulları</a>'nı okudum, kabul ediyorum. <span style="color:var(--c-gold)">*</span>
+            <a href="gizlilik">Gizlilik Politikası</a> ve <a href="kullanim-kosullari">Kullanım Koşulları</a>'nı okudum, kabul ediyorum. <span style="color:var(--c-gold)">*</span>
           </span>
         </label>
       </div>
@@ -320,7 +321,7 @@
   <div class="c-wrap">
     <div class="c-footer__top">
       <div class="c-footer__brand-col">
-        <a href="index.html" class="c-footer__logo">
+        <a href="index" class="c-footer__logo">
           <img src="../images/logo.png" class="c-footer__logo-img" alt="FashionTV" />
         </a>
         <p class="c-footer__desc" data-i18n="footer.desc">Moda, yetenek ve fırsatın buluştuğu platform.</p>
@@ -328,20 +329,20 @@
       <div>
         <p class="c-footer__col-title" data-i18n="footer.col.casting">Casting</p>
         <div class="c-footer__col-links">
-          <a href="ilanlar.html" data-i18n="footer.listings">İlanlar</a>
-          <a href="basvuru.html" data-i18n="footer.form">Başvuru Formu</a>
+          <a href="ilanlar" data-i18n="footer.listings">İlanlar</a>
+          <a href="basvuru" data-i18n="footer.form">Başvuru Formu</a>
         </div>
       </div>
       <div>
         <p class="c-footer__col-title" data-i18n="footer.col.corp">Kurumsal</p>
         <div class="c-footer__col-links">
-          <a href="../about.html" data-i18n="footer.about">Hakkımızda</a>
+          <a href="../hakkimizda" data-i18n="footer.about">Hakkımızda</a>
         </div>
       </div>
       <div>
         <p class="c-footer__col-title" data-i18n="footer.col.contact">İletişim</p>
         <div class="c-footer__col-links">
-          <a href="../contact.html">fashiontvmagazine.com</a>
+          <a href="../iletisim">fashiontvmagazine.com</a>
         </div>
       </div>
     </div>

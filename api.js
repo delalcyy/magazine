@@ -41,7 +41,7 @@ const Auth = {
     localStorage.removeItem('ftv_token');
     localStorage.removeItem('ftv_user');
     localStorage.removeItem('ftv_selected_plan');
-    window.location.href = 'index.html';
+    window.location.href = 'index';
   }
 };
 

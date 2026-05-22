@@ -56,6 +56,10 @@ const uploadsDir = path.join(__dirname, 'uploads');
 fs.mkdirSync(path.join(uploadsDir, 'casting', 'thumbs'), { recursive: true });
 app.use('/uploads', express.static(uploadsDir, { maxAge: '7d' }));
 
+/* Frontend HTML dosyaları */
+const frontendDir = path.join(__dirname, '..');
+app.use(express.static(frontendDir, { extensions: ['html'] }));
+
 /* ════════════════════════════════════════════════════
    ROTALAR
 ════════════════════════════════════════════════════ */

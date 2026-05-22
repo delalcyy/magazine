@@ -17,7 +17,7 @@ function getTransporter() {
 }
 
 async function sendVerificationEmail(email, firstName, token) {
-  const verifyUrl = `${process.env.FRONTEND_URL}/verify-email.html?token=${token}`;
+  const verifyUrl = `${process.env.FRONTEND_URL}/eposta-dogrula?token=${token}`;
 
   await getTransporter().sendMail({
     from: `"FashionTV Magazine" <${process.env.GMAIL_USER}>`,
@@ -87,7 +87,7 @@ async function sendVerificationEmail(email, firstName, token) {
 }
 
 async function sendPasswordResetEmail(email, firstName, token) {
-  const resetUrl = `${process.env.FRONTEND_URL}/reset-password.html?token=${token}`;
+  const resetUrl = `${process.env.FRONTEND_URL}/sifre-sifirla?token=${token}`;
 
   await getTransporter().sendMail({
     from: `"FashionTV Magazine" <${process.env.GMAIL_USER}>`,

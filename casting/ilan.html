@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>İlan Detayı — FashionTV Casting</title>
@@ -15,14 +16,14 @@
 <div class="casting-header">
   <header class="site-header" id="site-header">
     <div class="header-wrap">
-      <a class="logo" href="../index.html">
+      <a class="logo" href="../index">
         <img src="../images/logo.png" class="logo-img" alt="FashionTV" />
       </a>
       <nav class="main-nav">
-        <a href="../index.html" data-i18n="nav.back">fashiontv magazine</a>
-        <a href="index.html" data-i18n="nav.casting">Casting</a>
-        <a href="ilanlar.html" data-i18n="nav.listings">Vitrin</a>
-        <a href="basvuru.html" data-i18n="nav.apply">Başvuru Oluştur</a>
+        <a href="../index" data-i18n="nav.back">fashiontv magazine</a>
+        <a href="index" data-i18n="nav.casting">Casting</a>
+        <a href="ilanlar" data-i18n="nav.listings">Vitrin</a>
+        <a href="basvuru" data-i18n="nav.apply">Başvuru Oluştur</a>
       </nav>
       <div class="header-right">
         <div class="lang-switcher">
@@ -37,8 +38,8 @@
             <button class="lang-opt" data-lang="ru"><span class="lang-flag">🇷🇺</span><span class="lang-name">Русский</span><span class="lang-check">✓</span></button>
           </div>
         </div>
-        <a href="basvuru.html" class="hdr-apply" data-i18n="nav.apply.hdr">Başvuru Oluştur</a>
-        <a href="../account.html" class="hdr-cta" id="c-nav-login" data-i18n="nav.login">Giriş Yap</a>
+        <a href="basvuru" class="hdr-apply" data-i18n="nav.apply.hdr">Başvuru Oluştur</a>
+        <a href="../hesabim" class="hdr-cta" id="c-nav-login" data-i18n="nav.login">Giriş Yap</a>
         <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -48,11 +49,11 @@
 <div class="mobile-menu" id="mobile-menu">
   <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
   <nav>
-    <a href="../index.html" data-i18n="nav.back">fashiontv magazine</a>
-    <a href="index.html" data-i18n="nav.casting">Casting</a>
-    <a href="ilanlar.html" data-i18n="nav.listings">Vitrin</a>
-    <a href="basvuru.html" data-i18n="nav.apply">Başvuru Oluştur</a>
-    <a href="../account.html" class="mobile-cta" data-i18n="nav.login">Giriş Yap</a>
+    <a href="../index" data-i18n="nav.back">fashiontv magazine</a>
+    <a href="index" data-i18n="nav.casting">Casting</a>
+    <a href="ilanlar" data-i18n="nav.listings">Vitrin</a>
+    <a href="basvuru" data-i18n="nav.apply">Başvuru Oluştur</a>
+    <a href="../hesabim" class="mobile-cta" data-i18n="nav.login">Giriş Yap</a>
   </nav>
 </div>
 
@@ -69,7 +70,7 @@
   <div class="c-wrap">
     <div class="c-footer__top">
       <div class="c-footer__brand-col">
-        <a href="index.html" class="c-footer__logo">
+        <a href="index" class="c-footer__logo">
           <img src="../images/logo.png" class="c-footer__logo-img" alt="FashionTV" />
         </a>
         <p class="c-footer__desc" data-i18n="footer.desc">Moda, yetenek ve fırsatın buluştuğu platform.</p>
@@ -77,20 +78,20 @@
       <div>
         <p class="c-footer__col-title" data-i18n="footer.col.casting">Casting</p>
         <div class="c-footer__col-links">
-          <a href="ilanlar.html" data-i18n="footer.listings">İlanlar</a>
-          <a href="basvuru.html" data-i18n="footer.form">Başvuru Formu</a>
+          <a href="ilanlar" data-i18n="footer.listings">İlanlar</a>
+          <a href="basvuru" data-i18n="footer.form">Başvuru Formu</a>
         </div>
       </div>
       <div>
         <p class="c-footer__col-title" data-i18n="footer.col.corp">Kurumsal</p>
         <div class="c-footer__col-links">
-          <a href="../about.html" data-i18n="footer.about">Hakkımızda</a>
+          <a href="../hakkimizda" data-i18n="footer.about">Hakkımızda</a>
         </div>
       </div>
       <div>
         <p class="c-footer__col-title" data-i18n="footer.col.contact">İletişim</p>
         <div class="c-footer__col-links">
-          <a href="../contact.html">fashiontvmagazine.com</a>
+          <a href="../iletisim">fashiontvmagazine.com</a>
         </div>
       </div>
     </div>
@@ -139,7 +140,7 @@ function showError(msg) {
     <div class="c-empty" style="padding: 120px 20px;">
       <div class="c-empty__icon">◇</div>
       <p class="c-empty__title">${escHtml(msg)}</p>
-      <a href="ilanlar.html" class="c-btn c-btn--outline c-btn--sm" style="margin-top:24px;">İlanlara Dön</a>
+      <a href="ilanlar" class="c-btn c-btn--outline c-btn--sm" style="margin-top:24px;">İlanlara Dön</a>
     </div>`;
 }
 
@@ -177,7 +178,7 @@ function renderDetail(l) {
         ${heroHTML}
         <div class="c-detail__hero-overlay"></div>
         <div class="c-detail__hero-cat c-wrap">
-          <a href="ilanlar.html" style="color:rgba(255,255,255,.5);font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;">← İlanlara Dön</a>
+          <a href="ilanlar" style="color:rgba(255,255,255,.5);font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;">← İlanlara Dön</a>
         </div>
       </div>
       <div class="c-wrap">

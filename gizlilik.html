@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gizlilik Politikası — Fashiontv Magazine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #site-header { background: #0a0a0a !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
+    #site-header .logo-img { filter: brightness(0) invert(1) !important; }
+    #site-header .main-nav > a, #site-header .nav-dropdown-trigger { color: rgba(255,255,255,0.75) !important; }
+    #site-header .main-nav > a:hover { color: #fff !important; }
+    #site-header .hdr-cta { color: #fff !important; border-color: rgba(255,255,255,0.3) !important; }
+    #site-header .burger span { background: #fff !important; }
+
+    .legal-page { background: #fafaf8; min-height: 100vh; }
+    .legal-hero {
+      background: #0a0a0a;
+      padding: 120px 0 64px;
+      text-align: center;
+    }
+    .legal-hero__kicker {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .34em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .legal-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -.02em;
+      margin-bottom: 12px;
+    }
+    .legal-hero__date {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,.38);
+    }
+    .legal-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 64px 24px 96px;
+    }
+    .legal-body h2 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0a0a0a;
+      letter-spacing: -.01em;
+      margin: 48px 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e8e6e1;
+    }
+    .legal-body h2:first-child { margin-top: 0; }
+    .legal-body p {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 300;
+      color: #3a3a3a;
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+    .legal-body ul {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+    .legal-body ul li {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 300;
+      color: #3a3a3a;
+      line-height: 1.9;
+      margin-bottom: 8px;
+    }
+    .legal-contact-box {
+      background: #0a0a0a;
+      color: #fff;
+      padding: 32px 36px;
+      margin-top: 48px;
+      border-radius: 4px;
+    }
+    .legal-contact-box p {
+      color: rgba(255,255,255,.65);
+      margin-bottom: 4px;
+    }
+    .legal-contact-box a { color: var(--gold); }
+  </style>
+</head>
+<body class="legal-page">
+
+<header class="site-header" id="site-header">
+  <div class="header-wrap">
+    <a class="logo" href="anasayfa" aria-label="Fashiontv Magazine">
+      <img src="images/logo.png" class="logo-img">
+    </a>
+    <nav class="main-nav" aria-label="Ana menü">
+      <a href="anasayfa">Ana Sayfa</a>
+      <a href="haberler">Haberler</a>
+      <div class="nav-dropdown">
+        <a href="hakkimizda" class="nav-dropdown-trigger">Hakkımızda</a>
+        <div class="nav-dropdown-panel"></div>
+      </div>
+      <a href="abonelik">Abonelik</a>
+      <a href="iletisim">İletişim</a>
+      <a href="casting/index" class="nav-casting">Casting <span class="nav-casting-badge">NEW</span></a>
+    </nav>
+    <div class="header-right">
+      <a href="hesabim" class="hdr-cta">Giriş Yap</a>
+      <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-head">
+    <a href="index" class="mobile-menu-logo"><img src="images/logo.png" alt="Fashiontv Magazine"></a>
+    <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Kapat">✕</button>
+  </div>
+  <nav>
+    <a href="anasayfa">Ana Sayfa</a>
+    <a href="haberler">Haberler</a>
+    <a href="hakkimizda">Hakkımızda</a>
+    <a href="abonelik">Abonelik</a>
+    <a href="iletisim">İletişim</a>
+    <a href="casting/index" class="nav-casting">Casting</a>
+    <a href="hesabim" class="mobile-cta">Giriş Yap</a>
+  </nav>
+</div>
+
+<div class="legal-hero">
+  <div class="container">
+    <span class="legal-hero__kicker">Yasal</span>
+    <h1 class="legal-hero__title">Gizlilik Politikası</h1>
+    <p class="legal-hero__date">Son güncelleme: 1 Ocak 2026</p>
+  </div>
+</div>
+
+<div class="legal-body">
+
+  <h2>1. Genel Bilgi</h2>
+  <p>Fashiontv Magazine olarak kişisel verilerinizin gizliliğine büyük önem veriyoruz. Bu Gizlilik Politikası, fashiontvmagazine.com web sitesini ("Site") kullandığınızda hangi bilgileri topladığımızı, bu bilgileri nasıl kullandığımızı ve haklarınızın neler olduğunu açıklamaktadır.</p>
+  <p>Sitemizi kullanarak bu politikada belirtilen uygulamaları kabul etmiş sayılırsınız. Bu politikayı düzenli olarak gözden geçirmenizi öneririz.</p>
+
+  <h2>2. Topladığımız Kişisel Veriler</h2>
+  <p>Size daha iyi hizmet sunabilmek amacıyla aşağıdaki kişisel verileri toplayabiliriz:</p>
+  <ul>
+    <li><strong>Kimlik Bilgileri:</strong> Ad, soyad</li>
+    <li><strong>İletişim Bilgileri:</strong> E-posta adresi, telefon numarası</li>
+    <li><strong>Hesap Bilgileri:</strong> Kullanıcı adı, şifrelenmiş parola</li>
+    <li><strong>Abonelik Bilgileri:</strong> Seçilen plan, ödeme geçmişi</li>
+    <li><strong>Teknik Veriler:</strong> IP adresi, tarayıcı türü, cihaz bilgileri, ziyaret saatleri</li>
+    <li><strong>Kullanım Verileri:</strong> Okunan içerikler, tıklanan bağlantılar, geçirilen süre</li>
+  </ul>
+
+  <h2>3. Kişisel Verilerin Kullanım Amaçları</h2>
+  <p>Topladığımız kişisel verileri aşağıdaki amaçlarla kullanırız:</p>
+  <ul>
+    <li>Hesabınızı oluşturmak ve yönetmek</li>
+    <li>Abonelik hizmetlerinizi sağlamak ve faturalandırmak</li>
+    <li>Sitenin işlevselliğini geliştirmek ve kişiselleştirmek</li>
+    <li>Müşteri destek hizmetleri sunmak</li>
+    <li>Haber bülteni ve duyurular göndermek (açık rızanız dahilinde)</li>
+    <li>Yasal yükümlülüklerimizi yerine getirmek</li>
+    <li>Güvenlik ve dolandırıcılık önleme</li>
+  </ul>
+
+  <h2>4. Kişisel Verilerin Saklanması ve Güvenliği</h2>
+  <p>Kişisel verileriniz, endüstri standardı güvenlik önlemleriyle korunmaktadır. Verileriniz şifreli sunucularda saklanmakta, yetkisiz erişime karşı SSL/TLS şifrelemesi ile korunmaktadır.</p>
+  <p>Kişisel verilerinizi yalnızca ilgili mevzuatın zorunlu kıldığı veya hizmetlerimizin sunulması için gerekli olan süre boyunca saklarız. Hesabınızı kapattığınızda verileriniz yasal saklama sürelerinin sona ermesinin ardından silinir.</p>
+
+  <h2>5. Kişisel Verilerin Üçüncü Taraflarla Paylaşımı</h2>
+  <p>Kişisel verilerinizi aşağıdaki durumlar dışında üçüncü taraflarla paylaşmayız:</p>
+  <ul>
+    <li>Açık rızanızın bulunması</li>
+    <li>Ödeme işlemcileri (yalnızca ödeme için gerekli minimum veri)</li>
+    <li>Yasal bir zorunluluk veya mahkeme kararı olması</li>
+    <li>Platformun işletilmesi için hizmet sağlayıcılarla (gizlilik sözleşmesi kapsamında)</li>
+  </ul>
+
+  <h2>6. KVKK Kapsamındaki Haklarınız</h2>
+  <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında aşağıdaki haklara sahipsiniz:</p>
+  <ul>
+    <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme hakkı</li>
+    <li>İşlenmişse buna ilişkin bilgi talep etme hakkı</li>
+    <li>Verilerinizin düzeltilmesini talep etme hakkı</li>
+    <li>Belirli koşullar altında silinmesini talep etme hakkı</li>
+    <li>İşlemeye itiraz etme hakkı</li>
+    <li>Otomatik sistemler aracılığıyla aleyhinize bir sonuç çıkmasına itiraz etme hakkı</li>
+  </ul>
+  <p>Bu haklarınızı kullanmak için aşağıdaki iletişim bilgilerini kullanabilirsiniz.</p>
+
+  <h2>7. Çerezler</h2>
+  <p>Sitemiz, kullanıcı deneyimini iyileştirmek amacıyla çerezler kullanmaktadır. Çerez kullanımı hakkında detaylı bilgi için <a href="cerez" style="color:var(--gold);">Çerez Politikamızı</a> inceleyebilirsiniz.</p>
+
+  <h2>8. Politika Değişiklikleri</h2>
+  <p>Bu gizlilik politikasını zaman zaman güncelleyebiliriz. Önemli değişiklikler yapıldığında kayıtlı e-posta adresinize bildirim göndeririz. Güncel politikayı her zaman bu sayfada bulabilirsiniz.</p>
+
+  <div class="legal-contact-box">
+    <p><strong style="color:#fff;">İletişim</strong></p>
+    <p>Gizlilik konusundaki sorularınız için bize ulaşabilirsiniz:</p>
+    <p>E-posta: <a href="mailto:gizlilik@fashiontvmagazine.com">gizlilik@fashiontvmagazine.com</a></p>
+    <p>Web: <a href="iletisim">fashiontvmagazine.com/iletisim</a></p>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="footer-logo" href="index">
+        <img src="images/logo.png" alt="Fashiontv Magazine" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1);">
+      </a>
+      <p class="footer-tagline">Modanın, güzelliğin ve yaşam sanatının<br />buluştuğu premium editorial platform.</p>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-col-heading">Keşfet</h4>
+      <ul><li><a href="haberler">Haberler</a></li><li><a href="abonelik">Abonelik</a></li><li><a href="casting/index">Casting</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-col-heading">Kurumsal</h4>
+      <ul><li><a href="hakkimizda">Hakkımızda</a></li><li><a href="iletisim">İletişim</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4 class="footer-col-heading">Yasal</h4>
+      <ul><li><a href="gizlilik">Gizlilik Politikası</a></li><li><a href="kullanim-kosullari">Kullanım Koşulları</a></li><li><a href="cerez">Çerez Politikası</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2026 Fashiontv Magazine. Tüm hakları saklıdır.</p>
+      <div class="footer-legal"><a href="gizlilik">Gizlilik</a><a href="kullanim-kosullari">Kullanım Koşulları</a><a href="cerez">Çerez</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="api.js"></script>
+<script>
+const hdr = document.getElementById('site-header');
+window.addEventListener('scroll', () => hdr.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+const burger = document.getElementById('burger');
+const mob = document.getElementById('mobile-menu');
+const mobClose = document.getElementById('mobile-menu-close');
+burger.addEventListener('click', () => { mob.classList.add('is-open'); document.body.style.overflow = 'hidden'; });
+mobClose.addEventListener('click', () => { mob.classList.remove('is-open'); document.body.style.overflow = ''; });
+mob.addEventListener('click', e => { if (e.target === mob) { mob.classList.remove('is-open'); document.body.style.overflow = ''; } });
+</script>
+</body>
+</html>

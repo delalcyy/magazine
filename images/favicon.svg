@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="black"/>
+  <!-- Gem/diamond shape: flat top corners, widest middle, sharp bottom point -->
+  <polygon points="28,14 72,14 94,50 50,90 6,50" fill="none" stroke="white" stroke-width="4.5"/>
+  <!-- horizontal line at top (gem table cut) -->
+  <line x1="28" y1="14" x2="72" y2="14" stroke="white" stroke-width="4.5"/>
+  <!-- f letter -->
+  <text x="50" y="65" font-family="Georgia, serif" font-size="40" font-weight="bold" fill="white" text-anchor="middle">f</text>
+</svg>
