@@ -14,7 +14,9 @@
 /* ── BACKEND ADRESI ────────────────────────────────────
    Backend farklı bir porta taşınırsa sadece bu satırı değiştir.
 ─────────────────────────────────────────────────────── */
-const API_BASE = 'http://localhost:4000/api';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:4000/api'
+  : '/api';
 
 /* ══════════════════════════════════════════════════════
    TOKEN & KULLANICI YÖNETİMİ (localStorage)
