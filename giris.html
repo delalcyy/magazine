@@ -18,7 +18,19 @@
   <a class="auth-topbar__logo" href="anasayfa">
     <img src="images/logo.png" alt="Fashiontv Magazine">
   </a>
-  <a href="anasayfa" class="auth-topbar__back">
+  <div class="lang-switcher">
+    <button class="lang-current">
+      <span class="lang-flag lang-flag-current">🇹🇷</span>
+      <span class="lang-code-current">TR</span>
+      <svg class="lang-chevron" viewBox="0 0 10 6" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="currentColor"/></svg>
+    </button>
+    <div class="lang-dropdown">
+      <button class="lang-opt active" data-lang="tr"><span class="lang-flag">🇹🇷</span><span class="lang-name">Türkçe</span><span class="lang-check">✓</span></button>
+      <button class="lang-opt" data-lang="en"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span><span class="lang-check">✓</span></button>
+      <button class="lang-opt" data-lang="ru"><span class="lang-flag">🇷🇺</span><span class="lang-name">Русский</span><span class="lang-check">✓</span></button>
+    </div>
+  </div>
+  <a href="anasayfa" class="auth-topbar__back" data-i18n="login.back">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
       <path d="M19 12H5M12 5l-7 7 7 7"/>
     </svg>
@@ -65,8 +77,8 @@
   <div class="auth-right">
 
     <div class="auth-form-head">
-      <span class="auth-form-head__label">Üye Girişi</span>
-      <h1 class="auth-form-head__title">Giriş&nbsp;Yap</h1>
+      <span class="auth-form-head__label" data-i18n="login.form.label">Üye Girişi</span>
+      <h1 class="auth-form-head__title" data-i18n="login.form.title">Giriş&nbsp;Yap</h1>
       <p class="auth-form-head__sub">
         Hesabınız yok mu?&nbsp;
         <a href="kayit">Hemen kayıt olun</a>
@@ -82,13 +94,13 @@
     <form class="auth-form" id="login-form" novalidate>
 
       <div class="form-field">
-        <label class="form-field__label" for="email">E-posta Adresi</label>
+        <label class="form-field__label" for="email" data-i18n="login.field.email">E-posta Adresi</label>
         <input class="form-field__input" type="email" id="email" name="email"
           placeholder="ornek@email.com" autocomplete="email" required />
       </div>
 
       <div class="form-field">
-        <label class="form-field__label" for="password">Şifre</label>
+        <label class="form-field__label" for="password" data-i18n="login.field.password">Şifre</label>
         <div class="pw-field">
           <input class="form-field__input" type="password" id="password" name="password"
             placeholder="Şifrenizi giriniz" autocomplete="current-password" required />
@@ -100,9 +112,9 @@
         </div>
       </div>
 
-      <a href="sifremi-unuttum" class="form-forgot">Şifremi unuttum</a>
+      <a href="sifremi-unuttum" class="form-forgot" data-i18n="login.forgot">Şifremi unuttum</a>
 
-      <button class="auth-btn auth-btn--gold" type="submit" id="login-btn">
+      <button class="auth-btn auth-btn--gold" type="submit" id="login-btn" data-i18n="login.btn">
         Giriş Yap
       </button>
 
@@ -110,7 +122,7 @@
 
     <div class="auth-divider"><span>veya</span></div>
 
-    <a href="kayit" class="auth-btn auth-btn--outline">
+    <a href="kayit" class="auth-btn auth-btn--outline" data-i18n="login.new.account">
       Yeni Hesap Oluştur
     </a>
 
@@ -227,5 +239,6 @@
 })();
 </script>
 
+<script src="site-lang.js"></script>
 </body>
 </html>

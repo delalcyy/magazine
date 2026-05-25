@@ -993,10 +993,10 @@ img  { display: block; max-width: 100%; }
 }
 
 /* Placeholder image colours */
-.img-placeholder-1 { background: linear-gradient(155deg, #c4b4a0 0%, #8a7060 100%); }
-.img-placeholder-2 { background: linear-gradient(155deg, #c0b0c4 0%, #807090 100%); }
-.img-placeholder-3 { background: linear-gradient(155deg, #a8bca8 0%, #5a7260 100%); }
-.img-placeholder-4 { background: linear-gradient(155deg, #c4bca8 0%, #807060 100%); }
+.img-placeholder-1 { background-image: url("images/minimalizm1.jpg"); background-size: cover; background-position: center top; }
+.img-placeholder-2 { background-image: url("images/makyaj2.jpg"); background-size: cover; background-position: center top; }
+.img-placeholder-3 { background-image: url("images/valentino3.jpg"); background-size: cover; background-position: center top; }
+.img-placeholder-4 { background-image: url("images/monokrom4.jpg"); background-size: cover; background-position: center top; }
 
 .article-tag {
   position: absolute;
@@ -2157,4 +2157,116 @@ img  { display: block; max-width: 100%; }
   border: 1px solid rgba(255,255,255,.35);
   color: #fff;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   LANG SWITCHER — TR / EN / RU
+   ═══════════════════════════════════════════════════════════ */
+.lang-switcher {
+  position: relative;
+}
+.lang-current {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.8);
+  transition: border-color .18s, background .18s, color .18s;
+  user-select: none;
+  white-space: nowrap;
+}
+/* Light header variant — when header is scrolled or on white pages */
+.site-header.scrolled .lang-current,
+.site-header--light .lang-current {
+  background: rgba(12,12,12,.06);
+  border-color: rgba(12,12,12,.18);
+  color: rgba(12,12,12,.7);
+}
+.lang-current:hover {
+  border-color: var(--gold);
+  color: #fff;
+}
+.site-header.scrolled .lang-current:hover,
+.site-header--light .lang-current:hover {
+  color: var(--ink);
+}
+.lang-current .lang-flag { font-size: 14px; line-height: 1; }
+.lang-current .lang-chevron {
+  color: rgba(255,255,255,.4);
+  transition: transform .18s;
+  margin-left: 2px;
+  flex-shrink: 0;
+}
+.site-header.scrolled .lang-current .lang-chevron,
+.site-header--light .lang-current .lang-chevron {
+  color: rgba(12,12,12,.35);
+}
+.lang-switcher.open .lang-chevron { transform: rotate(180deg); }
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #111;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 6px;
+  overflow: hidden;
+  min-width: 130px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity .18s, transform .18s;
+  z-index: 999;
+  box-shadow: 0 12px 32px rgba(0,0,0,.5);
+}
+.lang-switcher.open .lang-dropdown {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+.lang-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: rgba(255,255,255,.55);
+  transition: background .15s, color .15s;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+}
+.lang-opt:hover { background: rgba(255,255,255,.06); color: #fff; }
+.lang-opt.active { color: var(--gold); background: rgba(201,168,76,.08); }
+.lang-opt .lang-flag { font-size: 16px; line-height: 1; }
+.lang-opt .lang-name { flex: 1; }
+.lang-opt .lang-check { font-size: 10px; color: var(--gold); opacity: 0; }
+.lang-opt.active .lang-check { opacity: 1; }
+
+/* Auth pages — topbar variant */
+.auth-topbar .lang-switcher { margin-left: auto; margin-right: 0; }
+.auth-topbar .lang-current {
+  background: rgba(12,12,12,.06);
+  border-color: rgba(12,12,12,.18);
+  color: rgba(12,12,12,.7);
+}
+.auth-topbar .lang-current:hover {
+  border-color: var(--gold);
+  color: var(--ink);
+}
+.auth-topbar .lang-current .lang-chevron { color: rgba(12,12,12,.35); }
+
+@media (max-width: 768px) { .lang-switcher { display: none; } }
 .home-hero__btn--outline:hover { border-color: #fff; }

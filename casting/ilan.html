@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>İlan Detayı — FashionTV Casting</title>
-  <link rel="stylesheet" href="../style.css" />
-  <link rel="stylesheet" href="casting.css" />
+  <link rel="stylesheet" href="../style.css?v=2" />
+  <link rel="stylesheet" href="casting.css?v=2" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
@@ -105,9 +105,9 @@
   </div>
 </footer>
 
-<script src="../api.js"></script>
-<script src="casting-api.js"></script>
-<script src="lang.js"></script>
+<script src="../api.js?v=2"></script>
+<script src="casting-api.js?v=2"></script>
+<script src="lang.js?v=2"></script>
 <script>
 'use strict';
 
@@ -173,52 +173,80 @@ function renderDetail(l) {
     : '';
 
   document.getElementById('detail-container').innerHTML = `
-    <div class="c-detail">
-      <div class="c-detail__hero">
-        ${heroHTML}
-        <div class="c-detail__hero-overlay"></div>
-        <div class="c-detail__hero-cat c-wrap">
-          <a href="ilanlar" style="color:rgba(255,255,255,.5);font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;">← İlanlara Dön</a>
-        </div>
-      </div>
-      <div class="c-wrap">
-        <div class="c-detail__body">
-          <div class="c-detail__main">
-            <h1 class="c-detail__name">${escHtml(l.full_name)}</h1>
-            <div class="c-detail__meta">
+    <div class="cpd">
+
+      <div class="cpd__top c-wrap">
+        <a href="ilanlar" class="cpd__back">← İlanlara Dön</a>
+        <div class="cpd__head">
+          <div>
+            <div class="cpd__badges">
               <span class="c-badge c-badge--cat">${catLabel(l.category)}</span>
               <span class="c-badge c-badge--gold">${genderLabel(l.gender)}</span>
               ${l.is_featured ? '<span class="c-badge c-badge--white">Öne Çıkan</span>' : ''}
             </div>
-            <div class="c-stats-grid" style="margin:28px 0;">
-              ${stat('Yaş', l.age)}
-              ${stat('Boy', l.height + ' cm')}
-              ${stat('Kilo', l.weight + ' kg')}
-              ${l.body_size ? stat('Beden', l.body_size) : ''}
-              ${l.eye_color ? stat('Göz', l.eye_color) : ''}
-              ${l.hair_color ? stat('Saç', l.hair_color) : ''}
-              ${l.shoe_size ? stat('Ayakkabı', l.shoe_size) : ''}
-              ${l.city_name ? stat('Şehir', l.city_name) : ''}
-            </div>
-            ${descHTML}
-            ${skillsHTML}
-            ${langsHTML}
-            ${galleryHTML}
+            <h1 class="cpd__name">${escHtml(l.full_name)}</h1>
           </div>
-          <aside class="c-detail__aside">
-            <div style="background:var(--c-surface);padding:28px;border:1px solid var(--c-border);">
-              <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--c-muted);margin-bottom:16px;">Deneyim</p>
-              <p style="color:#fff;font-size:15px;">${expLabel(l.experience)}</p>
-            </div>
-            <div id="inquiry-form" style="margin-top:1px;background:var(--c-surface);padding:28px;border:1px solid var(--c-border);">
-              <p style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--c-gold);margin-bottom:16px;">Çalışma Talebi</p>
-              <textarea id="inq-msg" class="c-input" style="min-height:100px;resize:vertical;margin-bottom:12px;" placeholder="Mesajınız…"></textarea>
-              <div id="inq-alert" class="c-alert"></div>
-              <button class="c-btn c-btn--gold c-btn--full c-btn--sm" id="inq-send" style="margin-top:12px;">Talep Gönder</button>
-            </div>
-          </aside>
         </div>
       </div>
+
+      <div class="cpd__body c-wrap">
+
+        <div class="cpd__left">
+          ${mainSrc
+            ? `<img src="${mainSrc}" alt="${escHtml(l.full_name)}" class="cpd__photo" />`
+            : `<div class="cpd__photo-empty">◇</div>`}
+
+          ${galleryImgs.length ? `
+          <div class="cpd__thumbs">
+            ${galleryImgs.map(img=>`
+              <img src="${castImageUrl(img.file_name)}" alt="" loading="lazy" class="cpd__thumb"
+                onclick="document.querySelector('.cpd__photo').src='${castImageUrl(img.file_name)}'" />
+            `).join('')}
+          </div>` : ''}
+        </div>
+
+        <div class="cpd__right">
+
+          <div class="cpd__stats">
+            ${stat('Yaş', l.age)}
+            ${stat('Boy', l.height ? l.height + ' cm' : null)}
+            ${stat('Kilo', l.weight ? l.weight + ' kg' : null)}
+            ${stat('Beden', l.body_size)}
+            ${stat('Göz', l.eye_color)}
+            ${stat('Saç', l.hair_color)}
+            ${stat('Ayakkabı', l.shoe_size)}
+            ${stat('Şehir', l.city_name)}
+            ${stat('Deneyim', expLabel(l.experience))}
+          </div>
+
+          ${l.description ? `
+          <div class="cpd__section">
+            <p class="cpd__stitle">Hakkında</p>
+            <p class="cpd__desc">${escHtml(l.description)}</p>
+          </div>` : ''}
+
+          ${l.skills?.length ? `
+          <div class="cpd__section">
+            <p class="cpd__stitle">Yetenekler</p>
+            <div class="cpd__tags">${l.skills.map(s=>`<span class="c-tag">${escHtml(s)}</span>`).join('')}</div>
+          </div>` : ''}
+
+          ${l.languages?.length ? `
+          <div class="cpd__section">
+            <p class="cpd__stitle">Diller</p>
+            <div class="cpd__tags">${l.languages.map(s=>`<span class="c-tag">${escHtml(s)}</span>`).join('')}</div>
+          </div>` : ''}
+
+          <div class="cpd__form">
+            <p class="cpd__stitle" style="color:var(--c-gold)">Çalışma Talebi</p>
+            <textarea id="inq-msg" class="c-input" style="min-height:80px;resize:vertical;margin-bottom:10px;" placeholder="Mesajınız…"></textarea>
+            <div id="inq-alert" class="c-alert"></div>
+            <button class="c-btn c-btn--gold c-btn--full c-btn--sm" id="inq-send">Talep Gönder</button>
+          </div>
+
+        </div>
+      </div>
+
     </div>`;
 
   document.getElementById('inq-send')?.addEventListener('click', async () => {

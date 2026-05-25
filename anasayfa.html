@@ -26,14 +26,14 @@
   <div class="home-hero__content">
     <div class="home-hero__eyebrow">
       <span class="home-hero__line"></span>
-      <span class="home-hero__label">fashiontv magazine</span>
+      <span class="home-hero__label" data-i18n="home.hero.label">fashiontv magazine</span>
       <span class="home-hero__line"></span>
     </div>
-    <h1 class="home-hero__title">Moda, Güzellik<br><em>& Yaşam Sanatı</em></h1>
-    <p class="home-hero__sub">Podyumdan yaşama — lüks ve stilin buluştuğu premium dergi.</p>
+    <h1 class="home-hero__title" data-i18n="home.hero.title">Moda, Güzellik<br><em>& Yaşam Sanatı</em></h1>
+    <p class="home-hero__sub" data-i18n="home.hero.sub">Podyumdan yaşama — lüks ve stilin buluştuğu premium dergi.</p>
     <div class="home-hero__actions">
-      <a href="#issue" class="home-hero__btn home-hero__btn--gold">Bu Ayın Sayısı</a>
-      <a href="abonelik" class="home-hero__btn home-hero__btn--outline">Abone Ol</a>
+      <a href="#issue" class="home-hero__btn home-hero__btn--gold" data-i18n="home.hero.btn.issue">Güncel Sayı</a>
+      <a href="abonelik" class="home-hero__btn home-hero__btn--outline" data-i18n="home.hero.btn.sub">Abone Ol</a>
     </div>
   </div>
 </section>
@@ -48,22 +48,32 @@
     </a>
     <!-- Desktop nav -->
     <nav class="main-nav" aria-label="Ana menü">
-      <a href="anasayfa">Ana Sayfa</a>
-     <a href="haberler">Haberler</a>
+      <a href="anasayfa" data-i18n="nav.home">Ana Sayfa</a>
+      <a href="haberler" data-i18n="nav.news">Haberler</a>
       <div class="nav-dropdown">
-        <a href="hakkimizda" class="nav-dropdown-trigger">Hakkımızda</a>
+        <a href="hakkimizda" class="nav-dropdown-trigger" data-i18n="nav.about">Hakkımızda</a>
         <div class="nav-dropdown-panel">
-          
         </div>
       </div>
-      <a href="abonelik">Abonelik</a>
-
-      <a href="iletisim">İletişim</a>
+      <a href="abonelik" data-i18n="nav.sub">Abonelik</a>
+      <a href="iletisim" data-i18n="nav.contact">İletişim</a>
       <a href="casting/index" class="nav-casting">Casting <span class="nav-casting-badge">NEW</span></a>
     </nav>
 
     <!-- Right side -->
     <div class="header-right">
+      <div class="lang-switcher">
+        <button class="lang-current">
+          <span class="lang-flag lang-flag-current">🇹🇷</span>
+          <span class="lang-code-current">TR</span>
+          <svg class="lang-chevron" viewBox="0 0 10 6" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="currentColor"/></svg>
+        </button>
+        <div class="lang-dropdown">
+          <button class="lang-opt active" data-lang="tr"><span class="lang-flag">🇹🇷</span><span class="lang-name">Türkçe</span><span class="lang-check">✓</span></button>
+          <button class="lang-opt" data-lang="en"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span><span class="lang-check">✓</span></button>
+          <button class="lang-opt" data-lang="ru"><span class="lang-flag">🇷🇺</span><span class="lang-name">Русский</span><span class="lang-check">✓</span></button>
+        </div>
+      </div>
       <button class="burger" id="burger" aria-label="Menü">
         <span></span><span></span><span></span>
       </button>
@@ -81,11 +91,11 @@
     <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Menüyü kapat">✕</button>
   </div>
   <nav>
-    <a href="anasayfa">Ana Sayfa</a>
-    <a href="haberler">Haberler</a>
-    <a href="hakkimizda">Hakkımızda</a>
-    <a href="abonelik">Abonelik</a>
-    <a href="iletisim">İletişim</a>
+    <a href="anasayfa" data-i18n="nav.home">Ana Sayfa</a>
+    <a href="haberler" data-i18n="nav.news">Haberler</a>
+    <a href="hakkimizda" data-i18n="nav.about">Hakkımızda</a>
+    <a href="abonelik" data-i18n="nav.sub">Abonelik</a>
+    <a href="iletisim" data-i18n="nav.contact">İletişim</a>
     <a href="casting/index" class="nav-casting">Casting</a>
   </nav>
 </div>
@@ -98,28 +108,28 @@
   <div class="editorial-intro-inner">
 
     <div class="editorial-copy">
-      <p class="editorial-label">Fashiontv Magazine</p>
+      <p class="editorial-label" data-i18n="home.editorial.label">Fashiontv Magazine</p>
 
-      <h2 class="editorial-title">
+      <h2 class="editorial-title" data-i18n="home.editorial.title">
         Modayı sadece takip etmeyin,<br>
         onun bir parçası olun
       </h2>
 
-      <p class="editorial-text">
+      <p class="editorial-text" data-i18n="home.editorial.text">
         Fashiontv Magazine; moda, güzellik, kültür ve yaşam stilini bir araya getiren
         seçkin bir editoryal deneyim sunar. Her sayı; ilham veren görseller, güçlü hikâyeler
         ve zamansız estetik anlayışıyla hazırlanır.
       </p>
 
       <div class="editorial-features">
-        <span>Özel editoryal içerikler</span>
-        <span>Premium dergi deneyimi</span>
-        <span>Dijital ve yaratıcı tasarım alanı</span>
+        <span data-i18n="home.editorial.feat1">Özel editoryal içerikler</span>
+        <span data-i18n="home.editorial.feat2">Premium dergi deneyimi</span>
+        <span data-i18n="home.editorial.feat3">Dijital ve yaratıcı tasarım alanı</span>
       </div>
 
       <div class="editorial-actions">
-        <a href="#issue" class="editorial-btn dark">Bu Ayın Sayısı</a>
-        <a href="#subscription" class="editorial-btn light">Aboneliği İncele</a>
+        <a href="#issue" class="editorial-btn dark" data-i18n="home.editorial.btn.dark">Güncel Sayı</a>
+        <a href="#subscription" class="editorial-btn light" data-i18n="home.editorial.btn.sub">Aboneliği İncele</a>
       </div>
     </div>
 
@@ -129,20 +139,7 @@
         <div class="magazine-back"></div>
         <div class="magazine-middle"></div>
 
-        <div class="magazine-cover">
-          <div class="cover-top">fashiontv</div>
-          <div class="cover-sub">magazine</div>
-
-          <div class="cover-image-area">
-            <div class="cover-image-overlay"></div>
-          </div>
-
-          <div class="cover-bottom">
-            <p class="cover-month">NİSAN 2026</p>
-            <h3 class="cover-title">The New Luxury Issue</h3>
-            <p class="cover-line">Moda • Güzellik • Kültür • Stil</p>
-          </div>
-        </div>
+        <div class="magazine-cover" style="background-image:url('images/fashion1.jpeg');background-size:cover;background-position:center top;"></div>
 
       </div>
     </div>
@@ -160,36 +157,29 @@
 
     <!-- Cover mockup -->
     <div class="issue-cover fade-up">
-      <div class="cover-art">
-        <div class="cover-art-inner">
-          <span class="cover-brand">fashiontv </span>
-          <span class="cover-title-word">magazine</span>
-          <div class="cover-divider"></div>
-          <span class="cover-edition">NİSAN 2026</span>
-          <div class="cover-decoration"></div>
-        </div>
+      <div class="cover-art" style="background-image:url('images/fashion1.jpeg');background-size:cover;background-position:center top;">
         <div class="cover-ribbon">YENİ SAYI</div>
       </div>
     </div>
 
     <!-- Text content -->
     <div class="issue-text fade-up" style="--delay: 0.15s">
-      <span class="section-label">Bu Ayın Sayısı</span>
-      <h2 class="section-heading">
+      <span class="section-label" data-i18n="home.issue.label">Güncel Sayı</span>
+      <h2 class="section-heading" data-i18n="home.issue.heading">
          fashiontv magazine <br />
         <em>Nisan Sayısı Çıktı</em>
       </h2>
-      <p class="section-body">
+      <p class="section-body" data-i18n="home.issue.body">
         Bu ayki özel sayımızda dünyanın en prestijli isimlerinden eksiksiz röportajlar,
         2026 ilkbahar–yaz koleksiyonlarının derinlemesine analizi ve modanın geleceğini
         şekillendiren vizyoner tasarımcılar sizi bekliyor.
       </p>
       <ul class="issue-features">
-        <li>12 Eksiksiz Röportaj</li>
-        <li>40+ Sayfa Özel Editorial</li>
-        <li>Koleksiyon Analizi &amp; Trendler</li>
+        <li data-i18n="home.issue.li1">12 Eksiksiz Röportaj</li>
+        <li data-i18n="home.issue.li2">40+ Sayfa Özel Editorial</li>
+        <li data-i18n="home.issue.li3">Koleksiyon Analizi &amp; Trendler</li>
       </ul>
-      <a href="abonelik" class="btn btn-dark">Hemen Abone Ol</a>
+      <a href="abonelik" class="btn btn-dark" data-i18n="home.issue.btn">Hemen Abone Ol</a>
     </div>
 
   </div>
@@ -202,8 +192,8 @@
 <section class="categories-section" id="categories">
   <div class="container">
     <div class="section-intro centered">
-      <span class="section-label">Keşfet</span>
-      <h2 class="section-heading">Kategoriler</h2>
+      <span class="section-label" data-i18n="home.cats.label">Keşfet</span>
+      <h2 class="section-heading" data-i18n="home.cats.heading">Kategoriler</h2>
     </div>
 
     <div class="cat-grid">
@@ -213,8 +203,8 @@
         </div>
         <div class="cat-info">
           <span class="cat-num">01</span>
-          <h3 class="cat-name">Moda</h3>
-          <p class="cat-desc">Koleksiyonlar &amp; stil rehberleri</p>
+          <h3 class="cat-name" data-i18n="home.cat1.name">Moda</h3>
+          <p class="cat-desc" data-i18n="home.cat1.desc">Koleksiyonlar &amp; stil rehberleri</p>
         </div>
       </a>
       <a href="#" class="cat-item fade-up" style="--delay:0.06s">
@@ -223,8 +213,8 @@
         </div>
         <div class="cat-info">
           <span class="cat-num">02</span>
-          <h3 class="cat-name">Güzellik</h3>
-          <p class="cat-desc">Beauty editorials</p>
+          <h3 class="cat-name" data-i18n="home.cat2.name">Güzellik</h3>
+          <p class="cat-desc" data-i18n="home.cat2.desc">Beauty editorials</p>
         </div>
       </a>
       <a href="#" class="cat-item fade-up" style="--delay:0.12s">
@@ -233,8 +223,8 @@
         </div>
         <div class="cat-info">
           <span class="cat-num">03</span>
-          <h3 class="cat-name">Yaşam</h3>
-          <p class="cat-desc">Lüks yaşam &amp; kültür</p>
+          <h3 class="cat-name" data-i18n="home.cat3.name">Yaşam</h3>
+          <p class="cat-desc" data-i18n="home.cat3.desc">Lüks yaşam &amp; kültür</p>
         </div>
       </a>
       <a href="#" class="cat-item fade-up" style="--delay:0.18s">
@@ -243,8 +233,8 @@
         </div>
         <div class="cat-info">
           <span class="cat-num">04</span>
-          <h3 class="cat-name">Trendler</h3>
-          <p class="cat-desc">Sezonun yönü</p>
+          <h3 class="cat-name" data-i18n="home.cat4.name">Trendler</h3>
+          <p class="cat-desc" data-i18n="home.cat4.desc">Sezonun yönü</p>
         </div>
       </a>
       <a href="#" class="cat-item fade-up" style="--delay:0.24s">
@@ -253,8 +243,8 @@
         </div>
         <div class="cat-info">
           <span class="cat-num">05</span>
-          <h3 class="cat-name">Özel Röportajlar</h3>
-          <p class="cat-desc">Modanın ikonları</p>
+          <h3 class="cat-name" data-i18n="home.cat5.name">Özel Röportajlar</h3>
+          <p class="cat-desc" data-i18n="home.cat5.desc">Modanın ikonları</p>
         </div>
       </a>
     </div>
@@ -269,17 +259,17 @@
 
   <!-- Üst: başlık alanı -->
   <div class="container casting-promo__head">
-    <span class="casting-promo__eyebrow">fashiontv magazine casting</span>
-    <h2 class="casting-promo__title">
+    <span class="casting-promo__eyebrow" data-i18n="home.casting.eyebrow">fashiontv magazine casting</span>
+    <h2 class="casting-promo__title" data-i18n="home.casting.title">
       Model, Manken ya da<br>Oyuncu olmak ister misiniz?
     </h2>
-    <p class="casting-promo__desc">
+    <p class="casting-promo__desc" data-i18n="home.casting.desc">
       Başvurunuzu oluşturun, ekibimiz incelesin. Onaylandıktan sonra
       ilanınız binlerce profesyonele ulaşsın — ücretsiz.
     </p>
     <div class="casting-promo__actions">
-      <a href="casting/basvuru" class="casting-promo__btn casting-promo__btn--gold">Hemen Başvur</a>
-      <a href="casting/index" class="casting-promo__btn casting-promo__btn--outline">Casting'i Keşfet</a>
+      <a href="casting/basvuru" class="casting-promo__btn casting-promo__btn--gold" data-i18n="home.casting.btn.apply">Hemen Başvur</a>
+      <a href="casting/index" class="casting-promo__btn casting-promo__btn--outline" data-i18n="home.casting.btn.browse">Casting'i Keşfet</a>
     </div>
   </div>
 
@@ -327,10 +317,10 @@
   <div class="container">
     <div class="section-intro between">
       <div>
-        <span class="section-label">Öne Çıkanlar</span>
-        <h2 class="section-heading">Editörün Seçimi</h2>
+        <span class="section-label" data-i18n="home.featured.label">Öne Çıkanlar</span>
+        <h2 class="section-heading" data-i18n="home.featured.heading">Editörün Seçimi</h2>
       </div>
-      <a href="#" class="link-arrow">Tümünü Gör →</a>
+      <a href="#" class="link-arrow" data-i18n="home.featured.all">Tümünü Gör →</a>
     </div>
 
     <div class="articles-grid">
@@ -343,7 +333,7 @@
           <time class="article-date">3 Nisan 2026</time>
           <h3 class="article-title">2026 İlkbahar–Yaz: Minimalizmin Yeniden Doğuşu</h3>
           <p class="article-excerpt">Dünyanın önde gelen tasarımcıları bu sezon minimalist çizgilere dönüyor. Sadelik yeniden taht kuruyor.</p>
-          <a href="#" class="article-link">Devamını Oku</a>
+          <a href="haber-minimalizm" class="article-link" data-i18n="home.read.more">Devamını Oku</a>
         </div>
       </article>
 
@@ -355,7 +345,7 @@
           <time class="article-date">1 Nisan 2026</time>
           <h3 class="article-title">Bahar Makyajında 5 Vazgeçilmez Ton</h3>
           <p class="article-excerpt">Bu sezonun en sıcak renk paletleri ve nasıl kullanılacağına dair kapsamlı bir rehber.</p>
-          <a href="#" class="article-link">Devamını Oku</a>
+          <a href="haber-glazed-skin" class="article-link" data-i18n="home.read.more">Devamını Oku</a>
         </div>
       </article>
 
@@ -367,7 +357,7 @@
           <time class="article-date">28 Mart 2026</time>
           <h3 class="article-title">Valentino'nun Vizyonu: Modada Sanat Anlatısı</h3>
           <p class="article-excerpt">Yaratıcı direktörle moda, sanat ve geleceğin tasarımı üzerine özel bir söyleşi.</p>
-          <a href="#" class="article-link">Devamını Oku</a>
+          <a href="haberler" class="article-link" data-i18n="home.read.more">Devamını Oku</a>
         </div>
       </article>
 
@@ -379,7 +369,7 @@
           <time class="article-date">25 Mart 2026</time>
           <h3 class="article-title">Monokrom Giyim: Sezonun En Güçlü Trendi</h3>
           <p class="article-excerpt">Tek renk üzerine kurulu gardıroplar neden bu kadar etkili? Stil uzmanları anlatıyor.</p>
-          <a href="#" class="article-link">Devamını Oku</a>
+          <a href="haberler" class="article-link" data-i18n="home.read.more">Devamını Oku</a>
         </div>
       </article>
 
@@ -396,20 +386,20 @@
   <div class="container design-grid">
 
     <div class="design-text fade-up">
-      <span class="section-label section-label-light">Yaratıcı Araç</span>
-      <h2 class="section-heading section-heading-light">
+      <span class="section-label section-label-light" data-i18n="home.design.label">Yaratıcı Araç</span>
+      <h2 class="section-heading section-heading-light" data-i18n="home.design.heading">
         Kapak Yıldızımız Sensin!<br /><em>Röportaja Hazır Mısın?</em>
       </h2>
-      <p class="section-body section-body-light">
+      <p class="section-body section-body-light" data-i18n="home.design.body">
         Fashiontv Magazine'in güçlü tasarım platformuyla kendi editöryal kapağını oluştur.
         Profesyonel şablonlar, kurumsal marka kiti ve baskıya hazır çıktı seni bekliyor.
       </p>
       <ul class="design-feat-list">
-        <li><span class="feat-dot"></span>50+ Premium Şablon</li>
-        <li><span class="feat-dot"></span>Kurumsal Brand Kiti</li>
-        <li><span class="feat-dot"></span>Baskıya Hazır 300 DPI Çıktı</li>
+        <li><span class="feat-dot"></span><span data-i18n="home.design.feat1">50+ Premium Şablon</span></li>
+        <li><span class="feat-dot"></span><span data-i18n="home.design.feat2">Kurumsal Brand Kiti</span></li>
+        <li><span class="feat-dot"></span><span data-i18n="home.design.feat3">Baskıya Hazır 300 DPI Çıktı</span></li>
       </ul>
-      <a href="#" class="btn btn-gold">Tasarlamaya Başla</a>
+      <a href="#" class="btn btn-gold" data-i18n="home.design.btn">Tasarlamaya Başla</a>
     </div>
 
     <div class="design-visual fade-up" style="--delay:0.15s">
@@ -437,7 +427,7 @@
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ -->
 <section class="partners-section" id="partners">
   <div class="container">
-    <p class="partners-label">Güvenilir İş Ortaklarımız</p>
+    <p class="partners-label" data-i18n="home.partners.label">Güvenilir İş Ortaklarımız</p>
   </div>
   <div class="partners-ticker-wrap">
     <div class="partners-ticker">
@@ -467,9 +457,9 @@
 <section class="subscription-section" id="subscription">
   <div class="container">
     <div class="section-intro centered">
-      <span class="section-label">Özel Üyelik</span>
-      <h2 class="section-heading">Abonelik Planları</h2>
-      <p class="sub-intro-text">
+      <span class="section-label" data-i18n="home.sub.label">Özel Üyelik</span>
+      <h2 class="section-heading" data-i18n="home.sub.heading">Abonelik Planları</h2>
+      <p class="sub-intro-text" data-i18n="home.sub.intro">
         Tüm içeriklere, eksiksiz arşive ve premium deneyimlere erişin.
       </p>
     </div>
@@ -584,7 +574,7 @@
       <a class="footer-logo" href="anasayfa">
         <img src="images/logo.png" alt="Fashiontv Magazine" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1);">
       </a>
-      <p class="footer-tagline">
+      <p class="footer-tagline" data-i18n="footer.tagline">
         Modanın, güzelliğin ve yaşam sanatının<br />buluştuğu premium editorial platform.
       </p>
       <div class="footer-social">
@@ -604,36 +594,36 @@
     </div>
 
     <div class="footer-col">
-      <h4 class="footer-col-heading">Keşfet</h4>
+      <h4 class="footer-col-heading" data-i18n="footer.col.discover">Keşfet</h4>
       <ul>
-        <li><a href="#">Bu Ayın Sayısı</a></li>
-        <li><a href="#">Moda</a></li>
-        <li><a href="#">Güzellik</a></li>
-        <li><a href="#">Yaşam</a></li>
-        <li><a href="#">Trendler</a></li>
-        <li><a href="#">Özel Röportajlar</a></li>
+        <li><a href="#" data-i18n="footer.issue">Bu Ayın Sayısı</a></li>
+        <li><a href="#" data-i18n="footer.fashion">Moda</a></li>
+        <li><a href="#" data-i18n="footer.beauty">Güzellik</a></li>
+        <li><a href="#" data-i18n="footer.life">Yaşam</a></li>
+        <li><a href="#" data-i18n="footer.trends">Trendler</a></li>
+        <li><a href="#" data-i18n="footer.interviews">Özel Röportajlar</a></li>
       </ul>
     </div>
 
     <div class="footer-col">
-      <h4 class="footer-col-heading">Kurumsal</h4>
+      <h4 class="footer-col-heading" data-i18n="footer.col.corporate">Kurumsal</h4>
       <ul>
-        <li><a href="#">Hakkımızda</a></li>
-        <li><a href="#">Reklam &amp; Medya</a></li>
-        <li><a href="#">Kariyer</a></li>
-        <li><a href="#">İletişim</a></li>
-        <li><a href="#">Basın</a></li>
+        <li><a href="#" data-i18n="footer.about">Hakkımızda</a></li>
+        <li><a href="#" data-i18n="footer.ads">Reklam &amp; Medya</a></li>
+        <li><a href="#" data-i18n="footer.career">Kariyer</a></li>
+        <li><a href="#" data-i18n="footer.contact">İletişim</a></li>
+        <li><a href="#" data-i18n="footer.press">Basın</a></li>
       </ul>
     </div>
 
     <div class="footer-col">
-      <h4 class="footer-col-heading">Üyelik</h4>
+      <h4 class="footer-col-heading" data-i18n="footer.col.membership">Üyelik</h4>
       <ul>
-        <li><a href="#">Planlar</a></li>
-        <li><a href="#">Hediye Aboneliği</a></li>
-        <li><a href="#">Dijital Arşiv</a></li>
-        <li><a href="#">Dergi Tasarla</a></li>
-        <li><a href="#">Destek</a></li>
+        <li><a href="#" data-i18n="footer.plans">Planlar</a></li>
+        <li><a href="#" data-i18n="footer.gift">Hediye Aboneliği</a></li>
+        <li><a href="#" data-i18n="footer.archive">Dijital Arşiv</a></li>
+        <li><a href="#" data-i18n="footer.design">Dergi Tasarla</a></li>
+        <li><a href="#" data-i18n="footer.support">Destek</a></li>
       </ul>
     </div>
 
@@ -641,11 +631,11 @@
 
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p>© 2026 Fashiontv Magazine. Tüm hakları saklıdır.</p>
+      <p data-i18n="footer.copy">© 2026 Fashiontv Magazine. Tüm hakları saklıdır.</p>
       <div class="footer-legal">
-        <a href="gizlilik">Gizlilik Politikası</a>
-        <a href="kullanim-kosullari">Kullanım Koşulları</a>
-        <a href="cerez">Çerez</a>
+        <a href="gizlilik" data-i18n="footer.privacy">Gizlilik Politikası</a>
+        <a href="kullanim-kosullari" data-i18n="footer.terms">Kullanım Koşulları</a>
+        <a href="cerez" data-i18n="footer.cookie">Çerez</a>
       </div>
     </div>
   </div>
@@ -691,5 +681,6 @@
   fadeEls.forEach(el => observer.observe(el));
 </script>
 
+<script src="site-lang.js"></script>
 </body>
 </html>

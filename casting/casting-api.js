@@ -8,7 +8,9 @@
 const CAST_BASE = (typeof API_BASE !== 'undefined' ? API_BASE : 'http://localhost:4000/api') + '/casting';
 
 /* ── Görsel URL yardımcıları ─────────────────────────────── */
-const UPLOADS_BASE = 'http://localhost:4000/uploads/casting';
+const UPLOADS_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:4000'
+  : '') + '/uploads/casting';
 
 function castImageUrl(fileName) {
   if (!fileName) return null;

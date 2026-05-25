@@ -820,15 +820,13 @@
 }
 .c-detail__hero {
   position: relative;
-  height: clamp(280px, 45vh, 520px);
-  overflow: hidden;
-  background: var(--c-surface);
+  background: #0a0a0a;
+  text-align: center;
 }
 .c-detail__hero img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
+  display: block;
 }
 .c-detail__hero-overlay {
   position: absolute;
@@ -1576,3 +1574,313 @@
   transition: opacity .2s;
 }
 .c-footer-logo:hover { opacity: 1; }
+
+/* ═══════════════════════════════════════════
+   PROFILE / İLAN DETAY SAYFASI
+═══════════════════════════════════════════ */
+.c-profile { background: var(--c-bg); padding-bottom: 80px; }
+
+.c-profile__back { padding: 100px 0 32px; }
+.c-profile__back-link {
+  color: rgba(255,255,255,.38);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color .2s;
+}
+.c-profile__back-link:hover { color: var(--c-gold); }
+
+.c-profile__layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 56px;
+  align-items: start;
+  padding-bottom: 64px;
+}
+
+.c-profile__photo-col { position: sticky; top: 80px; }
+.c-profile__photo-img { width: 100%; height: auto; display: block; }
+.c-profile__photo-empty {
+  width: 100%; aspect-ratio: 3/4;
+  background: var(--c-surface);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.15); font-size: 64px;
+}
+
+.c-profile__badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.c-profile__name {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: -.01em;
+  line-height: 1.1;
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  padding-bottom: 24px;
+}
+
+.c-profile__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.06);
+  margin-bottom: 32px;
+}
+.c-profile__stats .c-stats-grid__item {
+  background: var(--c-bg);
+  padding: 14px 16px;
+}
+.c-profile__stats .c-stats-grid__key {
+  display: block;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.32);
+  margin-bottom: 5px;
+}
+.c-profile__stats .c-stats-grid__val {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.c-profile__section { margin-bottom: 28px; }
+.c-profile__section-title {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+  margin-bottom: 10px;
+}
+.c-profile__desc {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(255,255,255,.6);
+}
+.c-profile__tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.c-profile__inquiry {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+
+/* Galeri */
+.c-profile__gallery {
+  padding-top: 48px;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+.c-profile__gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.c-profile__gallery-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: opacity .2s;
+}
+.c-profile__gallery-img:hover { opacity: .85; }
+
+@media (max-width: 900px) {
+  .c-profile__layout { grid-template-columns: 1fr; gap: 32px; }
+  .c-profile__photo-col { position: static; }
+  .c-profile__stats { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .c-profile__stats { grid-template-columns: repeat(2, 1fr); }
+  .c-profile__gallery-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CPD — Casting Profile Detail (ilan.html)
+   ═══════════════════════════════════════════════════════════ */
+
+.cpd {
+  padding-bottom: 80px;
+}
+
+/* Top bar: back link + name */
+.cpd__top {
+  padding-top: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--c-border);
+}
+.cpd__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  text-decoration: none;
+  transition: color var(--c-transition);
+  margin-bottom: 20px;
+}
+.cpd__back:hover { color: var(--c-gold); }
+
+.cpd__badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.cpd__name {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 300;
+  letter-spacing: -.01em;
+  line-height: 1.15;
+  color: #fff;
+  margin: 0;
+}
+
+/* Body: 2-column layout */
+.cpd__body {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  padding-top: 36px;
+  align-items: start;
+}
+
+/* Left: photo + thumbnails */
+.cpd__left {
+  position: sticky;
+  top: 88px;
+}
+.cpd__photo {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  background: var(--c-surface);
+  transition: opacity .3s;
+}
+.cpd__photo-empty {
+  width: 100%;
+  height: 280px;
+  background: var(--c-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.12);
+  font-size: 36px;
+}
+.cpd__thumbs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.cpd__thumb {
+  width: 50px;
+  height: 64px;
+  object-fit: cover;
+  object-position: top center;
+  cursor: pointer;
+  opacity: .5;
+  transition: opacity .2s;
+  border: 1px solid transparent;
+}
+.cpd__thumb:hover {
+  opacity: 1;
+  border-color: var(--c-gold);
+}
+
+/* Right: stats + info + form */
+.cpd__right {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Stats grid */
+.cpd__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.06);
+  margin-bottom: 32px;
+}
+.cpd__stats .c-stats-grid__item {
+  background: var(--c-bg);
+  padding: 12px 14px;
+}
+.cpd__stats .c-stats-grid__key {
+  display: block;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.32);
+  margin-bottom: 4px;
+}
+.cpd__stats .c-stats-grid__val {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: #fff;
+}
+
+/* Sections: description / skills / languages */
+.cpd__section {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--c-border);
+}
+.cpd__stitle {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+  margin: 0 0 10px;
+}
+.cpd__desc {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(255,255,255,.6);
+  margin: 0;
+}
+.cpd__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Inquiry form */
+.cpd__form {
+  margin-top: 4px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,.07);
+}
+
+/* ── CPD responsive ────────────────────────── */
+@media (max-width: 900px) {
+  .cpd__body {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .cpd__left { position: static; }
+  .cpd__photo { aspect-ratio: 4/3; object-position: center top; }
+  .cpd__stats { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 520px) {
+  .cpd__stats { grid-template-columns: repeat(2, 1fr); }
+  .cpd__name  { font-size: 1.4rem; }
+}
+}

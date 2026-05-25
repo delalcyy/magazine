@@ -227,7 +227,9 @@
 }
 /* Moda kapak görseli — zengin koyu ton */
 .chc-bg-moda {
-  background: linear-gradient(148deg, #1e1a14 0%, #3a2e1e 60%, #1a1408 100%);
+  background-image: url("../images/minimalizm1.jpg");
+  background-size: cover;
+  background-position: center top;
 }
 .chc-bg-moda::before {
   content: '';
@@ -310,9 +312,9 @@
 
 .css-item__img { width: 68px; height: 68px; flex-shrink: 0; }
 /* Mini kart görselleri — farklı kategoriler, farklı tonlar */
-.css-bg-guzellik { background: linear-gradient(135deg, #c0b0c8 0%, #80709a 100%); }
-.css-bg-wellness { background: linear-gradient(135deg, #a4bdb4 0%, #5e7870 100%); }
-.css-bg-astro    { background: linear-gradient(135deg, #1a1628 0%, #2d2540 100%); }
+.css-bg-guzellik { background-image: url("../images/isiltilicilt.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.css-bg-wellness { background-image: url("../images/wellness.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.css-bg-astro    { background-image: url("../images/burc.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
 
 .css-item__body { flex: 1; }
 .css-tag {
@@ -424,9 +426,9 @@
 .sp-card--sm   .sp-card__img { height: 271px; }
 
 /* Spotlight görseller */
-.sp-bg-guzellik { background: linear-gradient(148deg, #c0acbc 0%, #7c6880 100%); }
-.sp-bg-moda     { background: linear-gradient(148deg, #c8b49e 0%, #906a50 100%); }
-.sp-bg-wellness { background: linear-gradient(148deg, #9ebcb0 0%, #5a7a6e 100%); }
+.sp-bg-guzellik { background-image: url("../images/ciltbakimi.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.sp-bg-moda     { background-image: url("../images/wardrobe.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.sp-bg-wellness { background-image: url("../images/wellness.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
 
 /* Grain texture */
 .sp-card__img::before {
@@ -514,9 +516,9 @@
 .ss-card:hover { transform: translateY(-5px); box-shadow: 0 16px 44px rgba(0,0,0,.07); }
 
 .ss-card__img { aspect-ratio: 16/9; overflow: hidden; }
-.ss-bg-yasam   { background: linear-gradient(148deg, #c8bca8 0%, #908470 100%); }
-.ss-bg-roportaj{ background: linear-gradient(148deg, #b4bcb0 0%, #747c70 100%); }
-.ss-bg-astro   { background: linear-gradient(148deg, #1a1628 0%, #0e0c16 100%); }
+.ss-bg-yasam   { background-image: url("../images/luks.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.ss-bg-roportaj{ background-image: url("../images/roportaj2.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.ss-bg-astro   { background-image: url("../images/burc.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
 
 .ss-card__body { padding: 18px 20px 22px; }
 .ss-card__body .cat-pill { margin-bottom: 10px; }
@@ -707,17 +709,17 @@
 .nc__img .cat-pill { position: absolute; top: 14px; left: 14px; z-index: 1; }
 
 /* Kart görselleri — her kategori için */
-.img-m1 { background: linear-gradient(148deg, #c4b0a0 0%, #8a7060 100%); }
-.img-m2 { background: linear-gradient(148deg, #181610 0%, #302820 100%); }
-.img-g1 { background: linear-gradient(148deg, #c0b0c8 0%, #807090 100%); }
-.img-g2 { background: linear-gradient(148deg, #e0d4c0 0%, #c0ac90 100%); }
-.img-w1 { background: linear-gradient(148deg, #a8c0b4 0%, #607870 100%); }
-.img-w2 { background: linear-gradient(148deg, #bcc8c0 0%, #7c9488 100%); }
-.img-y1 { background: linear-gradient(148deg, #c8bca8 0%, #908470 100%); }
-.img-y2 { background: linear-gradient(148deg, #b0c4c0 0%, #708080 100%); }
-.img-a1 { background: linear-gradient(148deg, #1a1628 0%, #0e0c16 100%); }
-.img-a2 { background: linear-gradient(148deg, #1e1830 0%, #120e20 100%); }
-.img-r1 { background: linear-gradient(148deg, #b4bcb0 0%, #747c70 100%); }
+.img-m1 { background-image: url("../images/minimalizm1.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.img-m2 { background-image: url("../images/moda1.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.img-g1 { background-image: url("../images/isiltilicilt.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.img-g2 { background-image: url("../images/makyaj3.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.img-w1 { background-image: url("../images/luks.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.img-w2 { background-image: url("../images/uyku.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.img-y1 { background-image: url("../images/ciltbakimi.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.img-y2 { background-image: url("../images/seyahat.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.img-a1 { background-image: url("../images/burc.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.img-a2 { background-image: url("../images/burc.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+.img-r1 { background-image: url("../images/roportaj2.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat; }
 .img-r2 { background: linear-gradient(148deg, #c0c4c8 0%, #808490 100%); }
 
 .nc__body {

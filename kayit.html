@@ -18,7 +18,19 @@
   <a class="auth-topbar__logo" href="anasayfa">
     <img src="images/logo.png" alt="Fashiontv Magazine">
   </a>
-  <a href="anasayfa" class="auth-topbar__back">
+  <div class="lang-switcher">
+    <button class="lang-current">
+      <span class="lang-flag lang-flag-current">🇹🇷</span>
+      <span class="lang-code-current">TR</span>
+      <svg class="lang-chevron" viewBox="0 0 10 6" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="currentColor"/></svg>
+    </button>
+    <div class="lang-dropdown">
+      <button class="lang-opt active" data-lang="tr"><span class="lang-flag">🇹🇷</span><span class="lang-name">Türkçe</span><span class="lang-check">✓</span></button>
+      <button class="lang-opt" data-lang="en"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span><span class="lang-check">✓</span></button>
+      <button class="lang-opt" data-lang="ru"><span class="lang-flag">🇷🇺</span><span class="lang-name">Русский</span><span class="lang-check">✓</span></button>
+    </div>
+  </div>
+  <a href="anasayfa" class="auth-topbar__back" data-i18n="register.back" style="display:none">Ana Sayfa</a><!--
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
       <path d="M19 12H5M12 5l-7 7 7 7"/>
     </svg>
@@ -65,8 +77,8 @@
   <div class="auth-right">
 
     <div class="auth-form-head">
-      <span class="auth-form-head__label">Yeni Üyelik</span>
-      <h1 class="auth-form-head__title">Hesap Oluştur</h1>
+      <span class="auth-form-head__label" data-i18n="register.form.label">Yeni Üyelik</span>
+      <h1 class="auth-form-head__title" data-i18n="register.form.title">Hesap Oluştur</h1>
       <p class="auth-form-head__sub">
         Zaten hesabınız var mı?&nbsp;
         <a href="giris">Giriş yapın</a>
@@ -79,25 +91,25 @@
 
       <div class="form-row-2">
         <div class="form-field">
-          <label class="form-field__label" for="first_name">Adınız</label>
+          <label class="form-field__label" for="first_name" data-i18n="register.field.firstname">Adınız</label>
           <input class="form-field__input" type="text" id="first_name" name="first_name"
             placeholder="Adınız" autocomplete="given-name" required />
         </div>
         <div class="form-field">
-          <label class="form-field__label" for="last_name">Soyadınız</label>
+          <label class="form-field__label" for="last_name" data-i18n="register.field.lastname">Soyadınız</label>
           <input class="form-field__input" type="text" id="last_name" name="last_name"
             placeholder="Soyadınız" autocomplete="family-name" required />
         </div>
       </div>
 
       <div class="form-field">
-        <label class="form-field__label" for="email">E-posta Adresi</label>
+        <label class="form-field__label" for="email" data-i18n="register.field.email">E-posta Adresi</label>
         <input class="form-field__input" type="email" id="email" name="email"
           placeholder="ornek@email.com" autocomplete="email" required />
       </div>
 
       <div class="form-field">
-        <label class="form-field__label" for="password">Şifre</label>
+        <label class="form-field__label" for="password" data-i18n="register.field.password">Şifre</label>
         <div class="pw-field">
           <input class="form-field__input" type="password" id="password" name="password"
             placeholder="En az 6 karakter" autocomplete="new-password" required />
@@ -110,7 +122,7 @@
       </div>
 
       <div class="form-field">
-        <label class="form-field__label" for="password_confirm">Şifre Tekrar</label>
+        <label class="form-field__label" for="password_confirm" data-i18n="register.field.confirm">Şifre Tekrar</label>
         <div class="pw-field">
           <input class="form-field__input" type="password" id="password_confirm" name="password_confirm"
             placeholder="Şifrenizi tekrar giriniz" autocomplete="new-password" required />
@@ -130,7 +142,7 @@
         </label>
       </div>
 
-      <button class="auth-btn auth-btn--gold" type="submit" id="register-btn">
+      <button class="auth-btn auth-btn--gold" type="submit" id="register-btn" data-i18n="register.btn">
         Hesap Oluştur
       </button>
 
@@ -223,5 +235,6 @@
 })();
 </script>
 
+<script src="site-lang.js"></script>
 </body>
 </html>

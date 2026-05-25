@@ -89,12 +89,24 @@
     </a>
     <nav class="main-nav" aria-label="Ana menü">
       <a href="index">Ana Sayfa</a>
-      <a href="haberler">Haberler</a>
-      <a href="abonelik">Abonelik</a>
-      <a href="iletisim">İletişim</a>
+      <a href="haberler" data-i18n="nav.news">Haberler</a>
+      <a href="abonelik" data-i18n="nav.sub">Abonelik</a>
+      <a href="iletisim" data-i18n="nav.contact">İletişim</a>
     </nav>
     <div class="header-right">
       <a href="giris" class="hdr-cta">Giriş Yap</a>
+      <div class="lang-switcher">
+        <button class="lang-current">
+          <span class="lang-flag lang-flag-current">🇹🇷</span>
+          <span class="lang-code-current">TR</span>
+          <svg class="lang-chevron" viewBox="0 0 10 6" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="currentColor"/></svg>
+        </button>
+        <div class="lang-dropdown">
+          <button class="lang-opt active" data-lang="tr"><span class="lang-flag">🇹🇷</span><span class="lang-name">Türkçe</span><span class="lang-check">✓</span></button>
+          <button class="lang-opt" data-lang="en"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span><span class="lang-check">✓</span></button>
+          <button class="lang-opt" data-lang="ru"><span class="lang-flag">🇷🇺</span><span class="lang-name">Русский</span><span class="lang-check">✓</span></button>
+        </div>
+      </div>
       <button class="burger" id="burger" aria-label="Menü">
         <span></span><span></span><span></span>
       </button>
@@ -106,8 +118,8 @@
   <button class="mobile-menu-close" id="mobile-menu-close">✕</button>
   <nav>
     <a href="index">Ana Sayfa</a>
-    <a href="haberler">Haberler</a>
-    <a href="abonelik">Abonelik</a>
+    <a href="haberler" data-i18n="nav.news">Haberler</a>
+    <a href="abonelik" data-i18n="nav.sub">Abonelik</a>
     <a href="giris" class="mobile-cta">Giriş Yap</a>
   </nav>
 </div>
@@ -198,5 +210,6 @@
 })();
 </script>
 
+<script src="site-lang.js"></script>
 </body>
 </html>

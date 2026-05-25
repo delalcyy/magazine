@@ -33,18 +33,30 @@
     </a>
 
     <nav class="main-nav" aria-label="Ana menü">
-      <a href="anasayfa">Ana Sayfa</a>
-      <a href="haberler">Haberler</a>
+      <a href="anasayfa" data-i18n="nav.home">Ana Sayfa</a>
+      <a href="haberler" data-i18n="nav.news">Haberler</a>
       <div class="nav-dropdown">
-        <a href="hakkimizda" class="nav-dropdown-trigger">Hakkımızda</a>
+        <a href="hakkimizda" class="nav-dropdown-trigger" data-i18n="nav.about">Hakkımızda</a>
         <div class="nav-dropdown-panel"></div>
       </div>
-      <a href="abonelik">Abonelik</a>
-      <a href="iletisim">İletişim</a>
+      <a href="abonelik" data-i18n="nav.sub">Abonelik</a>
+      <a href="iletisim" data-i18n="nav.contact">İletişim</a>
       <a href="casting/index" class="nav-casting">Casting <span class="nav-casting-badge">NEW</span></a>
     </nav>
 
     <div class="header-right">
+      <div class="lang-switcher">
+        <button class="lang-current">
+          <span class="lang-flag lang-flag-current">🇹🇷</span>
+          <span class="lang-code-current">TR</span>
+          <svg class="lang-chevron" viewBox="0 0 10 6" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="currentColor"/></svg>
+        </button>
+        <div class="lang-dropdown">
+          <button class="lang-opt active" data-lang="tr"><span class="lang-flag">🇹🇷</span><span class="lang-name">Türkçe</span><span class="lang-check">✓</span></button>
+          <button class="lang-opt" data-lang="en"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span><span class="lang-check">✓</span></button>
+          <button class="lang-opt" data-lang="ru"><span class="lang-flag">🇷🇺</span><span class="lang-name">Русский</span><span class="lang-check">✓</span></button>
+        </div>
+      </div>
       <button class="burger" id="burger" aria-label="Menü">
         <span></span><span></span><span></span>
       </button>
@@ -61,11 +73,11 @@
     <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Menüyü kapat">✕</button>
   </div>
   <nav>
-    <a href="anasayfa">Ana Sayfa</a>
-    <a href="haberler">Haberler</a>
-    <a href="hakkimizda">Hakkımızda</a>
-    <a href="abonelik">Abonelik</a>
-    <a href="iletisim">İletişim</a>
+    <a href="anasayfa" data-i18n="nav.home">Ana Sayfa</a>
+    <a href="haberler" data-i18n="nav.news">Haberler</a>
+    <a href="hakkimizda" data-i18n="nav.about">Hakkımızda</a>
+    <a href="abonelik" data-i18n="nav.sub">Abonelik</a>
+    <a href="iletisim" data-i18n="nav.contact">İletişim</a>
     <a href="casting/index" class="nav-casting">Casting</a>
   </nav>
 </div>
@@ -80,8 +92,8 @@
   <div class="container">
     <div class="about-hero__inner reveal" style="--delay:0s">
       <div class="about-hero__left">
-        <span class="about-hero__label">Biz Kimiz · 2010'dan Bu Yana</span>
-        <h1 class="about-hero__title">
+        <span class="about-hero__label" data-i18n="about.hero.label">Biz Kimiz · 2010'dan Bu Yana</span>
+        <h1 class="about-hero__title" data-i18n="about.hero.title">
           Modanın<br />
           Editöryal<br />
           <span>Sesi</span>
@@ -101,19 +113,19 @@
     <div class="about-hero__stats reveal" style="--delay:.15s">
       <div class="about-hero__stat">
         <span class="stat-number">15<span>+</span></span>
-        <span class="stat-label">Yıllık Deneyim</span>
+        <span class="stat-label" data-i18n="about.stat1.label">Yıllık Deneyim</span>
       </div>
       <div class="about-hero__stat">
         <span class="stat-number">180<span>K</span></span>
-        <span class="stat-label">Aylık Okuyucu</span>
+        <span class="stat-label" data-i18n="about.stat2.label">Aylık Okuyucu</span>
       </div>
       <div class="about-hero__stat">
         <span class="stat-number">40<span>+</span></span>
-        <span class="stat-label">Editöryal Sayfa</span>
+        <span class="stat-label" data-i18n="about.stat3.label">Editöryal Sayfa</span>
       </div>
       <div class="about-hero__stat">
         <span class="stat-number">12</span>
-        <span class="stat-label">Özel Röportaj</span>
+        <span class="stat-label" data-i18n="about.stat4.label">Özel Röportaj</span>
       </div>
     </div>
   </div>
@@ -127,8 +139,8 @@
   <div class="container about-story__grid">
 
     <div class="about-story__left reveal reveal-left" style="--delay:0s">
-      <span class="page-section-label">Hikayemiz</span>
-      <h2 class="page-section-title">Modayı Bir <span>Sanat</span> Olarak Yorumluyoruz</h2>
+      <span class="page-section-label" data-i18n="about.story.label">Hikayemiz</span>
+      <h2 class="page-section-title" data-i18n="about.story.title">Modayı Bir <span>Sanat</span> Olarak Yorumluyoruz</h2>
       <div class="about-story__text">
         <p>
           Bir dergi yalnızca sayfa değildir; bir bakış açısı, bir ses, bir manifestodur.
@@ -169,8 +181,8 @@
   <div class="container">
 
     <div class="mv-head reveal" style="--delay:0s">
-      <span class="page-section-label">İlkelerimiz</span>
-      <h2 class="page-section-title">Misyon &amp; <span>Vizyon</span></h2>
+      <span class="page-section-label" data-i18n="about.mv.label">İlkelerimiz</span>
+      <h2 class="page-section-title" data-i18n="about.mv.title">Misyon &amp; <span>Vizyon</span></h2>
     </div>
 
     <div class="mv-grid">
@@ -186,8 +198,8 @@
             <line x1="19" y1="12" x2="22" y2="12"/>
           </svg>
         </div>
-        <span class="mv-card__tag">Misyonumuz</span>
-        <h3 class="mv-card__title">Moda Kültürünü Demokratize Etmek</h3>
+        <span class="mv-card__tag" data-i18n="about.mission.tag">Misyonumuz</span>
+        <h3 class="mv-card__title" data-i18n="about.mission.title">Moda Kültürünü Demokratize Etmek</h3>
         <p class="mv-card__text">
           Türkiye'deki moda, güzellik ve yaşam kültürünü uluslararası editöryal standartlarla
           buluşturarak okurlarımıza hem ilham veren hem de bilgilendiren premium içerikler üretmek.
@@ -202,8 +214,8 @@
             <circle cx="12" cy="12" r="3"/>
           </svg>
         </div>
-        <span class="mv-card__tag">Vizyonumuz</span>
-        <h3 class="mv-card__title">Türkiye'nin En Prestijli Moda Platformu</h3>
+        <span class="mv-card__tag" data-i18n="about.vision.tag">Vizyonumuz</span>
+        <h3 class="mv-card__title" data-i18n="about.vision.title">Türkiye'nin En Prestijli Moda Platformu</h3>
         <p class="mv-card__text">
           2030 yılına kadar Türkiye'nin en çok okunan ve en prestijli dijital moda yayını haline
           gelmek; Türk modası ve tasarımını küresel platformlarda temsil eden, uluslararası
@@ -223,8 +235,8 @@
   <div class="container">
 
     <div class="why-us__head reveal" style="--delay:0s">
-      <span class="page-section-label">Farkımız</span>
-      <h2 class="page-section-title">Neden <span>fashiontv magazine?</span></h2>
+      <span class="page-section-label" data-i18n="about.why.label">Farkımız</span>
+      <h2 class="page-section-title" data-i18n="about.why.title">Neden <span>fashiontv magazine?</span></h2>
     </div>
 
     <div class="why-us__grid">
@@ -236,7 +248,7 @@
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
           </svg>
         </div>
-        <h3 class="why-card__title">Bağımsız Editöryal Kimlik</h3>
+        <h3 class="why-card__title" data-i18n="about.why1.title">Bağımsız Editöryal Kimlik</h3>
         <p class="why-card__text">
           İçeriklerimiz hiçbir reklam ajansının veya markanın direktifine tabi değildir.
           Editöryal kararlarımızı yalnızca okurlarımızın ilgi ve ihtiyaçları doğrultusunda alır,
@@ -253,7 +265,7 @@
             <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
           </svg>
         </div>
-        <h3 class="why-card__title">Uzman Kadro &amp; Yaratıcı Ağ</h3>
+        <h3 class="why-card__title" data-i18n="about.why2.title">Uzman Kadro &amp; Yaratıcı Ağ</h3>
         <p class="why-card__text">
           Türkiye'nin ve Avrupa'nın en deneyimli moda editörleri, fotoğrafçıları, stilistleri
           ve yazarlarından oluşan geniş yaratıcı ağımızla her sayıda sektörün kalbinden
@@ -270,7 +282,7 @@
             <line x1="12" y1="17" x2="12" y2="21"/>
           </svg>
         </div>
-        <h3 class="why-card__title">Dijital &amp; Basılı Deneyim</h3>
+        <h3 class="why-card__title" data-i18n="about.why3.title">Dijital &amp; Basılı Deneyim</h3>
         <p class="why-card__text">
           Hem premium basılı dergimiz hem de zengin dijital platformumuzla okurlarımıza
           kesintisiz bir moda deneyimi sunuyoruz. Mobil, masaüstü ve basılı formatta
@@ -290,8 +302,8 @@
   <div class="container">
 
     <div class="values-strip__head reveal" style="--delay:0s">
-      <span class="page-section-label">Temel Değerlerimiz</span>
-      <h2 class="page-section-title">Her İçeriğin Arkasında</h2>
+      <span class="page-section-label" data-i18n="about.values.label">Temel Değerlerimiz</span>
+      <h2 class="page-section-title" data-i18n="about.values.title">Her İçeriğin Arkasında</h2>
     </div>
 
     <div class="values-grid">
@@ -302,7 +314,7 @@
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
         </div>
-        <div class="value-item__title">Güvenilirlik</div>
+        <div class="value-item__title" data-i18n="about.value1.title">Güvenilirlik</div>
         <p class="value-item__text">Söylediklerimizin arkında duruyoruz.</p>
       </div>
 
@@ -312,7 +324,7 @@
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
           </svg>
         </div>
-        <div class="value-item__title">Mükemmellik</div>
+        <div class="value-item__title" data-i18n="about.value2.title">Mükemmellik</div>
         <p class="value-item__text">Her detayda en yüksek kaliteyi arıyoruz.</p>
       </div>
 
@@ -324,7 +336,7 @@
             <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
           </svg>
         </div>
-        <div class="value-item__title">Küresel Perspektif</div>
+        <div class="value-item__title" data-i18n="about.value3.title">Küresel Perspektif</div>
         <p class="value-item__text">Dünyayı ve Türkiye'yi birlikte görüyoruz.</p>
       </div>
 
@@ -334,7 +346,7 @@
             <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
           </svg>
         </div>
-        <div class="value-item__title">Yaratıcılık</div>
+        <div class="value-item__title" data-i18n="about.value4.title">Yaratıcılık</div>
         <p class="value-item__text">Kalıpları sorguluyor, yeni perspektifler yaratıyoruz.</p>
       </div>
 
@@ -349,15 +361,15 @@
 <section class="about-cta">
   <div class="container">
     <div class="reveal" style="--delay:0s">
-      <span class="about-cta__label">Bize Katılın</span>
-      <h2 class="about-cta__title">Premium Dünyada <span>Yerinizi Alın</span></h2>
+      <span class="about-cta__label" data-i18n="about.cta.label">Bize Katılın</span>
+      <h2 class="about-cta__title" data-i18n="about.cta.title">Premium Dünyada <span>Yerinizi Alın</span></h2>
       <p class="about-cta__desc">
         Editöryal içeriklerimize, özel etkinliklerimize ve ayrıcalıklı deneyimlerimize
         erişmek için hemen abone olun.
       </p>
       <div class="about-cta__btns">
-        <a href="abonelik" class="btn-about-primary">Abonelik Planları</a>
-        <a href="iletisim"      class="btn-about-ghost">İletişime Geç</a>
+        <a href="abonelik" class="btn-about-primary" data-i18n="about.cta.btn.primary">Abonelik Planları</a>
+        <a href="iletisim"      class="btn-about-ghost" data-i18n="about.cta.btn.ghost">İletişime Geç</a>
       </div>
     </div>
   </div>
@@ -373,7 +385,7 @@
       <a class="footer-logo" href="index">
         <img src="images/logo.png" alt="Fashiontv Magazine" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1);">
       </a>
-      <p class="footer-tagline">
+      <p class="footer-tagline" data-i18n="footer.tagline">
         Modanın, güzelliğin ve yaşam sanatının<br />buluştuğu premium editorial platform.
       </p>
       <div class="footer-social">
@@ -392,44 +404,44 @@
       </div>
     </div>
     <div class="footer-col">
-      <h4 class="footer-col-heading">Keşfet</h4>
+      <h4 class="footer-col-heading" data-i18n="footer.col.discover">Keşfet</h4>
       <ul>
-        <li><a href="#">Bu Ayın Sayısı</a></li>
-        <li><a href="#">Moda</a></li>
-        <li><a href="#">Güzellik</a></li>
-        <li><a href="#">Yaşam</a></li>
-        <li><a href="#">Trendler</a></li>
-        <li><a href="#">Özel Röportajlar</a></li>
+        <li><a href="#" data-i18n="footer.issue">Bu Ayın Sayısı</a></li>
+        <li><a href="#" data-i18n="footer.fashion">Moda</a></li>
+        <li><a href="#" data-i18n="footer.beauty">Güzellik</a></li>
+        <li><a href="#" data-i18n="footer.life">Yaşam</a></li>
+        <li><a href="#" data-i18n="footer.trends">Trendler</a></li>
+        <li><a href="#" data-i18n="footer.interviews">Özel Röportajlar</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4 class="footer-col-heading">Kurumsal</h4>
+      <h4 class="footer-col-heading" data-i18n="footer.col.corporate">Kurumsal</h4>
       <ul>
-        <li><a href="hakkimizda">Hakkımızda</a></li>
-        <li><a href="#">Reklam &amp; Medya</a></li>
-        <li><a href="#">Kariyer</a></li>
-        <li><a href="iletisim">İletişim</a></li>
-        <li><a href="#">Basın</a></li>
+        <li><a href="hakkimizda" data-i18n="nav.about">Hakkımızda</a></li>
+        <li><a href="#" data-i18n="footer.ads">Reklam &amp; Medya</a></li>
+        <li><a href="#" data-i18n="footer.career">Kariyer</a></li>
+        <li><a href="iletisim" data-i18n="nav.contact">İletişim</a></li>
+        <li><a href="#" data-i18n="footer.press">Basın</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4 class="footer-col-heading">Üyelik</h4>
+      <h4 class="footer-col-heading" data-i18n="footer.col.membership">Üyelik</h4>
       <ul>
-        <li><a href="abonelik">Planlar</a></li>
-        <li><a href="#">Hediye Aboneliği</a></li>
-        <li><a href="#">Dijital Arşiv</a></li>
-        <li><a href="#">Dergi Tasarla</a></li>
-        <li><a href="#">Destek</a></li>
+        <li><a href="abonelik" data-i18n="footer.plans">Planlar</a></li>
+        <li><a href="#" data-i18n="footer.gift">Hediye Aboneliği</a></li>
+        <li><a href="#" data-i18n="footer.archive">Dijital Arşiv</a></li>
+        <li><a href="#" data-i18n="footer.design">Dergi Tasarla</a></li>
+        <li><a href="#" data-i18n="footer.support">Destek</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p>© 2026 Fashiontv Magazine. Tüm hakları saklıdır.</p>
+      <p data-i18n="footer.copy">© 2026 Fashiontv Magazine. Tüm hakları saklıdır.</p>
       <div class="footer-legal">
-        <a href="gizlilik">Gizlilik Politikası</a>
-        <a href="kullanim-kosullari">Kullanım Koşulları</a>
-        <a href="cerez">Çerez</a>
+        <a href="gizlilik" data-i18n="footer.privacy">Gizlilik Politikası</a>
+        <a href="kullanim-kosullari" data-i18n="footer.terms">Kullanım Koşulları</a>
+        <a href="cerez" data-i18n="footer.cookie">Çerez</a>
       </div>
     </div>
   </div>
@@ -468,5 +480,6 @@
 })();
 </script>
 
+<script src="site-lang.js"></script>
 </body>
 </html>

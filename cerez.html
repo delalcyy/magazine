@@ -46,18 +46,30 @@
       <img src="images/logo.png" class="logo-img">
     </a>
     <nav class="main-nav" aria-label="Ana menü">
-      <a href="anasayfa">Ana Sayfa</a>
-      <a href="haberler">Haberler</a>
+      <a href="anasayfa" data-i18n="nav.home">Ana Sayfa</a>
+      <a href="haberler" data-i18n="nav.news">Haberler</a>
       <div class="nav-dropdown">
-        <a href="hakkimizda" class="nav-dropdown-trigger">Hakkımızda</a>
+        <a href="hakkimizda" class="nav-dropdown-trigger" data-i18n="nav.about">Hakkımızda</a>
         <div class="nav-dropdown-panel"></div>
       </div>
-      <a href="abonelik">Abonelik</a>
-      <a href="iletisim">İletişim</a>
+      <a href="abonelik" data-i18n="nav.sub">Abonelik</a>
+      <a href="iletisim" data-i18n="nav.contact">İletişim</a>
       <a href="casting/index" class="nav-casting">Casting <span class="nav-casting-badge">NEW</span></a>
     </nav>
     <div class="header-right">
-      <a href="hesabim" class="hdr-cta">Giriş Yap</a>
+      <a href="hesabim" class="hdr-cta" data-i18n="nav.login">Giriş Yap</a>
+      <div class="lang-switcher">
+        <button class="lang-current">
+          <span class="lang-flag lang-flag-current">🇹🇷</span>
+          <span class="lang-code-current">TR</span>
+          <svg class="lang-chevron" viewBox="0 0 10 6" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="currentColor"/></svg>
+        </button>
+        <div class="lang-dropdown">
+          <button class="lang-opt active" data-lang="tr"><span class="lang-flag">🇹🇷</span><span class="lang-name">Türkçe</span><span class="lang-check">✓</span></button>
+          <button class="lang-opt" data-lang="en"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span><span class="lang-check">✓</span></button>
+          <button class="lang-opt" data-lang="ru"><span class="lang-flag">🇷🇺</span><span class="lang-name">Русский</span><span class="lang-check">✓</span></button>
+        </div>
+      </div>
       <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -69,11 +81,11 @@
     <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Kapat">✕</button>
   </div>
   <nav>
-    <a href="anasayfa">Ana Sayfa</a>
-    <a href="haberler">Haberler</a>
-    <a href="hakkimizda">Hakkımızda</a>
-    <a href="abonelik">Abonelik</a>
-    <a href="iletisim">İletişim</a>
+    <a href="anasayfa" data-i18n="nav.home">Ana Sayfa</a>
+    <a href="haberler" data-i18n="nav.news">Haberler</a>
+    <a href="hakkimizda" data-i18n="nav.about">Hakkımızda</a>
+    <a href="abonelik" data-i18n="nav.sub">Abonelik</a>
+    <a href="iletisim" data-i18n="nav.contact">İletişim</a>
     <a href="casting/index" class="nav-casting">Casting</a>
     <a href="hesabim" class="mobile-cta">Giriş Yap</a>
   </nav>
@@ -81,7 +93,7 @@
 
 <div class="legal-hero">
   <div class="container">
-    <span class="legal-hero__kicker">Yasal</span>
+    <span class="legal-hero__kicker" data-i18n="legal.kicker">Yasal</span>
     <h1 class="legal-hero__title">Çerez Politikası</h1>
     <p class="legal-hero__date">Son güncelleme: 1 Ocak 2026</p>
   </div>
@@ -180,25 +192,25 @@
       <a class="footer-logo" href="index">
         <img src="images/logo.png" alt="Fashiontv Magazine" style="height:36px;width:auto;display:block;filter:brightness(0) invert(1);">
       </a>
-      <p class="footer-tagline">Modanın, güzelliğin ve yaşam sanatının<br />buluştuğu premium editorial platform.</p>
+      <p class="footer-tagline" data-i18n="footer.tagline">Modanın, güzelliğin ve yaşam sanatının<br />buluştuğu premium editorial platform.</p>
     </div>
     <div class="footer-col">
-      <h4 class="footer-col-heading">Keşfet</h4>
-      <ul><li><a href="haberler">Haberler</a></li><li><a href="abonelik">Abonelik</a></li><li><a href="casting/index">Casting</a></li></ul>
+      <h4 class="footer-col-heading" data-i18n="footer.col.discover">Keşfet</h4>
+      <ul><li><a href="haberler" data-i18n="nav.news">Haberler</a></li><li><a href="abonelik" data-i18n="nav.sub">Abonelik</a></li><li><a href="casting/index">Casting</a></li></ul>
     </div>
     <div class="footer-col">
-      <h4 class="footer-col-heading">Kurumsal</h4>
-      <ul><li><a href="hakkimizda">Hakkımızda</a></li><li><a href="iletisim">İletişim</a></li></ul>
+      <h4 class="footer-col-heading" data-i18n="footer.col.corporate">Kurumsal</h4>
+      <ul><li><a href="hakkimizda" data-i18n="nav.about">Hakkımızda</a></li><li><a href="iletisim" data-i18n="nav.contact">İletişim</a></li></ul>
     </div>
     <div class="footer-col">
-      <h4 class="footer-col-heading">Yasal</h4>
-      <ul><li><a href="gizlilik">Gizlilik Politikası</a></li><li><a href="kullanim-kosullari">Kullanım Koşulları</a></li><li><a href="cerez">Çerez Politikası</a></li></ul>
+      <h4 class="footer-col-heading" data-i18n="legal.kicker">Yasal</h4>
+      <ul><li><a href="gizlilik" data-i18n="footer.privacy">Gizlilik Politikası</a></li><li><a href="kullanim-kosullari" data-i18n="footer.terms">Kullanım Koşulları</a></li><li><a href="cerez" data-i18n="footer.cookie">Çerez Politikası</a></li></ul>
     </div>
   </div>
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p>© 2026 Fashiontv Magazine. Tüm hakları saklıdır.</p>
-      <div class="footer-legal"><a href="gizlilik">Gizlilik</a><a href="kullanim-kosullari">Kullanım Koşulları</a><a href="cerez">Çerez</a></div>
+      <p data-i18n="footer.copy">© 2026 Fashiontv Magazine. Tüm hakları saklıdır.</p>
+      <div class="footer-legal"><a href="gizlilik" data-i18n="footer.privacy">Gizlilik</a><a href="kullanim-kosullari" data-i18n="footer.terms">Kullanım Koşulları</a><a href="cerez" data-i18n="footer.cookie">Çerez</a></div>
     </div>
   </div>
 </footer>
@@ -214,5 +226,6 @@ burger.addEventListener('click', () => { mob.classList.add('is-open'); document.
 mobClose.addEventListener('click', () => { mob.classList.remove('is-open'); document.body.style.overflow = ''; });
 mob.addEventListener('click', e => { if (e.target === mob) { mob.classList.remove('is-open'); document.body.style.overflow = ''; } });
 </script>
+<script src="site-lang.js"></script>
 </body>
 </html>
