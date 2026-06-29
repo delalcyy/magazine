@@ -48,14 +48,17 @@ body.auth-page {
 /* ── MAIN LAYOUT ── */
 .auth-layout {
   display: grid;
-  grid-template-columns: 1fr 500px;
+  grid-template-columns: 1fr clamp(380px, 42vw, 520px);
   min-height: 100vh;
   padding-top: 64px;
+  align-items: stretch;
 }
 
 /* ── LEFT PANEL ── */
 .auth-left {
-  position: relative;
+  position: sticky;
+  top: 64px;
+  height: calc(100vh - 64px);
   overflow: hidden;
 }
 .auth-left__bg {
@@ -138,9 +141,8 @@ body.auth-page {
   border-left: 1px solid rgba(255,255,255,.06);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: clamp(40px,5vw,64px) clamp(32px,5vw,56px);
-  overflow-y: auto;
+  justify-content: flex-start;
+  padding: clamp(48px,7vw,80px) clamp(32px,5vw,56px) clamp(40px,5vw,64px);
 }
 
 /* Form header */
