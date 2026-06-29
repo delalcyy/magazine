@@ -64,6 +64,23 @@ function initDb() {
     db.exec("ALTER TABLE users ADD COLUMN password_reset_expires TEXT");
   }
 
+  /* Migration: subscriptions tablosu */
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS subscriptions (
+      id          TEXT PRIMARY KEY,
+      user_id     TEXT NOT NULL,
+      plan_name   TEXT NOT NULL,
+      plan_period TEXT NOT NULL,
+      price       INTEGER NOT NULL DEFAULT 0,
+      status      TEXT NOT NULL DEFAULT 'active',
+      starts_at   TEXT NOT NULL,
+      expires_at  TEXT,
+      notes       TEXT,
+      created_at  TEXT NOT NULL,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    )
+  `);
+
   console.log(`✅  Veritabanı hazır: ${DB_PATH}`);
   console.log('✅  Tablolar oluşturuldu (CREATE TABLE IF NOT EXISTS).');
 }

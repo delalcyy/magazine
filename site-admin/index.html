@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Admin — FashionTV Magazine</title>
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a;
+      --sidebar-bg: #111;
+      --card-bg: #161616;
+      --border: rgba(255,255,255,.07);
+      --gold: #C9A84C;
+      --gold2: #d9bc6a;
+      --text: #e8e8e8;
+      --muted: rgba(255,255,255,.38);
+      --danger: #e07068;
+      --success: #6dbf8a;
+    }
+    html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; font-size: 14px; }
+
+    /* LOGIN */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+    }
+    .login-box {
+      width: 380px;
+      padding: 48px 40px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+    }
+    .login-logo {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+    .login-box h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+    .login-box p  { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+    .lf { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .lf label { font-size: 9px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+    .lf input {
+      padding: 11px 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .lf input:focus { border-color: var(--gold); }
+    .login-err { font-size: 12px; color: var(--danger); margin-bottom: 12px; display: none; }
+    .btn-gold {
+      width: 100%;
+      padding: 12px;
+      background: var(--gold);
+      color: #000;
+      border: none;
+      font-family: inherit;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s;
+      margin-top: 6px;
+    }
+    .btn-gold:hover { background: var(--gold2); }
+    .btn-gold:disabled { opacity: .4; cursor: not-allowed; }
+
+    /* APP */
+    #app { display: none; height: 100vh; overflow: hidden; }
+    .app-layout { display: grid; grid-template-columns: 220px 1fr; height: 100vh; }
+
+    /* SIDEBAR */
+    .sidebar {
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .sidebar-brand {
+      padding: 22px 20px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-brand-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .36em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .sidebar-brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+    .sidebar-nav { padding: 16px 12px; flex: 1; }
+    .nav-section { font-size: 8px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); padding: 0 8px 8px; margin-top: 12px; }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: all .15s;
+      margin-bottom: 2px;
+      user-select: none;
+    }
+    .nav-item:hover { color: var(--text); background: rgba(255,255,255,.05); }
+    .nav-item.active { color: var(--gold); background: rgba(201,168,76,.1); }
+    .nav-item svg { flex-shrink: 0; opacity: .7; }
+    .nav-item.active svg { opacity: 1; }
+    .sidebar-user {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .sidebar-user-name { font-weight: 600; color: var(--text); }
+    .sidebar-user-role { color: var(--gold); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; margin-top: 2px; }
+    .logout-btn {
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--muted);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+      padding: 0;
+      transition: color .2s;
+    }
+    .logout-btn:hover { color: var(--danger); }
+
+    /* MAIN */
+    .main-content {
+      overflow-y: auto;
+      padding: 32px 36px;
+    }
+    .page { display: none; }
+    .page.active { display: block; }
+    .page-header { margin-bottom: 28px; }
+    .page-title { font-size: 22px; font-weight: 700; }
+    .page-sub   { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+    /* STAT CARDS */
+    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 20px 22px;
+    }
+    .stat-card__label { font-size: 9px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .stat-card__val { font-size: 32px; font-weight: 700; line-height: 1; }
+    .stat-card__val.gold { color: var(--gold); }
+
+    /* TABLE */
+    .table-wrap {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      overflow-x: auto;
+    }
+    .table-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .table-toolbar-title { font-size: 13px; font-weight: 600; flex: 1; min-width: 120px; }
+    .tbar-input {
+      padding: 8px 12px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+      width: 220px;
+      transition: border-color .2s;
+    }
+    .tbar-input:focus { border-color: var(--gold); }
+    .tbar-select {
+      padding: 8px 10px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+      cursor: pointer;
+    }
+    .tbar-select option { background: #1a1a1a; }
+    .btn-small {
+      padding: 8px 16px;
+      font-family: inherit;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1px solid;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .btn-gold-sm { background: var(--gold); color: #000; border-color: var(--gold); }
+    .btn-gold-sm:hover { background: var(--gold2); }
+    .btn-outline-sm { background: transparent; color: var(--muted); border-color: rgba(255,255,255,.12); }
+    .btn-outline-sm:hover { color: var(--text); border-color: rgba(255,255,255,.28); }
+    .btn-danger-sm { background: transparent; color: var(--danger); border-color: rgba(224,112,104,.3); }
+    .btn-danger-sm:hover { background: rgba(224,112,104,.1); }
+
+    table { width: 100%; border-collapse: collapse; }
+    th {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 12px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 13px 20px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      font-size: 13.5px;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(255,255,255,.02); }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+    }
+    .badge-gold   { background: rgba(201,168,76,.15); color: var(--gold); }
+    .badge-green  { background: rgba(109,191,138,.12); color: var(--success); }
+    .badge-red    { background: rgba(224,112,104,.12); color: var(--danger); }
+    .badge-gray   { background: rgba(255,255,255,.06); color: var(--muted); }
+    .td-actions { display: flex; gap: 6px; align-items: center; }
+    .pagination { display: flex; gap: 8px; align-items: center; padding: 14px 20px; justify-content: flex-end; border-top: 1px solid var(--border); }
+    .pag-info { font-size: 12px; color: var(--muted); flex: 1; }
+    .pag-btn {
+      padding: 6px 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .pag-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+    .pag-btn:disabled { opacity: .3; cursor: not-allowed; }
+
+    /* RECENT TABLES */
+    .section-title { font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: #161616;
+      border: 1px solid var(--border);
+      width: 480px;
+      max-width: 96vw;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-head h2 { font-size: 16px; font-weight: 700; }
+    .modal-close { background: none; border: none; color: var(--muted); font-size: 20px; cursor: pointer; line-height: 1; padding: 2px 6px; }
+    .modal-close:hover { color: var(--text); }
+    .modal-body { padding: 24px; }
+    .mf { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .mf label { font-size: 9px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+    .mf input, .mf select, .mf textarea {
+      padding: 10px 12px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .mf input:focus, .mf select:focus, .mf textarea:focus { border-color: var(--gold); }
+    .mf select option { background: #1a1a1a; }
+    .mf textarea { resize: vertical; min-height: 70px; }
+    .modal-foot { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; gap: 10px; justify-content: flex-end; }
+    .modal-err { font-size: 12px; color: var(--danger); padding: 8px 0; display: none; }
+    .user-search-results {
+      border: 1px solid var(--border);
+      background: #1c1c1c;
+      max-height: 160px;
+      overflow-y: auto;
+      display: none;
+    }
+    .user-search-item {
+      padding: 9px 12px;
+      cursor: pointer;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      transition: background .1s;
+    }
+    .user-search-item:hover { background: rgba(255,255,255,.05); }
+    .user-search-item small { color: var(--muted); font-size: 11px; }
+
+    .empty-row td { text-align: center; color: var(--muted); padding: 32px; }
+    .loading-row td { text-align: center; color: var(--muted); padding: 32px; }
+
+    @media (max-width: 900px) {
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .app-layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .main-content { padding: 20px 16px; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">FashionTV Magazine</div>
+    <h1>Admin Girişi</h1>
+    <p>Site yönetim paneline erişmek için giriş yapın.</p>
+    <div class="lf">
+      <label>E-posta</label>
+      <input type="email" id="l-email" placeholder="admin@example.com" autocomplete="email" />
+    </div>
+    <div class="lf">
+      <label>Şifre</label>
+      <input type="password" id="l-pass" placeholder="••••••••" autocomplete="current-password" />
+    </div>
+    <div class="login-err" id="l-err"></div>
+    <button class="btn-gold" id="l-btn" onclick="doLogin()">Giriş Yap</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-label">FashionTV Magazine</div>
+        <div class="sidebar-brand-title">Site Yönetimi</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">Genel</div>
+        <div class="nav-item active" data-page="dashboard" onclick="showPage('dashboard', this)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </div>
+        <div class="nav-section">Yönetim</div>
+        <div class="nav-item" data-page="users" onclick="showPage('users', this)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Kullanıcılar
+        </div>
+        <div class="nav-item" data-page="subs" onclick="showPage('subs', this)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          Abonelikler
+        </div>
+      </nav>
+      <div class="sidebar-user">
+        <div class="sidebar-user-name" id="s-name">—</div>
+        <div class="sidebar-user-role">Admin</div>
+        <button class="logout-btn" onclick="doLogout()">Çıkış Yap</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+      <!-- DASHBOARD -->
+      <section id="page-dashboard" class="page active">
+        <div class="page-header">
+          <div class="page-title">Dashboard</div>
+          <div class="page-sub">Genel bakış</div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-card__label">Toplam Kullanıcı</div><div class="stat-card__val" id="st-users">—</div></div>
+          <div class="stat-card"><div class="stat-card__label">Doğrulanmış</div><div class="stat-card__val gold" id="st-verified">—</div></div>
+          <div class="stat-card"><div class="stat-card__label">Toplam Abonelik</div><div class="stat-card__val" id="st-subs">—</div></div>
+          <div class="stat-card"><div class="stat-card__label">Aktif Abonelik</div><div class="stat-card__val gold" id="st-active">—</div></div>
+        </div>
+        <div class="two-col">
+          <div>
+            <div class="section-title">Son Kayıtlar</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Ad Soyad</th><th>E-posta</th><th>Durum</th></tr></thead>
+                <tbody id="dash-users"></tbody>
+              </table>
+            </div>
+          </div>
+          <div>
+            <div class="section-title">Son Abonelikler</div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Kullanıcı</th><th>Plan</th><th>Durum</th></tr></thead>
+                <tbody id="dash-subs"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- USERS -->
+      <section id="page-users" class="page">
+        <div class="page-header">
+          <div class="page-title">Kullanıcılar</div>
+          <div class="page-sub">Tüm kayıtlı kullanıcılar</div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-toolbar">
+            <span class="table-toolbar-title">Kullanıcı Listesi</span>
+            <input class="tbar-input" id="u-search" placeholder="Ara (ad, e-posta…)" oninput="debounce(loadUsers, 400)()" />
+            <select class="tbar-select" id="u-role" onchange="loadUsers()">
+              <option value="">Tüm Roller</option>
+              <option value="user">Kullanıcı</option>
+              <option value="admin">Admin</option>
+            </select>
+            <select class="tbar-select" id="u-verified" onchange="loadUsers()">
+              <option value="">Tüm</option>
+              <option value="1">Doğrulanmış</option>
+              <option value="0">Doğrulanmamış</option>
+            </select>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Ad Soyad</th>
+                <th>E-posta</th>
+                <th>Rol</th>
+                <th>E-posta</th>
+                <th>Kayıt Tarihi</th>
+                <th>İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="users-tbody"></tbody>
+          </table>
+          <div class="pagination">
+            <span class="pag-info" id="u-pag-info"></span>
+            <button class="pag-btn" id="u-prev" onclick="userPage(-1)">← Önceki</button>
+            <button class="pag-btn" id="u-next" onclick="userPage(1)">Sonraki →</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- SUBSCRIPTIONS -->
+      <section id="page-subs" class="page">
+        <div class="page-header">
+          <div class="page-title">Abonelikler</div>
+          <div class="page-sub">Tüm abonelik kayıtları</div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-toolbar">
+            <span class="table-toolbar-title">Abonelik Listesi</span>
+            <input class="tbar-input" id="s-search" placeholder="Ara (kullanıcı, plan…)" oninput="debounce(loadSubs, 400)()" />
+            <select class="tbar-select" id="s-status" onchange="loadSubs()">
+              <option value="">Tüm Durumlar</option>
+              <option value="active">Aktif</option>
+              <option value="cancelled">İptal</option>
+              <option value="expired">Süresi Doldu</option>
+            </select>
+            <button class="btn-small btn-gold-sm" onclick="openAddSub()">+ Abonelik Ekle</button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Kullanıcı</th>
+                <th>Plan</th>
+                <th>Süre</th>
+                <th>Ücret</th>
+                <th>Durum</th>
+                <th>Başlangıç</th>
+                <th>Bitiş</th>
+                <th>İşlem</th>
+              </tr>
+            </thead>
+            <tbody id="subs-tbody"></tbody>
+          </table>
+          <div class="pagination">
+            <span class="pag-info" id="s-pag-info"></span>
+            <button class="pag-btn" id="s-prev" onclick="subPage(-1)">← Önceki</button>
+            <button class="pag-btn" id="s-next" onclick="subPage(1)">Sonraki →</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- MODAL: ABONELIK EKLE/DÜZENLE -->
+<div class="modal-overlay" id="sub-modal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="sub-modal-title">Abonelik Ekle</h2>
+      <button class="modal-close" onclick="closeModal('sub-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="sm-id" />
+      <div class="mf">
+        <label>Kullanıcı Ara</label>
+        <input type="text" id="sm-user-search" placeholder="Ad veya e-posta girin…" oninput="searchUserDropdown()" autocomplete="off" />
+        <div class="user-search-results" id="sm-user-results"></div>
+        <input type="hidden" id="sm-user-id" />
+        <div id="sm-user-selected" style="font-size:12px;color:var(--gold);margin-top:4px;"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="mf">
+          <label>Plan Adı</label>
+          <select id="sm-plan">
+            <option value="Starter">Starter</option>
+            <option value="Essential">Essential</option>
+            <option value="Premium">Premium</option>
+            <option value="Prestige">Prestige</option>
+            <option value="Elite">Elite</option>
+            <option value="Grand">Grand</option>
+          </select>
+        </div>
+        <div class="mf">
+          <label>Süre</label>
+          <select id="sm-period">
+            <option value="1-aylik">1 Aylık</option>
+            <option value="3-aylik">3 Aylık</option>
+            <option value="6-aylik">6 Aylık</option>
+            <option value="1-yillik">1 Yıllık</option>
+            <option value="3-yillik">3 Yıllık</option>
+            <option value="5-yillik">5 Yıllık</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="mf">
+          <label>Ücret (₺)</label>
+          <input type="number" id="sm-price" placeholder="0" min="0" />
+        </div>
+        <div class="mf">
+          <label>Durum</label>
+          <select id="sm-status">
+            <option value="active">Aktif</option>
+            <option value="cancelled">İptal</option>
+            <option value="expired">Süresi Doldu</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="mf">
+          <label>Başlangıç Tarihi</label>
+          <input type="date" id="sm-starts" />
+        </div>
+        <div class="mf">
+          <label>Bitiş Tarihi</label>
+          <input type="date" id="sm-expires" />
+        </div>
+      </div>
+      <div class="mf">
+        <label>Notlar</label>
+        <textarea id="sm-notes" placeholder="İsteğe bağlı notlar…"></textarea>
+      </div>
+      <div class="modal-err" id="sm-err"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-small btn-outline-sm" onclick="closeModal('sub-modal')">İptal</button>
+      <button class="btn-small btn-gold-sm" id="sm-save" onclick="saveSub()">Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: KULLANICI DÜZENLE -->
+<div class="modal-overlay" id="user-modal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Kullanıcı Düzenle</h2>
+      <button class="modal-close" onclick="closeModal('user-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="um-id" />
+      <div style="margin-bottom:20px">
+        <div style="font-size:15px;font-weight:600" id="um-name"></div>
+        <div style="font-size:13px;color:var(--muted)" id="um-email"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="mf">
+          <label>Rol</label>
+          <select id="um-role">
+            <option value="user">Kullanıcı</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div class="mf">
+          <label>E-posta Doğrulaması</label>
+          <select id="um-verified">
+            <option value="1">Doğrulanmış</option>
+            <option value="0">Doğrulanmamış</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-err" id="um-err"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-small btn-outline-sm" onclick="closeModal('user-modal')">İptal</button>
+      <button class="btn-small btn-gold-sm" onclick="saveUser()">Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+const API = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+  ? 'http://localhost:4000/api'
+  : '/api';
+
+let TOKEN = localStorage.getItem('ftv_admin_token');
+
+/* ── Helpers ── */
+function authH() { return { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + TOKEN }; }
+async function apiFetch(path, opts = {}) {
+  const r = await fetch(API + path, { headers: authH(), ...opts });
+  return r.json();
+}
+
+function fmtDate(str) {
+  if (!str) return '—';
+  return new Date(str).toLocaleDateString('tr-TR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
+function fmtPrice(n) { return n ? '₺' + Number(n).toLocaleString('tr-TR') : '—'; }
+
+const _debTimers = {};
+function debounce(fn, ms) {
+  return function() {
+    const k = fn.name || Math.random();
+    clearTimeout(_debTimers[k]);
+    _debTimers[k] = setTimeout(fn, ms);
+  };
+}
+
+/* ── Auth ── */
+async function doLogin() {
+  const email = document.getElementById('l-email').value.trim();
+  const pass  = document.getElementById('l-pass').value;
+  const btn   = document.getElementById('l-btn');
+  const err   = document.getElementById('l-err');
+  err.style.display = 'none';
+
+  if (!email || !pass) { err.textContent = 'E-posta ve şifre gerekli.'; err.style.display = 'block'; return; }
+
+  btn.disabled = true; btn.textContent = 'Giriş yapılıyor…';
+  const data = await apiFetch('/auth/login', {
+    method: 'POST',
+    body: JSON.stringify({ email, password: pass })
+  });
+  btn.disabled = false; btn.textContent = 'Giriş Yap';
+
+  if (!data.success) { err.textContent = data.message || 'Giriş başarısız.'; err.style.display = 'block'; return; }
+  if (data.user.role !== 'admin') { err.textContent = 'Bu panel sadece adminlere açıktır.'; err.style.display = 'block'; return; }
+
+  TOKEN = data.token;
+  localStorage.setItem('ftv_admin_token', TOKEN);
+  startApp(data.user);
+}
+
+document.getElementById('l-pass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+function doLogout() {
+  localStorage.removeItem('ftv_admin_token');
+  TOKEN = null;
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+}
+
+/* ── Bootstrap ── */
+async function boot() {
+  if (!TOKEN) return;
+  const data = await apiFetch('/user/me');
+  if (data.success && data.user.role === 'admin') {
+    startApp(data.user);
+  } else {
+    localStorage.removeItem('ftv_admin_token');
+    TOKEN = null;
+  }
+}
+
+function startApp(user) {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  document.getElementById('s-name').textContent = user.first_name + ' ' + user.last_name;
+  loadDashboard();
+}
+
+/* ── Pages ── */
+function showPage(name, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  el.classList.add('active');
+  if (name === 'dashboard') loadDashboard();
+  if (name === 'users') { _uPage = 1; loadUsers(); }
+  if (name === 'subs')  { _sPage = 1; loadSubs(); }
+}
+
+/* ── Dashboard ── */
+async function loadDashboard() {
+  const d = await apiFetch('/admin/stats');
+  if (!d.success) return;
+  const s = d.data;
+  document.getElementById('st-users').textContent   = s.totalUsers;
+  document.getElementById('st-verified').textContent = s.verifiedUsers;
+  document.getElementById('st-subs').textContent    = s.totalSubs;
+  document.getElementById('st-active').textContent  = s.activeSubs;
+
+  document.getElementById('dash-users').innerHTML = s.recentUsers.length
+    ? s.recentUsers.map(u => `<tr>
+        <td>${esc(u.first_name + ' ' + u.last_name)}</td>
+        <td style="color:var(--muted)">${esc(u.email)}</td>
+        <td>${u.email_verified ? '<span class="badge badge-green">Doğrulandı</span>' : '<span class="badge badge-gray">Bekliyor</span>'}</td>
+      </tr>`).join('')
+    : '<tr class="empty-row"><td colspan="3">Kayıt yok</td></tr>';
+
+  document.getElementById('dash-subs').innerHTML = s.recentSubs.length
+    ? s.recentSubs.map(s => `<tr>
+        <td>${esc(s.first_name + ' ' + s.last_name)}</td>
+        <td>${esc(s.plan_name)}</td>
+        <td>${statusBadge(s.status)}</td>
+      </tr>`).join('')
+    : '<tr class="empty-row"><td colspan="3">Abonelik yok</td></tr>';
+}
+
+/* ── Users ── */
+let _uPage = 1, _uTotal = 0, _uLimit = 20;
+
+async function loadUsers() {
+  const q = document.getElementById('u-search').value;
+  const role = document.getElementById('u-role').value;
+  const verified = document.getElementById('u-verified').value;
+  const params = new URLSearchParams({ q, role, verified, page: _uPage, limit: _uLimit });
+  const d = await apiFetch('/admin/users?' + params);
+  if (!d.success) return;
+
+  _uTotal = d.total;
+  const tbody = document.getElementById('users-tbody');
+  tbody.innerHTML = d.data.length
+    ? d.data.map(u => `<tr>
+        <td><strong>${esc(u.first_name + ' ' + u.last_name)}</strong></td>
+        <td style="color:var(--muted)">${esc(u.email)}</td>
+        <td>${u.role === 'admin' ? '<span class="badge badge-gold">Admin</span>' : '<span class="badge badge-gray">Kullanıcı</span>'}</td>
+        <td>${u.email_verified ? '<span class="badge badge-green">Doğrulandı</span>' : '<span class="badge badge-gray">Bekliyor</span>'}</td>
+        <td style="color:var(--muted)">${fmtDate(u.created_at)}</td>
+        <td><div class="td-actions">
+          <button class="btn-small btn-outline-sm" onclick="openEditUser(${JSON.stringify(u).replace(/"/g,'&quot;')})">Düzenle</button>
+          <button class="btn-small btn-danger-sm" onclick="delUser('${u.id}','${esc(u.first_name + ' ' + u.last_name)}')">Sil</button>
+        </div></td>
+      </tr>`).join('')
+    : '<tr class="empty-row"><td colspan="6">Kullanıcı bulunamadı</td></tr>';
+
+  const start = (_uPage - 1) * _uLimit + 1;
+  const end   = Math.min(_uPage * _uLimit, _uTotal);
+  document.getElementById('u-pag-info').textContent = _uTotal ? `${start}–${end} / ${_uTotal}` : '0 sonuç';
+  document.getElementById('u-prev').disabled = _uPage <= 1;
+  document.getElementById('u-next').disabled = _uPage * _uLimit >= _uTotal;
+}
+
+function userPage(dir) { _uPage += dir; loadUsers(); }
+
+function openEditUser(u) {
+  document.getElementById('um-id').value = u.id;
+  document.getElementById('um-name').textContent = u.first_name + ' ' + u.last_name;
+  document.getElementById('um-email').textContent = u.email;
+  document.getElementById('um-role').value = u.role;
+  document.getElementById('um-verified').value = u.email_verified ? '1' : '0';
+  document.getElementById('um-err').style.display = 'none';
+  document.getElementById('user-modal').classList.add('open');
+}
+
+async function saveUser() {
+  const id = document.getElementById('um-id').value;
+  const role = document.getElementById('um-role').value;
+  const email_verified = document.getElementById('um-verified').value === '1';
+  const err = document.getElementById('um-err');
+  err.style.display = 'none';
+
+  const d = await apiFetch('/admin/users/' + id, {
+    method: 'PATCH',
+    body: JSON.stringify({ role, email_verified })
+  });
+
+  if (!d.success) { err.textContent = d.message; err.style.display = 'block'; return; }
+  closeModal('user-modal');
+  loadUsers();
+}
+
+async function delUser(id, name) {
+  if (!confirm(`"${name}" kullanıcısını silmek istediğinizden emin misiniz?`)) return;
+  const d = await apiFetch('/admin/users/' + id, { method: 'DELETE' });
+  if (!d.success) { alert(d.message); return; }
+  loadUsers();
+}
+
+/* ── Subscriptions ── */
+let _sPage = 1, _sTotal = 0, _sLimit = 20;
+
+async function loadSubs() {
+  const q = document.getElementById('s-search').value;
+  const status = document.getElementById('s-status').value;
+  const params = new URLSearchParams({ q, status, page: _sPage, limit: _sLimit });
+  const d = await apiFetch('/admin/subscriptions?' + params);
+  if (!d.success) return;
+
+  _sTotal = d.total;
+  const tbody = document.getElementById('subs-tbody');
+  tbody.innerHTML = d.data.length
+    ? d.data.map(s => `<tr>
+        <td>
+          <strong>${esc(s.first_name + ' ' + s.last_name)}</strong><br/>
+          <small style="color:var(--muted)">${esc(s.email)}</small>
+        </td>
+        <td><strong>${esc(s.plan_name)}</strong></td>
+        <td style="color:var(--muted)">${esc(s.plan_period)}</td>
+        <td>${fmtPrice(s.price)}</td>
+        <td>${statusBadge(s.status)}</td>
+        <td style="color:var(--muted)">${fmtDate(s.starts_at)}</td>
+        <td style="color:var(--muted)">${fmtDate(s.expires_at)}</td>
+        <td><div class="td-actions">
+          <button class="btn-small btn-outline-sm" onclick="openEditSub(${JSON.stringify(s).replace(/"/g,'&quot;')})">Düzenle</button>
+          <button class="btn-small btn-danger-sm" onclick="delSub('${s.id}')">Sil</button>
+        </div></td>
+      </tr>`).join('')
+    : '<tr class="empty-row"><td colspan="8">Abonelik bulunamadı</td></tr>';
+
+  const start = (_sPage - 1) * _sLimit + 1;
+  const end   = Math.min(_sPage * _sLimit, _sTotal);
+  document.getElementById('s-pag-info').textContent = _sTotal ? `${start}–${end} / ${_sTotal}` : '0 sonuç';
+  document.getElementById('s-prev').disabled = _sPage <= 1;
+  document.getElementById('s-next').disabled = _sPage * _sLimit >= _sTotal;
+}
+
+function subPage(dir) { _sPage += dir; loadSubs(); }
+
+function openAddSub() {
+  document.getElementById('sm-id').value = '';
+  document.getElementById('sm-modal-title').textContent = 'Abonelik Ekle';
+  document.getElementById('sm-user-search').value = '';
+  document.getElementById('sm-user-id').value = '';
+  document.getElementById('sm-user-selected').textContent = '';
+  document.getElementById('sm-user-results').style.display = 'none';
+  document.getElementById('sm-plan').value = 'Starter';
+  document.getElementById('sm-period').value = '1-aylik';
+  document.getElementById('sm-price').value = '';
+  document.getElementById('sm-status').value = 'active';
+  document.getElementById('sm-starts').value = new Date().toISOString().split('T')[0];
+  document.getElementById('sm-expires').value = '';
+  document.getElementById('sm-notes').value = '';
+  document.getElementById('sm-err').style.display = 'none';
+  document.getElementById('sm-user-search').removeAttribute('disabled');
+  document.getElementById('sub-modal').classList.add('open');
+}
+
+function openEditSub(s) {
+  document.getElementById('sm-id').value = s.id;
+  document.getElementById('sm-modal-title').textContent = 'Abonelik Düzenle';
+  document.getElementById('sm-user-search').value = s.first_name + ' ' + s.last_name + ' — ' + s.email;
+  document.getElementById('sm-user-search').disabled = true;
+  document.getElementById('sm-user-id').value = s.user_id;
+  document.getElementById('sm-user-selected').textContent = '';
+  document.getElementById('sm-user-results').style.display = 'none';
+  document.getElementById('sm-plan').value = s.plan_name;
+  document.getElementById('sm-period').value = s.plan_period;
+  document.getElementById('sm-price').value = s.price;
+  document.getElementById('sm-status').value = s.status;
+  document.getElementById('sm-starts').value = s.starts_at ? s.starts_at.split('T')[0] : '';
+  document.getElementById('sm-expires').value = s.expires_at ? s.expires_at.split('T')[0] : '';
+  document.getElementById('sm-notes').value = s.notes || '';
+  document.getElementById('sm-err').style.display = 'none';
+  document.getElementById('sub-modal').classList.add('open');
+}
+
+async function saveSub() {
+  const id = document.getElementById('sm-id').value;
+  const user_id = document.getElementById('sm-user-id').value;
+  const err = document.getElementById('sm-err');
+  err.style.display = 'none';
+
+  if (!id && !user_id) { err.textContent = 'Kullanıcı seçin.'; err.style.display = 'block'; return; }
+
+  const body = {
+    plan_name:   document.getElementById('sm-plan').value,
+    plan_period: document.getElementById('sm-period').value,
+    price:       document.getElementById('sm-price').value || 0,
+    status:      document.getElementById('sm-status').value,
+    starts_at:   document.getElementById('sm-starts').value || null,
+    expires_at:  document.getElementById('sm-expires').value || null,
+    notes:       document.getElementById('sm-notes').value || null,
+  };
+  if (!id) body.user_id = user_id;
+
+  const path  = id ? '/admin/subscriptions/' + id : '/admin/subscriptions';
+  const method = id ? 'PATCH' : 'POST';
+  const btn   = document.getElementById('sm-save');
+  btn.disabled = true; btn.textContent = 'Kaydediliyor…';
+
+  const d = await apiFetch(path, { method, body: JSON.stringify(body) });
+  btn.disabled = false; btn.textContent = 'Kaydet';
+
+  if (!d.success) { err.textContent = d.message; err.style.display = 'block'; return; }
+  closeModal('sub-modal');
+  loadSubs();
+}
+
+async function delSub(id) {
+  if (!confirm('Bu aboneliği silmek istediğinizden emin misiniz?')) return;
+  const d = await apiFetch('/admin/subscriptions/' + id, { method: 'DELETE' });
+  if (!d.success) { alert(d.message); return; }
+  loadSubs();
+}
+
+/* ── User search dropdown ── */
+let _userSearchTimer;
+async function searchUserDropdown() {
+  const q = document.getElementById('sm-user-search').value.trim();
+  const results = document.getElementById('sm-user-results');
+  clearTimeout(_userSearchTimer);
+  if (q.length < 2) { results.style.display = 'none'; return; }
+  _userSearchTimer = setTimeout(async () => {
+    const d = await apiFetch('/admin/users/search?q=' + encodeURIComponent(q));
+    if (!d.success || !d.data.length) { results.style.display = 'none'; return; }
+    results.innerHTML = d.data.map(u => `
+      <div class="user-search-item" onclick="selectUser('${u.id}','${esc(u.first_name + ' ' + u.last_name)}','${esc(u.email)}')">
+        ${esc(u.first_name + ' ' + u.last_name)}
+        <small>${esc(u.email)}</small>
+      </div>`).join('');
+    results.style.display = 'block';
+  }, 250);
+}
+
+function selectUser(id, name, email) {
+  document.getElementById('sm-user-id').value = id;
+  document.getElementById('sm-user-search').value = name + ' — ' + email;
+  document.getElementById('sm-user-selected').textContent = '✓ ' + name;
+  document.getElementById('sm-user-results').style.display = 'none';
+}
+
+/* ── Modal ── */
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
+
+/* ── Misc ── */
+function statusBadge(s) {
+  if (s === 'active')    return '<span class="badge badge-green">Aktif</span>';
+  if (s === 'cancelled') return '<span class="badge badge-red">İptal</span>';
+  if (s === 'expired')   return '<span class="badge badge-gray">Süresi Doldu</span>';
+  return '<span class="badge badge-gray">' + esc(s) + '</span>';
+}
+
+function esc(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ── Boot ── */
+boot();
+</script>
+</body>
+</html>
