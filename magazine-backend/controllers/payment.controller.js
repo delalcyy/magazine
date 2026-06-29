@@ -26,7 +26,10 @@ function initPayment(req, res) {
     return res.status(400).json({ success: false, message: 'Plan bilgileri eksik.' });
   }
 
-  const user          = req.user;
+  const db2    = getDb();
+  const user   = db2.prepare('SELECT id, first_name, last_name, email FROM users WHERE id = ?').get(req.user.id);
+  if (!user) return res.status(401).json({ success: false, message: 'Kullanıcı bulunamadı.' });
+
   const iyzipay       = getIyzipay();
   const conversationId = randomUUID();
   const callbackUrl   = `${process.env.FRONTEND_URL}/api/payment/callback`;
