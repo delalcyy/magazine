@@ -342,6 +342,27 @@
 .plan-card--featured .plan-features-list li,
 .plan-card--luxury   .plan-features-list li { color: rgba(255, 255, 255, .52); }
 
+.plan-features-list li.plan-feat--star {
+  color: var(--gold);
+  font-weight: 500;
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(176, 144, 96, .2);
+}
+.plan-features-list li.plan-feat--star::before { content: '★'; font-size: 9px; top: 9px; }
+.plan-card--featured .plan-features-list li.plan-feat--star,
+.plan-card--luxury   .plan-features-list li.plan-feat--star { color: var(--gold); }
+
+.plan-features-list li.plan-feat--divider {
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-weight: 400;
+  color: var(--ink-70, #555);
+}
+.plan-card--featured .plan-features-list li.plan-feat--divider,
+.plan-card--luxury   .plan-features-list li.plan-feat--divider { color: rgba(255,255,255,.65); border-top-color: rgba(255,255,255,.12); }
+
 /* Plan butonları */
 .btn-plan-select {
   display: block;
