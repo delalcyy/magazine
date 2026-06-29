@@ -20,7 +20,7 @@ function getTransporter() {
 }
 
 async function sendVerificationEmail(email, firstName, token) {
-  const verifyUrl = `${process.env.FRONTEND_URL}/eposta-dogrula?token=${token}`;
+  const verifyUrl = `${process.env.FRONTEND_URL}/api/auth/verify-email?token=${token}`;
 
   await getTransporter().sendMail({
     from: `"FashionTV Magazine" <${process.env.MAIL_USER}>`,
