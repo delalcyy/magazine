@@ -154,7 +154,8 @@
     btn.textContent = 'Güncelleniyor…';
 
     try {
-      const res  = await fetch('http://localhost:4000/api/auth/reset-password', {
+      const API_BASE = (location.hostname === 'localhost' || location.hostname === '127.0.0.1') ? 'http://localhost:4000/api' : '/api';
+      const res  = await fetch(API_BASE + '/auth/reset-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token, password, password_confirm })
@@ -178,7 +179,7 @@
   function showAlert(msg, type) {
     const el = document.getElementById('reset-alert');
     el.textContent = msg;
-    el.className   = 'auth-alert auth-alert--' + type;
+    el.className   = 'auth-alert ' + type;
     el.style.display = 'block';
   }
 })();
