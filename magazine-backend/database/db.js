@@ -64,6 +64,19 @@ function initDb() {
     db.exec("ALTER TABLE users ADD COLUMN password_reset_expires TEXT");
   }
 
+  /* Migration: payment_sessions tablosu */
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS payment_sessions (
+      token           TEXT PRIMARY KEY,
+      user_id         TEXT NOT NULL,
+      plan_name       TEXT NOT NULL,
+      plan_period     TEXT NOT NULL,
+      price           INTEGER NOT NULL,
+      conversation_id TEXT NOT NULL,
+      created_at      TEXT NOT NULL
+    )
+  `);
+
   /* Migration: subscriptions tablosu */
   db.exec(`
     CREATE TABLE IF NOT EXISTS subscriptions (

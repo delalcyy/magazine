@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ödeme Başarısız — Fashiontv Magazine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #080808; color: #e8e8e8;
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 40px 20px;
+    }
+    .card {
+      max-width: 480px; width: 100%;
+      background: #111; border: 1px solid rgba(255,255,255,.07);
+      padding: 56px 48px; text-align: center;
+    }
+    .icon-wrap {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(224,112,104,.12);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+    }
+    .label {
+      font-size: 9px; font-weight: 700; letter-spacing: .36em; text-transform: uppercase;
+      color: #e07068; margin-bottom: 14px;
+    }
+    h1 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+    p { font-size: 14px; color: rgba(255,255,255,.42); line-height: 1.7; margin-bottom: 32px; }
+    .err-detail {
+      font-size: 12px; color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+      padding: 10px 14px; margin-bottom: 28px; text-align: left;
+    }
+    .btn {
+      display: inline-block; padding: 13px 36px;
+      background: #C9A84C; color: #080808;
+      font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer; font-family: inherit;
+      transition: background .2s;
+    }
+    .btn:hover { background: #d9bc6a; }
+    .btn-out {
+      display: inline-block; padding: 13px 28px;
+      color: rgba(255,255,255,.35);
+      font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+      text-decoration: none; border: 1px solid rgba(255,255,255,.1);
+      margin-left: 12px; transition: all .2s; font-family: inherit;
+    }
+    .btn-out:hover { color: #fff; border-color: rgba(255,255,255,.3); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon-wrap">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e07068" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="15" y1="9" x2="9" y2="15"/>
+        <line x1="9" y1="9" x2="15" y2="15"/>
+      </svg>
+    </div>
+    <div class="label">Ödeme Başarısız</div>
+    <h1>İşlem Tamamlanamadı</h1>
+    <p>Ödeme işleminiz gerçekleştirilemedi. Kart bilgilerinizi kontrol edip tekrar deneyebilirsiniz.</p>
+    <div class="err-detail" id="err-detail" style="display:none"></div>
+    <a href="odeme" class="btn">Tekrar Dene</a>
+    <a href="abonelik" class="btn-out">Planlara Dön</a>
+  </div>
+  <script>
+    const err = new URLSearchParams(location.search).get('error');
+    if (err && err !== 'no_token' && err !== 'session_not_found' && err !== 'callback_error') {
+      const el = document.getElementById('err-detail');
+      el.textContent = 'Hata: ' + err;
+      el.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

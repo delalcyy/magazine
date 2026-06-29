@@ -76,6 +76,9 @@ app.use('/api/admin/casting', require('./routes/casting.admin.routes'));
 /* Site admin (users + subscriptions) → /api/admin/... */
 app.use('/api/admin', require('./routes/admin.routes'));
 
+/* Ödeme → /api/payment/... */
+app.use('/api/payment', require('./routes/payment.routes'));
+
 /* Sağlık kontrolü */
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
