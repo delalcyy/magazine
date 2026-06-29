@@ -7,11 +7,14 @@ let _transporter = null;
 function getTransporter() {
   if (_transporter) return _transporter;
   _transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: process.env.MAIL_HOST || 'mail.fashiontvmagazine.com',
+    port: parseInt(process.env.MAIL_PORT || '587'),
+    secure: false,
     auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_APP_PASSWORD
-    }
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASSWORD
+    },
+    tls: { rejectUnauthorized: false }
   });
   return _transporter;
 }
@@ -20,7 +23,7 @@ async function sendVerificationEmail(email, firstName, token) {
   const verifyUrl = `${process.env.FRONTEND_URL}/eposta-dogrula?token=${token}`;
 
   await getTransporter().sendMail({
-    from: `"FashionTV Magazine" <${process.env.GMAIL_USER}>`,
+    from: `"FashionTV Magazine" <${process.env.MAIL_USER}>`,
     to: email,
     subject: 'E-posta adresinizi doğrulayın — FashionTV Magazine',
     html: `
@@ -90,7 +93,7 @@ async function sendPasswordResetEmail(email, firstName, token) {
   const resetUrl = `${process.env.FRONTEND_URL}/sifre-sifirla?token=${token}`;
 
   await getTransporter().sendMail({
-    from: `"FashionTV Magazine" <${process.env.GMAIL_USER}>`,
+    from: `"FashionTV Magazine" <${process.env.MAIL_USER}>`,
     to: email,
     subject: 'Şifre Sıfırlama — FashionTV Magazine',
     html: `
