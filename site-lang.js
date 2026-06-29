@@ -63,8 +63,8 @@ const LANGS = {
     'home.editorial.btn.sub':  'Aboneliği İncele',
 
     'home.issue.label':          'Güncel Sayı',
-    'home.issue.heading':      'fashiontv magazine <br><em>Nisan Sayısı Çıktı</em>',
-    'home.issue.body':         'Bu ayki özel sayımızda dünyanın en prestijli isimlerinden eksiksiz röportajlar, 2026 ilkbahar–yaz koleksiyonlarının derinlemesine analizi ve modanın geleceğini şekillendiren vizyoner tasarımcılar sizi bekliyor.',
+    'home.issue.heading':      'fashiontv magazine <br><em>Yeni Sayı Çıktı</em>',
+    'home.issue.body':         'Yeni sayımızda dünyanın en prestijli isimlerinden eksiksiz röportajlar, 2026 ilkbahar–yaz koleksiyonlarının derinlemesine analizi ve modanın geleceğini şekillendiren vizyoner tasarımcılar sizi bekliyor.',
     'home.issue.li1':          '12 Eksiksiz Röportaj',
     'home.issue.li2':          '40+ Sayfa Özel Editorial',
     'home.issue.li3':          'Koleksiyon Analizi & Trendler',
@@ -467,8 +467,8 @@ const LANGS = {
     'home.editorial.btn.sub':  'Explore Subscription',
 
     'home.issue.label':        'Current Issue',
-    'home.issue.heading':      'fashiontv magazine <br><em>April Issue Out Now</em>',
-    'home.issue.body':         'This month\'s special issue features exclusive interviews with the world\'s most prestigious names, an in-depth analysis of the Spring–Summer 2026 collections, and visionary designers shaping the future of fashion.',
+    'home.issue.heading':      'fashiontv magazine <br><em>New Issue Out Now</em>',
+    'home.issue.body':         'Our new issue features exclusive interviews with the world\'s most prestigious names, an in-depth analysis of the Spring–Summer 2026 collections, and visionary designers shaping the future of fashion.',
     'home.issue.li1':          '12 In-Depth Interviews',
     'home.issue.li2':          '40+ Pages of Special Editorial',
     'home.issue.li3':          'Collection Analysis & Trends',
@@ -857,8 +857,8 @@ const LANGS = {
     'home.editorial.btn.sub':  'Изучить подписку',
 
     'home.issue.label':        'Current Issue',
-    'home.issue.heading':      'fashiontv magazine <br><em>Апрельский выпуск уже вышел</em>',
-    'home.issue.body':         'В этом специальном выпуске — эксклюзивные интервью с самыми престижными именами мира, глубокий анализ коллекций весна–лето 2026 и дальновидные дизайнеры, формирующие будущее моды.',
+    'home.issue.heading':      'fashiontv magazine <br><em>Новый выпуск уже вышел</em>',
+    'home.issue.body':         'В новом выпуске — эксклюзивные интервью с самыми престижными именами мира, глубокий анализ коллекций весна–лето 2026 и дальновидные дизайнеры, формирующие будущее моды.',
     'home.issue.li1':          '12 эксклюзивных интервью',
     'home.issue.li2':          '40+ страниц специального редакционного контента',
     'home.issue.li3':          'Анализ коллекций и тренды',
